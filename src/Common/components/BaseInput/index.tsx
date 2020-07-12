@@ -14,6 +14,7 @@ interface Props {
 class BaseInput extends React.Component<Props> {
   static defaultProps = {
     id: 'textInput',
+    value: '',
   };
 
   render() {
