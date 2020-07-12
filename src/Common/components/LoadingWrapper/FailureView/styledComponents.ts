@@ -10,4 +10,7 @@ export const Container = styled.div`
 
 export const FailureText = styled.span``;
 
-export const RetryButton = styled(Button)``;
+export const RetryButton = styled(Button)`
+  min-width: 100px;
+  margin-top: 5px;
+`;

@@ -8,7 +8,7 @@ import Loader from '../Loader';
 
 storiesOf('Common component Guide', module).add('Button component', () => (
   <Button
-    buttonText='mani'
+    buttonText='UPDATE ITEM'
     onClick={action('clicked')}
     apiStatus={API_FETCHING}
     renderLoader={() => <Loader width={25} height={25} />}

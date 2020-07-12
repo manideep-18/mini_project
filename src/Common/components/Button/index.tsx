@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'styled-components/macro';
-import { APIStatus, API_FETCHING } from '@ib/api-constants';
+import { APIStatus, API_FETCHING, API_SUCCESS } from '@ib/api-constants';
 
 import { CustomButton, ButtonText } from './styledComponents';
 import Loader from '../Loader';
@@ -13,12 +13,15 @@ interface Props {
   onClick: any;
   apiStatus: APIStatus;
   renderLoader: Function;
+  disabled: boolean;
 }
 
 class Button extends React.Component<Props> {
   static defaultProps = {
     id: 'customButton',
-    buttonText: 'button',
+    buttonText: '',
+    apiStatus: API_SUCCESS,
+    disabled: false,
     renderLoader: () => <Loader width={25} height={25} />,
   };
 
@@ -35,9 +38,15 @@ class Button extends React.Component<Props> {
     return <ButtonText css={buttonTextCss}>{buttonText}</ButtonText>;
   };
   render() {
-    const { id, className, onClick } = this.props;
+    const { id, className, onClick, disabled, ...other } = this.props;
     return (
-      <CustomButton onClick={onClick} data-testid={id} className={className}>
+      <CustomButton
+        onClick={onClick}
+        data-testid={id}
+        className={className}
+        disabled={disabled || this.isFetching()}
+        {...other}
+      >
         {this.renderContent()}
       </CustomButton>
     );

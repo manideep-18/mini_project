@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
+import Colors from '../../themes/Colors';
+import { Typo14WhiteHKGroteskSemiBold } from '../../styleGuide/Typos';
+
 export const CustomButton = styled.button`
+  padding: 15px 20px;
+  background-color: ${Colors.brightBlue};
+  border: none;
+  border-radius: 4px;
   outline: none;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 export const ButtonText = styled.span`
-  font-size: 10px;
+  line-height: 1.71;
+  letter-spacing: normal;
 `;
