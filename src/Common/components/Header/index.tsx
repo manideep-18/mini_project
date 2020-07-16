@@ -6,14 +6,21 @@ import {
   ProfileImage,
   ImagesContainer,
   HeaderResponsiveContainer,
+  ButtonImageContainer,
+  AddButton,
 } from './styledComponents';
 import ResponsiveContainer from '../ResponsiveContainer';
+import Button from '../Button';
+import { navigate } from '@reach/router';
+import { Link } from 'react-router-dom';
 
 interface Props {
   logoUrl: string;
   logoAltText: string;
   profileImageUrl: string;
   profileImageAltText: string;
+  isAdmin?: boolean;
+  tabStatus?: string;
 }
 
 export class Header extends Component<Props> {
@@ -32,13 +39,22 @@ export class Header extends Component<Props> {
       logoAltText,
       profileImageUrl,
       profileImageAltText,
+      isAdmin,
+      tabStatus,
     } = this.props;
     return (
       <MainContainer>
         <HeaderResponsiveContainer>
           <ImagesContainer>
             <IbhubsLogo src={logoUrl} alt={logoAltText} />
-            <ProfileImage src={profileImageUrl} alt={profileImageAltText} />
+            <ButtonImageContainer>
+              {isAdmin && tabStatus === 'Resources' && (
+                <Link to='/admin/addResource'>
+                  <AddButton buttonText='+ ADD' />
+                </Link>
+              )}
+              <ProfileImage src={profileImageUrl} alt={profileImageAltText} />
+            </ButtonImageContainer>
           </ImagesContainer>
         </HeaderResponsiveContainer>
       </MainContainer>

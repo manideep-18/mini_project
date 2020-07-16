@@ -20,6 +20,7 @@ class Button extends React.Component<Props> {
   static defaultProps = {
     id: 'customButton',
     buttonText: '',
+    onClick: () => {},
     apiStatus: API_SUCCESS,
     disabled: false,
     renderLoader: () => <Loader width={25} height={25} />,

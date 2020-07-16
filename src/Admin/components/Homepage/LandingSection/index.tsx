@@ -5,6 +5,8 @@ import { observer } from 'mobx-react';
 import TabsSwitch from './TabsSwitch';
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
+import ResourcesTabContent from './ResourcesTabContent';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 
 interface Props {
   tabsStore: TabsStore;
@@ -22,6 +24,7 @@ class LandingSection extends Component<Props> {
   renderTabsContent = () => {
     const { tabsStore, resourcesStore } = this.props;
     const { tabStatus } = tabsStore;
+
     switch (tabStatus) {
       case 'Resources':
         return <ResourcesTabContent resourcesStore={resourcesStore} />;
@@ -31,7 +34,7 @@ class LandingSection extends Component<Props> {
   };
 
   render() {
-    const { tabsStore, resourcesStore } = this.props;
+    const { tabsStore } = this.props;
     const { tabStatus } = tabsStore;
     return (
       <MainContainer>

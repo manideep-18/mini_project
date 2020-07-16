@@ -75,7 +75,28 @@ export const BaseInterMediumText = styled(BaseInterText)`
   font-weight: 500;
 `;
 
+export const Typo12SteelHKGroteskRegular = styled(BaseHKGroteskText)`
+  font-size: 12px;
+  color: ${Colors.steel};
+`;
+
+export const Typo16DarkBlueGreyHKGroteskMedium = styled(
+  BaseHKGroteskMediumText
+)`
+  font-size: 16px;
+  color: ${Colors.darkBlueGrey};
+`;
 export const Typo14WhiteHKGroteskSemiBold = styled(BaseHKGroteskSemiBoldText)`
   font-size: 14px;
   color: ${Colors.white};
+`;
+
+export const Typo14BrightBlueHKGroteskRegular = styled(BaseHKGroteskText)`
+  font-size: 14px;
+  color: ${Colors.brightBlue};
+`;
+
+export const Typo14SteelHKGroteskRegular = styled(BaseHKGroteskText)`
+  font-size: 14px;
+  color: ${Colors.steel};
 `;

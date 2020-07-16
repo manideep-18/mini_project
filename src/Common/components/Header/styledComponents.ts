@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '../../themes/Colors';
+import Button from '../Button';
 
 export const MainContainer = styled.div`
   position: fixed;
@@ -24,6 +25,15 @@ export const ImagesContainer = styled.div`
 
 export const IbhubsLogo = styled.img`
   object-fit: contain;
+`;
+
+export const ButtonImageContainer = styled.div`
+  display: flex;
+`;
+
+export const AddButton = styled(Button)`
+  margin-right: 15px;
+  color: ${Colors.white};
 `;
 
 export const ProfileImage = styled.img`

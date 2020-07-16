@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { mobile, tablet, mdDesktop } from '../../utils/MixinUtils';
 
 export const MainContainer = styled.div`
-  width: 1110px;
+  width: 83%;
   margin-right: auto;
   margin-left: auto;
   ${mobile} {

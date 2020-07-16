@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactLoader from 'react-loader-spinner';
+import { LoaderWrapper } from './styledComponents';
 
 interface Props {
   type?: any;
@@ -19,13 +20,15 @@ class Loader extends React.Component<Props> {
   render() {
     const { type, color, height, width, ...other } = this.props;
     return (
-      <ReactLoader
-        type={type}
-        color={color}
-        height={height}
-        width={width}
-        {...other}
-      />
+      <LoaderWrapper>
+        <ReactLoader
+          type={type}
+          color={color}
+          height={height}
+          width={width}
+          {...other}
+        />
+      </LoaderWrapper>
     );
   }
 }

@@ -1,6 +1,9 @@
 export interface EachResourceFetchType {
-  name: string;
-  description: string;
+  logoImageUrl: string;
+  resourceName: string;
+  resourceType: string;
+  resourceLink: string;
+  resourceDescription: string;
 }
 
 export interface ResourcesFetchResponse {

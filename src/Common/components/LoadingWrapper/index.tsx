@@ -18,8 +18,9 @@ interface Props {
 
 class LoadingWrapper extends React.Component<Props> {
   static defaultProps = {
-    apiStatus: API_SUCCESS,
+    apiStatus: API_FETCHING,
     renderLoadingView: () => <Loader />,
+    retryText: 'retry',
   };
 
   renderData = () => {

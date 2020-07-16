@@ -11,7 +11,8 @@ export class Routes extends Component {
           <Switch>
             <Route exact path='/' component={Header} />
 
-            <Route path='/admin' component={Homepage} />
+            <Route exact path='/admin' component={Homepage} />
+            <Route path='/admin/addResource' component={Header} />
           </Switch>
         </Router>
       </div>
