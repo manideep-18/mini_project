@@ -46,7 +46,7 @@ class LoadingWrapper extends React.Component<Props> {
           />
         );
       default:
-        return renderLoadingView();
+        return children;
     }
   };
 

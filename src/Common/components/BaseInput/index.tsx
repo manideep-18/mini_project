@@ -17,6 +17,11 @@ class BaseInput extends React.Component<Props> {
     value: '',
   };
 
+  handleChange = (event: any) => {
+    const { onChange } = this.props;
+    onChange(event.target.value);
+  };
+
   render() {
     const {
       id,
@@ -35,7 +40,7 @@ class BaseInput extends React.Component<Props> {
         placeholder={placeholder}
         value={value}
         className={className}
-        onChange={onChange}
+        onChange={this.handleChange}
         {...other}
       />
     );

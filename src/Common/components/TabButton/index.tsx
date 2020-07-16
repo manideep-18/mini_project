@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { CustomTabButton, TextCss } from './styledComponents';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 interface State {
   isActive: boolean;
@@ -12,23 +14,22 @@ interface Props {
   text: string;
 }
 
+@observer
 class TabButton extends React.Component<Props, State> {
+  @observable isActive: boolean;
   constructor(props: Props) {
     super(props);
-    this.state = {
-      isActive: false,
-    };
+    this.isActive = false;
   }
 
   handleClick = () => {
     const { onClick, text } = this.props;
-    this.setState({ isActive: true });
+    this.isActive = true;
     onClick(text);
   };
 
   initIsActive = () => {
-    const { isActive } = this.state;
-    if (isActive) this.setState({ isActive: false });
+    if (this.isActive) this.isActive = false;
   };
 
   componentDidUpdate(prevProps: any, prevState: any) {
@@ -38,16 +39,15 @@ class TabButton extends React.Component<Props, State> {
 
   componentDidMount() {
     const { tabStatus, text } = this.props;
-    if (tabStatus === text) this.setState({ isActive: true });
+    if (tabStatus === text) this.isActive = true;
   }
 
   render() {
     const { text } = this.props;
-    const { isActive } = this.state;
     return (
       <CustomTabButton
         onClick={this.handleClick}
-        isActive={isActive}
+        isActive={this.isActive}
         buttonText={text}
         buttonTextCss={TextCss}
       />

@@ -80,6 +80,11 @@ export const Typo12SteelHKGroteskRegular = styled(BaseHKGroteskText)`
   color: ${Colors.steel};
 `;
 
+export const Typo12SteelHKGroteskSemiBold = styled(BaseHKGroteskSemiBoldText)`
+  font-size: 12px;
+  color: ${Colors.steel};
+`;
+
 export const Typo16DarkBlueGreyHKGroteskMedium = styled(
   BaseHKGroteskMediumText
 )`
@@ -99,4 +104,9 @@ export const Typo14BrightBlueHKGroteskRegular = styled(BaseHKGroteskText)`
 export const Typo14SteelHKGroteskRegular = styled(BaseHKGroteskText)`
   font-size: 14px;
   color: ${Colors.steel};
+`;
+
+export const Typo32DarkBlueGreyHKGroteskRegular = styled(BaseHKGroteskText)`
+  font-size: 32px;
+  color: ${Colors.darkBlueGrey};
 `;

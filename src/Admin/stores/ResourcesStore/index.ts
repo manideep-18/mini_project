@@ -1,18 +1,26 @@
-import { APIStatus } from '@ib/api-constants';
+import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { observable, action } from 'mobx';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { ResourcesFetchResponse } from '../types';
+import { ResourcesFetchResponse, EachResourceFetchType } from '../types';
 
 class ResourcesStore {
   @observable getResourcesDataAPIStatus!: APIStatus;
   @observable getResourcesDataAPIError!: any;
   @observable resourcesFetchData!: ResourcesFetchResponse;
+  @observable updateResourcesDataAPIStatus!: APIStatus;
+  @observable updateResourcesDataAPIError!: any;
   resourceFetchService: ResourceFetchService;
 
   constructor(resourceFetchService: ResourceFetchService) {
     this.resourceFetchService = resourceFetchService;
+    this.initStore();
+  }
+
+  @action.bound
+  initStore() {
+    this.updateResourcesDataAPIStatus = API_INITIAL;
   }
 
   @action.bound
@@ -45,6 +53,35 @@ class ResourcesStore {
       })
       .catch((err) => {
         this.setGetResourcesDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setUpdateResourcesDataAPIStatus(status: APIStatus) {
+    this.updateResourcesDataAPIStatus = status;
+  }
+
+  @action.bound
+  setUpdateResourcesDataAPIError(err: any) {
+    this.updateResourcesDataAPIError = err;
+  }
+
+  updateResourcesDataAPI(
+    requestObject: EachResourceFetchType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const updateResourcesDataPromise = this.resourceFetchService.updateResourcesData(
+      requestObject
+    );
+
+    return bindPromiseWithOnSuccess(updateResourcesDataPromise)
+      .to(this.setUpdateResourcesDataAPIStatus, (response) => {
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setUpdateResourcesDataAPIError(err);
         onFailure();
       });
   }
