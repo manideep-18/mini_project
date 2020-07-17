@@ -21,6 +21,7 @@ class LoadingWrapper extends React.Component<Props> {
     apiStatus: API_FETCHING,
     renderLoadingView: () => <Loader />,
     retryText: 'retry',
+    failureText: 'page not found',
   };
 
   renderData = () => {

@@ -13,5 +13,10 @@ storiesOf('Admin Component', module).add('each resource card component', () => {
     resourceDescription:
       'Slack brings the team together, wherever you are. With all of your communication and tools in one....',
   };
-  return <EachResourceCard eachResource={eachResource} />;
+  return (
+    <EachResourceCard
+      eachResource={eachResource}
+      onClickResourceCard={() => {}}
+    />
+  );
 });

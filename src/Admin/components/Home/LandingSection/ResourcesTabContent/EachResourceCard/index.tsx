@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { History } from 'history';
 
 import { EachResourceFetchType } from '../../../../../stores/types';
+import { goToAdminResourcePage } from '../../../../../utils/navigationUtils';
 
 import {
   CardContainer,
@@ -14,10 +17,20 @@ import {
 } from './styledComponents';
 
 interface Props {
+  history: History;
+  match: any;
+  location: any;
   eachResource: EachResourceFetchType;
+  onClickResourceCard: (resource: EachResourceFetchType) => void;
 }
 
 class EachResourceCard extends Component<Props> {
+  handleClick = () => {
+    const { onClickResourceCard, eachResource, history } = this.props;
+    onClickResourceCard(eachResource);
+    goToAdminResourcePage(history, eachResource.resourceName);
+  };
+
   render() {
     const { eachResource } = this.props;
     const {
@@ -30,7 +43,7 @@ class EachResourceCard extends Component<Props> {
     return (
       <CardContainer>
         <LogoTextContainer>
-          <Logo src={logoImageUrl} alt='icon logo' />
+          <Logo src={logoImageUrl} alt='icon logo' onClick={this.handleClick} />
           <TextContainer>
             <ResourceName>{resourceName}</ResourceName>
             <ResourceType>{resourceType}</ResourceType>
@@ -43,4 +56,4 @@ class EachResourceCard extends Component<Props> {
   }
 }
 
-export default EachResourceCard;
+export default withRouter(EachResourceCard);

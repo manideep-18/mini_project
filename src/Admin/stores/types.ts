@@ -9,3 +9,14 @@ export interface EachResourceFetchType {
 export interface ResourcesFetchResponse {
   resources_data: EachResourceFetchType[];
 }
+
+export interface ResourceItemType {
+  title: string;
+  description: string;
+  link: string;
+}
+
+export interface ResourceDetailsFetchResponse {
+  resource_details: EachResourceFetchType;
+  resource_items_details: ResourceItemType[];
+}

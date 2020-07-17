@@ -8,6 +8,7 @@ import ResourcesStore from '../../../../stores/ResourcesStore';
 
 import EachResourceCard from './EachResourceCard';
 import { ResourcesCardsContainer } from './styledComponents';
+import { EachResourceFetchType } from '../../../../stores/types';
 
 interface Props {
   resourcesStore: ResourcesStore;
@@ -15,13 +16,21 @@ interface Props {
 
 @observer
 class ResourcesTabContent extends Component<Props> {
+  onClickResourceCard = (resource: EachResourceFetchType) => {
+    const { resourcesStore } = this.props;
+    resourcesStore.getResourceDetailsAPI(resource);
+  };
+
   renderResourcesCards = () => {
     const { resourcesStore } = this.props;
     const { resourcesFetchData } = resourcesStore;
 
     if (resourcesFetchData)
       return resourcesFetchData.resources_data.map((eachResource) => (
-        <EachResourceCard eachResource={eachResource} />
+        <EachResourceCard
+          eachResource={eachResource}
+          onClickResourceCard={this.onClickResourceCard}
+        />
       ));
     return null;
   };

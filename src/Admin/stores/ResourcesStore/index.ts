@@ -4,7 +4,11 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
 
-import { ResourcesFetchResponse, EachResourceFetchType } from '../types';
+import {
+  ResourcesFetchResponse,
+  EachResourceFetchType,
+  ResourceDetailsFetchResponse,
+} from '../types';
 
 class ResourcesStore {
   @observable getResourcesDataAPIStatus!: APIStatus;
@@ -12,6 +16,9 @@ class ResourcesStore {
   @observable resourcesFetchData!: ResourcesFetchResponse;
   @observable updateResourcesDataAPIStatus!: APIStatus;
   @observable updateResourcesDataAPIError!: any;
+  @observable getResourceDetailsDataAPIStatus!: APIStatus;
+  @observable getResourceDetailsDataAPIError!: any;
+  @observable resourceDetailsData!: ResourceDetailsFetchResponse;
   resourceFetchService: ResourceFetchService;
 
   constructor(resourceFetchService: ResourceFetchService) {
@@ -26,6 +33,8 @@ class ResourcesStore {
     this.updateResourcesDataAPIStatus = API_INITIAL;
     this.resourcesFetchData = { resources_data: [] };
     this.updateResourcesDataAPIError = '';
+    this.getResourceDetailsDataAPIStatus = API_INITIAL;
+    this.getResourceDetailsDataAPIError = '';
   }
 
   @action.bound
@@ -87,6 +96,43 @@ class ResourcesStore {
       })
       .catch((err) => {
         this.setUpdateResourcesDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setResourceDetailsDataAPIResponse(response: ResourceDetailsFetchResponse) {
+    this.resourceDetailsData = response;
+  }
+
+  @action.bound
+  setGetResourceDetailsAPIStatus(status: APIStatus) {
+    this.getResourceDetailsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetResourceDetailsAPIError(error: any) {
+    this.getResourceDetailsDataAPIError = error;
+  }
+
+  getResourceDetailsAPI(
+    requestObject: EachResourceFetchType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getResourceDetailsPromise = this.resourceFetchService.getResourceDetails(
+      requestObject
+    );
+
+    return bindPromiseWithOnSuccess(getResourceDetailsPromise)
+      .to(this.setGetResourceDetailsAPIStatus, (response) => {
+        this.setResourceDetailsDataAPIResponse(
+          response as ResourceDetailsFetchResponse
+        );
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetResourceDetailsAPIError(err);
         onFailure();
       });
   }
