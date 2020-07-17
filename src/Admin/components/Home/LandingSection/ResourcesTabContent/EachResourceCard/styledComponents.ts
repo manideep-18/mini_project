@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Colors from '../../../../../../Common/themes/Colors';
 import {
   Typo16DarkBlueGreyHKGroteskMedium,

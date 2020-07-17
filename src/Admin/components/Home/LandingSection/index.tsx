@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
-import { MainContainer } from './styledComponents';
 import { observer } from 'mobx-react';
-import TabsSwitch from './TabsSwitch';
+
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
+
+import { MainContainer } from './styledComponents';
+import TabsSwitch from './TabsSwitch';
 import ResourcesTabContent from './ResourcesTabContent';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 
 interface Props {
   tabsStore: TabsStore;

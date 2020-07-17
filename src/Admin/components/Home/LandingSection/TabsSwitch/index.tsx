@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { TabsSwitchContainer } from './styledComponents';
-import TabButton from '../../../../../Common/components/TabButton';
 import { observer } from 'mobx-react';
+
+import TabButton from '../../../../../Common/components/TabButton';
+
+import { TabsSwitchContainer } from './styledComponents';
 
 interface Props {
   tabStatus: string;

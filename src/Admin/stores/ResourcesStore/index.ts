@@ -1,8 +1,9 @@
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { observable, action } from 'mobx';
+import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
+
 import { ResourcesFetchResponse, EachResourceFetchType } from '../types';
 
 class ResourcesStore {
@@ -20,7 +21,11 @@ class ResourcesStore {
 
   @action.bound
   initStore() {
+    this.getResourcesDataAPIStatus = API_INITIAL;
+    this.getResourcesDataAPIError = '';
     this.updateResourcesDataAPIStatus = API_INITIAL;
+    this.resourcesFetchData = { resources_data: [] };
+    this.updateResourcesDataAPIError = '';
   }
 
   @action.bound

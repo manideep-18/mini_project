@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { AddResourceMainContainer } from './styledComponents';
+import { observer, inject } from 'mobx-react';
+
 import BackButton from '../../../Common/components/BackButton';
 import Header from '../../../Common/components/Header';
-import { observer, inject } from 'mobx-react';
+
+import LandingSection from '../../components/AddResource/LandingSection';
 import ResourcesStore from '../../stores/ResourcesStore';
-import LandingSection from './LandingSection';
-import { withRouter } from 'react-router-dom';
-import { History } from 'history';
+
+import { AddResourceMainContainer } from './styledComponents';
 
 interface Props {
   resourcesStore: ResourcesStore;

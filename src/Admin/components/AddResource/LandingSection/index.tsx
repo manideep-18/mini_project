@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
-import AddResourceFields from './AddResourceFields';
-import { LogoImage, FieldsImageContainer } from './styledComponents';
-import ResourcesStore from '../../../stores/ResourcesStore';
-import { EachResourceFetchType } from '../../../stores/types';
-import { observer, inject } from 'mobx-react';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import { navigate } from '@reach/router';
-import { goToAdminPage } from '../../../../Common/utils/navigationUtils';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
+import { observable } from 'mobx';
+import { observer, inject } from 'mobx-react';
 
-interface State {
-  fileUploaded: string;
-}
+import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { goToAdminPage } from '../../../../Common/utils/navigationUtils';
+
+import ResourcesStore from '../../../stores/ResourcesStore';
+import { EachResourceFetchType } from '../../../stores/types';
+
+import AddResourceFields from './AddResourceFields';
+import { LogoImage, FieldsImageContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -24,17 +23,16 @@ interface Props {
 
 @inject('resourcesStore')
 @observer
-class LandingSection extends Component<Props, State> {
+class LandingSection extends Component<Props> {
+  @observable fileUpload: string;
   constructor(props: Props) {
     super(props);
-    this.state = {
-      fileUploaded:
-        'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/61afd424-c83b-4d35-90ee-8222e064e6f6.png',
-    };
+    this.fileUpload =
+      'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/61afd424-c83b-4d35-90ee-8222e064e6f6.png';
   }
 
   onFileUploadChange = (fileName: any) => {
-    this.setState({ fileUploaded: fileName });
+    this.fileUpload = fileName;
   };
 
   onSuccess = () => {
@@ -43,11 +41,10 @@ class LandingSection extends Component<Props, State> {
   };
 
   onAddResource = (name: string, link: string, description: string) => {
-    const { fileUploaded } = this.state;
     const { resourcesStore } = this.props;
     const eachResource: EachResourceFetchType = {
       resourceName: name,
-      logoImageUrl: fileUploaded,
+      logoImageUrl: this.fileUpload,
       resourceLink: link,
       resourceDescription: description,
       resourceType: 'cloud services',
@@ -57,7 +54,6 @@ class LandingSection extends Component<Props, State> {
   };
 
   render() {
-    const { fileUploaded } = this.state;
     const { resourcesStore } = this.props;
     const { updateResourcesDataAPIStatus } = resourcesStore;
     return (
@@ -72,7 +68,7 @@ class LandingSection extends Component<Props, State> {
               onFileUploadChange={this.onFileUploadChange}
               onAddResource={this.onAddResource}
             />
-            <LogoImage src={fileUploaded} alt='resource logo' />
+            <LogoImage src={this.fileUpload} alt='resource logo' />
           </FieldsImageContainer>
         </LoadingWrapper>
       </ResponsiveContainer>

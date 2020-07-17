@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+
+import LabelWithInput from '../../../../../Common/components/LabelWithInput';
+
 import {
   FieldsContainer,
   AddResourceText,
   CreateButton,
 } from './styledComponents';
-import LabelWithInput from '../../../../../Common/components/LabelWithInput';
-import { Link } from 'react-router-dom';
-
-interface State {
-  name: string;
-  link: string;
-  description: string;
-}
 
 interface Props {
   onFileUploadChange: any;
   onAddResource: (name: string, link: string, description: string) => void;
 }
 
-class AddResourceFields extends Component<Props, State> {
+@observer
+class AddResourceFields extends Component<Props> {
+  @observable name!: string;
+  @observable link!: string;
+  @observable description!: string;
+
   constructor(props: Props) {
     super(props);
-    this.state = {
-      name: '',
-      link: '',
-      description: '',
-    };
+    this.init();
   }
+
+  init = () => {
+    this.name = '';
+    this.link = '';
+    this.description = '';
+  };
 
   handleClick = () => {
     const { onAddResource } = this.props;
-    const { name, link, description } = this.state;
-    if (name && link && description) onAddResource(name, link, description);
+    if (this.name && this.link && this.description)
+      onAddResource(this.name, this.link, this.description);
   };
 
   handleFileChange = (event: any) => {
@@ -40,36 +44,35 @@ class AddResourceFields extends Component<Props, State> {
   };
 
   handleNameInputChange = (value: string) => {
-    this.setState({ name: value });
+    this.name = value;
   };
 
   handleLinkInputChange = (value: string) => {
-    this.setState({ link: value });
+    this.link = value;
   };
 
   handleDescriptionInputChange = (value: string) => {
-    this.setState({ description: value });
+    this.description = value;
   };
 
   render() {
-    const { name, link, description } = this.state;
     return (
       <FieldsContainer>
         <AddResourceText>Add a Resource</AddResourceText>
         <LabelWithInput
           labelText='Name'
-          value={name}
+          value={this.name}
           onChange={this.handleNameInputChange}
         />
         <LabelWithInput
           labelText='Link'
-          value={link}
+          value={this.link}
           onChange={this.handleLinkInputChange}
         />
         <LabelWithInput
           isTextArea={true}
           labelText='Description'
-          value={description}
+          value={this.description}
           onChange={this.handleDescriptionInputChange}
         />
         <input type='file' onChange={this.handleFileChange} />

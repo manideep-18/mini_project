@@ -46,6 +46,7 @@ class TabButton extends React.Component<Props, State> {
     const { text } = this.props;
     return (
       <CustomTabButton
+        data-testid='tab-button'
         onClick={this.handleClick}
         isActive={this.isActive}
         buttonText={text}

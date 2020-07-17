@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+
+import BaseInput from '../BaseInput';
+
 import {
   TextInputContainer,
   LabelText,
   LabelInput,
   LabelTextArea,
 } from './styledComponents';
-import BaseInput from '../BaseInput';
 
 interface Props {
   labelText: string;

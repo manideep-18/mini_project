@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
 import EachResourceCard from '.';
 
 storiesOf('Admin Component', module).add('each resource card component', () => {

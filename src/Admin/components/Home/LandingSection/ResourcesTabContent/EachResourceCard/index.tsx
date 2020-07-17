@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { EachResourceFetchType } from '../../../../../stores/types';
+
 import {
   CardContainer,
   LogoTextContainer,
@@ -10,7 +12,6 @@ import {
   ResourceLink,
   ResourceDescription,
 } from './styledComponents';
-import { EachResourceFetchType } from '../../../../../stores/types';
 
 interface Props {
   eachResource: EachResourceFetchType;

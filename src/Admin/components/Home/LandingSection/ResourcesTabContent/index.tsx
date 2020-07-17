@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import EachResourceCard from './EachResourceCard';
-import ResourcesStore from '../../../../stores/ResourcesStore';
-import { toJS } from 'mobx';
-import {
-  ResourcesFetchResponse,
-  EachResourceFetchType,
-} from '../../../../stores/types';
-import console from 'console';
 import { observer } from 'mobx-react';
-import { ResourcesCardsContainer } from './styledComponents';
+
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
+
+import ResourcesStore from '../../../../stores/ResourcesStore';
+
+import EachResourceCard from './EachResourceCard';
+import { ResourcesCardsContainer } from './styledComponents';
 
 interface Props {
   resourcesStore: ResourcesStore;
@@ -18,8 +15,6 @@ interface Props {
 
 @observer
 class ResourcesTabContent extends Component<Props> {
-  // resourceData: ResourcesFetchResponse = [];
-
   renderResourcesCards = () => {
     const { resourcesStore } = this.props;
     const { resourcesFetchData } = resourcesStore;
@@ -36,11 +31,7 @@ class ResourcesTabContent extends Component<Props> {
     resourcesStore.getResourcesDataAPI({}, this.onSuccess);
   };
 
-  onSuccess = () => {
-    const { resourcesStore } = this.props;
-    const { resourcesFetchData } = resourcesStore;
-    // this.resourceData = resourcesFetchData;
-  };
+  onSuccess = () => {};
 
   componentDidMount() {
     const { resourcesStore } = this.props;
