@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Header from '../../../Common/components/Header';
+import Header from '../../../../Common/components/Header';
 
-import LandingSection from '../../components/ResourcesTabData/ResourceDetails/LandingSection';
-import ResourcesStore from '../../stores/ResourcesStore';
+import LandingSection from '../../../components/ResourcesTabData/ResourceDetails/LandingSection';
+import ResourcesStore from '../../../stores/ResourcesStore';
 
 import { DetailsPageMainContainer } from './styledComponents';
 

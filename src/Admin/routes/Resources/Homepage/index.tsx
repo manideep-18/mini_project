@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-import Header from '../../../Common/components/Header';
+import Header from '../../../../Common/components/Header';
 
-import TabsStore from '../../stores/TabsStore';
-import ResourcesStore from '../../stores/ResourcesStore';
-import LandingSection from '../../components/ResourcesTabData/LandingSection';
+import TabsStore from '../../../stores/TabsStore';
+import ResourcesStore from '../../../stores/ResourcesStore';
+import LandingSection from '../../../components/ResourcesTabData/LandingSection';
 
 import { MainContainer } from './styledComponents';
 

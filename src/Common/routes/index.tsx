@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from '../components/Header';
-import Homepage from '../../Admin/routes/Homepage';
-import AddResourcePage from '../../Admin/routes/AddResourcePage';
-import ResourceDetailsPage from '../../Admin/routes/ResourceDetailsPage';
-import AddItemPage from '../../Admin/routes/AddItemPage';
+import Homepage from '../../Admin/routes/Resources/Homepage';
+import AddResourcePage from '../../Admin/routes/Resources/AddResourcePage';
+import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPage';
+import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
 
 export class Routes extends Component {
   render() {
@@ -18,16 +18,16 @@ export class Routes extends Component {
             <Route exact path='/admin/resources' component={Homepage} />
             <Route
               exact
-              path='/admin/addResource'
+              path='/admin/resources/add-resource'
               component={AddResourcePage}
             />
             <Route
               exact
-              path='/admin/:resource_id'
+              path='/admin/resources/:resource_id'
               component={ResourceDetailsPage}
             />
             <Route
-              path='/admin/:resource_id/add-item'
+              path='/admin/resources/:resource_id/add-item'
               component={AddItemPage}
             />
           </Switch>

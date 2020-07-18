@@ -49,7 +49,7 @@ export class Header extends Component<Props> {
             <IbhubsLogo src={logoUrl} alt={logoAltText} />
             <ButtonImageContainer>
               {isAdmin && tabStatus === 'Resources' && (
-                <Link to='/admin/addResource'>
+                <Link to='/admin/resources/add-resource'>
                   <AddButton buttonText='+ ADD' />
                 </Link>
               )}

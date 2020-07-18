@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import Header from '../../../Common/components/Header';
+import Header from '../../../../Common/components/Header';
 
-import LandingSection from '../../components/ResourcesTabData/AddResourceItem/LandingSection';
+import LandingSection from '../../../components/ResourcesTabData/AddResourceItem/LandingSection';
 import { inject, observer } from 'mobx-react';
-import ResourcesStore from '../../stores/ResourcesStore';
+import ResourcesStore from '../../../stores/ResourcesStore';
 
 interface Props {
   resourcesStore: ResourcesStore;

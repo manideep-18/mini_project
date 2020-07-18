@@ -1,14 +1,14 @@
 import { History } from 'history';
 
 export function goToAdminResourcePage(history: History, id: string): void {
-  history.push(`/admin/${id}`);
+  history.push(`/admin/resources/${id}`);
 }
 
 export function navigateToResourceAddItemPage(
   history: History,
   id: string
 ): void {
-  history.push(`/admin/${id}/add-item`);
+  history.push(`/admin/resources/${id}/add-item`);
 }
 
 export function goToRequestsPage(history: History): void {
