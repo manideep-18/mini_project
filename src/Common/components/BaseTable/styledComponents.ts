@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Typo12SteelHKGroteskSemiBold } from '../../styleGuide/Typos';
 
 export const CustomTable = styled.table`
@@ -13,8 +14,12 @@ export const CustomTable = styled.table`
 export const CustomColumn = styled.td`
   border-bottom: 1px solid #ddd;
   text-transform: none;
-  padding: 10px;
+  padding: 25px;
 `;
+
+export const CustomTableHeader = styled.thead``;
+
+export const CustomTableBody = styled.tbody``;
 
 export const CustomRow = styled(Typo12SteelHKGroteskSemiBold)`
   text-transform: uppercase;
@@ -27,8 +32,7 @@ export const CustomRow = styled(Typo12SteelHKGroteskSemiBold)`
 `;
 
 export const CustomHeader = styled.th`
-  /* padding-left: 130px; */
   border-bottom: 1px solid #ddd;
-  padding: 10px;
+  padding: 25px;
   text-align: left;
 `;

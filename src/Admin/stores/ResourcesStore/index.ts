@@ -8,6 +8,7 @@ import {
   ResourcesFetchResponse,
   EachResourceFetchType,
   ResourceDetailsFetchResponse,
+  ResourceItemType,
 } from '../types';
 
 class ResourcesStore {
@@ -19,6 +20,8 @@ class ResourcesStore {
   @observable getResourceDetailsDataAPIStatus!: APIStatus;
   @observable getResourceDetailsDataAPIError!: any;
   @observable resourceDetailsData!: ResourceDetailsFetchResponse;
+  @observable getResourcesAfterDeleteAPIStatus!: APIStatus;
+  @observable getResourcesAfterDeleteAPIError!: any;
   resourceFetchService: ResourceFetchService;
 
   constructor(resourceFetchService: ResourceFetchService) {
@@ -35,6 +38,8 @@ class ResourcesStore {
     this.updateResourcesDataAPIError = '';
     this.getResourceDetailsDataAPIStatus = API_INITIAL;
     this.getResourceDetailsDataAPIError = '';
+    this.getResourcesAfterDeleteAPIStatus = API_INITIAL;
+    this.getResourcesAfterDeleteAPIError = '';
   }
 
   @action.bound
@@ -133,6 +138,38 @@ class ResourcesStore {
       })
       .catch((err) => {
         this.setGetResourceDetailsAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetResourcesAfterDeleteAPIStatus(status: APIStatus) {
+    this.getResourcesAfterDeleteAPIStatus = status;
+  }
+
+  @action.bound
+  setGetResourcesAfterDeleteAPIError(err: any) {
+    this.getResourcesAfterDeleteAPIError = err;
+  }
+
+  getResourceItemsAfterDeleteAPI(
+    requestObject: ResourceItemType[],
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getResourceItemsAfterDeletePromise = this.resourceFetchService.getResourceItemsAfterDelete(
+      requestObject
+    );
+
+    return bindPromiseWithOnSuccess(getResourceItemsAfterDeletePromise)
+      .to(this.setGetResourcesAfterDeleteAPIStatus, (response) => {
+        this.setResourceDetailsDataAPIResponse(
+          response as ResourceDetailsFetchResponse
+        );
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetResourcesAfterDeleteAPIError(err);
         onFailure();
       });
   }

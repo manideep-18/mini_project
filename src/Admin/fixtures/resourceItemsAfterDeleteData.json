@@ -14,12 +14,6 @@
       "link": "www.slack.iB studio.com"
     },
     {
-      "id": 2,
-      "title": "TAP Team",
-      "description": "This channel is for TAP trainees",
-      "link": "www.slack.TAP.com"
-    },
-    {
       "id": 3,
       "title": "Adaptive Engine",
       "description": "This channel for Adaptive Engine team",
@@ -36,12 +30,6 @@
       "title": "TAP Team",
       "description": "This channel is for TAP trainees",
       "link": "www.slack.TAP.com"
-    },
-    {
-      "id": 6,
-      "title": "Adaptive Engine",
-      "description": "This channel for Adaptive Engine team",
-      "link": "www.slack.AE.com"
     }
   ]
 }

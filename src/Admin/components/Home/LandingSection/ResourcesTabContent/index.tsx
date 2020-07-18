@@ -28,6 +28,7 @@ class ResourcesTabContent extends Component<Props> {
     if (resourcesFetchData)
       return resourcesFetchData.resources_data.map((eachResource) => (
         <EachResourceCard
+          key={eachResource.resourceName}
           eachResource={eachResource}
           onClickResourceCard={this.onClickResourceCard}
         />

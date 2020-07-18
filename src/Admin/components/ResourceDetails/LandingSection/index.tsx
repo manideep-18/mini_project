@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
+import BackButton from '../../../../Common/components/BackButton';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+
+import { ResourceItemType } from '../../../stores/types';
 import ResourcesStore from '../../../stores/ResourcesStore';
 
-import BackButton from '../../../../Common/components/BackButton';
-
 import ResourceDetailedView from './ResourceDetailedView';
-import { toJS } from 'mobx';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import ResourceItemsListData from './ResourceItemsListData';
-import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
 
 interface Props {
   resourcesStore: ResourcesStore;
@@ -17,6 +17,14 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
+  onSuccess = () => {};
+
+  onDeleteResourceItems = (items: ResourceItemType[]) => {
+    const { resourcesStore } = this.props;
+
+    resourcesStore.getResourceItemsAfterDeleteAPI(items, this.onSuccess);
+  };
+
   render() {
     const { resourcesStore } = this.props;
 
@@ -24,6 +32,7 @@ class LandingSection extends Component<Props> {
       const {
         resourceDetailsData,
         getResourceDetailsDataAPIStatus,
+        getResourcesAfterDeleteAPIStatus,
       } = resourcesStore;
       const { resource_details, resource_items_details } = resourceDetailsData;
 
@@ -38,6 +47,8 @@ class LandingSection extends Component<Props> {
               <ResourceDetailedView resourceDetails={resource_details} />
               <ResourceItemsListData
                 resourceItemDetails={resource_items_details}
+                onDeleteResourceItems={this.onDeleteResourceItems}
+                onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
               />
             </LoadingWrapper>
           </ResponsiveContainer>

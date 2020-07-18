@@ -11,6 +11,7 @@ export interface ResourcesFetchResponse {
 }
 
 export interface ResourceItemType {
+  id: number;
   title: string;
   description: string;
   link: string;

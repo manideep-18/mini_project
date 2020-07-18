@@ -10,7 +10,7 @@ storiesOf('Common component Guide', module).add('Button component', () => (
   <Button
     buttonText='UPDATE ITEM'
     onClick={action('clicked')}
-    apiStatus={API_FETCHING}
+    apiStatus={API_SUCCESS}
     renderLoader={() => <Loader width={25} height={25} />}
   />
 ));

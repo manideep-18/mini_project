@@ -7,6 +7,7 @@ import {
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils';
 import resourcesFetchResponseData from '../../fixtures/resourcesFetchResponseData.json';
 import resourceItemsFetchResponseData from '../../fixtures/resourceItemsFetchResponse.json';
+import resourceItemsAfterDeleteData from '../../fixtures/resourceItemsAfterDeleteData.json';
 
 class ResourceFetchServiceFixture implements ResourceFetchService {
   getResourcesData(): Promise<ResourcesFetchResponse> {
@@ -19,6 +20,10 @@ class ResourceFetchServiceFixture implements ResourceFetchService {
 
   getResourceDetails(): Promise<ResourceDetailsFetchResponse> {
     return resolveWithTimeout(resourceItemsFetchResponseData);
+  }
+
+  getResourceItemsAfterDelete(): Promise<ResourceDetailsFetchResponse> {
+    return resolveWithTimeout(resourceItemsAfterDeleteData);
   }
 }
 

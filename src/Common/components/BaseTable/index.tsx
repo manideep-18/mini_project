@@ -4,13 +4,20 @@ import {
   CustomRow,
   CustomHeader,
   CustomColumn,
+  CustomTableHeader,
+  CustomTableBody,
 } from './styledComponents';
+import BaseCheckBox from '../BaseCheckbox';
+import { observer } from 'mobx-react';
+import { ResourceItemType } from '../../../Admin/stores/types';
 
 interface Props {
   headerArray: string[];
   dataArray: any[];
+  onChangeCheckbox: (value: any, checked: boolean) => void;
 }
 
+@observer
 class BaseTable extends Component<Props> {
   static defaultProps = {
     headerArray: ['title', 'description', 'link'],
@@ -37,21 +44,25 @@ class BaseTable extends Component<Props> {
     const { headerArray } = this.props;
 
     return headerArray.map((eachHeader) => (
-      <CustomHeader>{eachHeader}</CustomHeader>
+      <CustomHeader key={eachHeader}>{eachHeader}</CustomHeader>
     ));
   };
 
   renderDataRows = () => {
-    const { headerArray, dataArray } = this.props;
+    const { headerArray, dataArray, onChangeCheckbox } = this.props;
 
     return dataArray.map((eachData) => (
-      <CustomRow as='tr'>
+      <CustomRow as='tr' key={eachData.id}>
         <CustomColumn>
           {' '}
-          <input type='checkbox' />
+          <BaseCheckBox
+            eachData={eachData}
+            value=''
+            onChange={onChangeCheckbox}
+          />
         </CustomColumn>
         {headerArray.map((eachHeader) => (
-          <CustomColumn>{eachData[eachHeader]}</CustomColumn>
+          <CustomColumn key={eachHeader}>{eachData[eachHeader]}</CustomColumn>
         ))}
       </CustomRow>
     ));
@@ -61,11 +72,13 @@ class BaseTable extends Component<Props> {
     return (
       <div>
         <CustomTable>
-          <CustomRow as='tr'>
-            <CustomHeader></CustomHeader>
-            {this.renderHeaderRow()}
-          </CustomRow>
-          {this.renderDataRows()}
+          <CustomTableHeader>
+            <CustomRow as='tr'>
+              <CustomHeader></CustomHeader>
+              {this.renderHeaderRow()}
+            </CustomRow>
+          </CustomTableHeader>
+          <CustomTableBody>{this.renderDataRows()}</CustomTableBody>
         </CustomTable>
       </div>
     );
