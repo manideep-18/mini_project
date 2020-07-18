@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { inject, observer } from 'mobx-react';
 
 import Header from '../../../Common/components/Header';
 
-import LandingSection from '../../components/ResourcesTabData/ResourceDetails/LandingSection';
+import LandingSection from '../../components/ResourcesTabData/AddResourceItem/LandingSection';
+import { inject, observer } from 'mobx-react';
 import ResourcesStore from '../../stores/ResourcesStore';
-
-import { DetailsPageMainContainer } from './styledComponents';
 
 interface Props {
   resourcesStore: ResourcesStore;
@@ -14,16 +12,16 @@ interface Props {
 
 @inject('resourcesStore')
 @observer
-class ResourceDetailsPage extends Component<Props> {
+class AddItemPage extends Component<Props> {
   render() {
     const { resourcesStore } = this.props;
     return (
-      <DetailsPageMainContainer>
+      <div>
         <Header />
         <LandingSection resourcesStore={resourcesStore} />
-      </DetailsPageMainContainer>
+      </div>
     );
   }
 }
 
-export default ResourceDetailsPage;
+export default AddItemPage;

@@ -3,15 +3,16 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { APIStatus, API_SUCCESS, API_INITIAL } from '@ib/api-constants';
 
-import { ResourceItemType } from '../../../../stores/types';
-import BaseTable from '../../../../../Common/components/BaseTable';
+import { ResourceItemType } from '../../../../../stores/types';
+import BaseTable from '../../../../../../Common/components/BaseTable';
 import { ButtonsContainer, AddButton, DeleteButton } from './styledComponents';
-import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
+import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
 
 interface Props {
   resourceItemDetails: ResourceItemType[];
   onDeleteResourceItems: (items: ResourceItemType[]) => void;
   onDeleteAPIStatus: APIStatus;
+  onAddResourceItem: () => void;
 }
 
 @observer
@@ -38,6 +39,11 @@ class ResourceItemsListData extends Component<Props> {
     }
   };
 
+  handleAddResourceItem = () => {
+    const { onAddResourceItem } = this.props;
+    onAddResourceItem();
+  };
+
   handleDeleteResourceItems = () => {
     const { onDeleteResourceItems } = this.props;
     this.deleteItemsList = [];
@@ -45,12 +51,12 @@ class ResourceItemsListData extends Component<Props> {
   };
 
   renderAddDeleteButtons = () => {
-    const { onDeleteAPIStatus } = this.props;
     return (
       <ButtonsContainer>
         <AddButton
           buttonText='ADD ITEM'
           disabled={this.deleteItemsList.length > 0}
+          onClick={this.handleAddResourceItem}
         />
         <DeleteButton
           buttonText='DELETE'

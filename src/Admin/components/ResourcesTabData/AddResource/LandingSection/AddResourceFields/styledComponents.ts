@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Typo32DarkBlueGreyHKGroteskRegular } from '../../../../../Common/styleGuide/Typos';
-import Button from '../../../../../Common/components/Button';
-import Colors from '../../../../../Common/themes/Colors';
+import { Typo32DarkBlueGreyHKGroteskRegular } from '../../../../../../Common/styleGuide/Typos';
+import Button from '../../../../../../Common/components/Button';
+import Colors from '../../../../../../Common/themes/Colors';
 
 export const FieldsContainer = styled.div`
   width: 35%;

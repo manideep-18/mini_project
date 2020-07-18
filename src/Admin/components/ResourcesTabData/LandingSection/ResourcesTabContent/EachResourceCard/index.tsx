@@ -49,7 +49,9 @@ class EachResourceCard extends Component<Props> {
             <ResourceType>{resourceType}</ResourceType>
           </TextContainer>
         </LogoTextContainer>
-        <ResourceLink as='a'>{resourceLink}</ResourceLink>
+        <ResourceLink as='a' href={resourceLink}>
+          {resourceLink}
+        </ResourceLink>
         <ResourceDescription>{resourceDescription}</ResourceDescription>
       </CardContainer>
     );

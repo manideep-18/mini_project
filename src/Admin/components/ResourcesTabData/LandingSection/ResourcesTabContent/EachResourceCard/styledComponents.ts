@@ -25,7 +25,9 @@ export const LogoTextContainer = styled.div`
   display: flex;
 `;
 
-export const Logo = styled.img``;
+export const Logo = styled.img`
+  cursor: pointer;
+`;
 
 export const TextContainer = styled.div`
   display: flex;
@@ -41,6 +43,7 @@ export const ResourceType = styled(Typo12SteelHKGroteskRegular)`
 
 export const ResourceLink = styled(Typo14BrightBlueHKGroteskRegular)`
   margin-top: 20px;
+  text-decoration: none;
 `;
 
 export const ResourceDescription = styled(Typo14SteelHKGroteskRegular)`

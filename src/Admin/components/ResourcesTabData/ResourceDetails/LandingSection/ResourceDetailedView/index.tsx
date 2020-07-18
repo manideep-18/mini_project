@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { EachResourceFetchType } from '../../../../stores/types';
+import { EachResourceFetchType } from '../../../../../stores/types';
 
 import {
   DetailedViewContainer,

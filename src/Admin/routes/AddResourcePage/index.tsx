@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import BackButton from '../../../Common/components/BackButton';
 import Header from '../../../Common/components/Header';
 
-import LandingSection from '../../components/AddResource/LandingSection';
+import LandingSection from '../../components/ResourcesTabData/AddResource/LandingSection';
 import ResourcesStore from '../../stores/ResourcesStore';
 
 import { AddResourceMainContainer } from './styledComponents';

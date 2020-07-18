@@ -5,7 +5,7 @@ import Header from '../../../Common/components/Header';
 
 import TabsStore from '../../stores/TabsStore';
 import ResourcesStore from '../../stores/ResourcesStore';
-import LandingSection from '../../components/Home/LandingSection';
+import LandingSection from '../../components/ResourcesTabData/LandingSection';
 
 import { MainContainer } from './styledComponents';
 

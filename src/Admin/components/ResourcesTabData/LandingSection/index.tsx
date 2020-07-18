@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
 
 import { MainContainer } from './styledComponents';
-import TabsSwitch from './TabsSwitch';
+import { withRouter } from 'react-router-dom';
+
+import TabsSwitch from '../../../../Common/components/TabsSwitch';
 import ResourcesTabContent from './ResourcesTabContent';
 
 interface Props {
+  history: History;
+  match: any;
+  location: any;
   tabsStore: TabsStore;
   resourcesStore: ResourcesStore;
 }
@@ -16,7 +22,7 @@ interface Props {
 @observer
 class LandingSection extends Component<Props> {
   handleUpdateTabs = (status: string) => {
-    const { tabsStore } = this.props;
+    const { tabsStore, history } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
@@ -34,18 +40,19 @@ class LandingSection extends Component<Props> {
   };
 
   render() {
-    const { tabsStore } = this.props;
+    const { tabsStore, history, resourcesStore } = this.props;
     const { tabStatus } = tabsStore;
     return (
       <MainContainer>
         <TabsSwitch
+          history={history}
           tabStatus={tabStatus}
           onUpdateTabs={this.handleUpdateTabs}
         />
-        {this.renderTabsContent()}
+        <ResourcesTabContent resourcesStore={resourcesStore} />;
       </MainContainer>
     );
   }
 }
 
-export default LandingSection;
+export default withRouter(LandingSection);

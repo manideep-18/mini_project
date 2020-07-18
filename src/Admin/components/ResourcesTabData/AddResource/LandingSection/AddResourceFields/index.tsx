@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
-import LabelWithInput from '../../../../../Common/components/LabelWithInput';
+import LabelWithInput from '../../../../../../Common/components/LabelWithInput';
 
 import {
   FieldsContainer,

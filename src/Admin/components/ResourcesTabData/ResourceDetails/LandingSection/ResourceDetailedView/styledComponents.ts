@@ -4,9 +4,9 @@ import {
   Typo32DarkBlueGreyHKGroteskRegular,
   Typo14BrightBlueHKGroteskRegular,
   Typo14SteelHKGroteskRegular,
-} from '../../../../../Common/styleGuide/Typos';
-import Button from '../../../../../Common/components/Button';
-import Colors from '../../../../../Common/themes/Colors';
+} from '../../../../../../Common/styleGuide/Typos';
+import Button from '../../../../../../Common/components/Button';
+import Colors from '../../../../../../Common/themes/Colors';
 
 export const DetailedViewContainer = styled.div`
   padding-top: 120px;

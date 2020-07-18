@@ -4,12 +4,12 @@ import { History } from 'history';
 import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
-import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import { goToAdminPage } from '../../../../Common/utils/navigationUtils';
+import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
+import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
+import { goToAdminPage } from '../../../../../Common/utils/navigationUtils';
 
-import ResourcesStore from '../../../stores/ResourcesStore';
-import { EachResourceFetchType } from '../../../stores/types';
+import ResourcesStore from '../../../../stores/ResourcesStore';
+import { EachResourceFetchType } from '../../../../stores/types';
 
 import AddResourceFields from './AddResourceFields';
 import { LogoImage, FieldsImageContainer } from './styledComponents';

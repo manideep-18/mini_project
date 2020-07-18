@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
-import TabButton from '../../../../../Common/components/TabButton';
+import TabButton from '../../components/TabButton';
 
 import { TabsSwitchContainer } from './styledComponents';
+import { goToTabActivePage } from '../../../Admin/utils/navigationUtils';
 
 interface Props {
+  history: History;
   tabStatus: string;
   onUpdateTabs: Function;
 }
@@ -13,8 +16,10 @@ interface Props {
 @observer
 class TabsSwitch extends Component<Props> {
   onUpdateTabStatus = (status: string) => {
-    const { onUpdateTabs } = this.props;
+    console.log(status);
+    const { onUpdateTabs, history, tabStatus } = this.props;
     onUpdateTabs(status);
+    goToTabActivePage(history, status.toLowerCase());
   };
 
   render() {

@@ -38,8 +38,11 @@ class TabButton extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const { tabStatus, text } = this.props;
-    if (tabStatus === text) this.isActive = true;
+    const { tabStatus, text, onClick } = this.props;
+    if (tabStatus === text) {
+      this.isActive = true;
+      onClick(text);
+    }
   }
 
   render() {
