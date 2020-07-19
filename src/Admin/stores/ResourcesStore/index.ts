@@ -101,7 +101,6 @@ class ResourcesStore {
 
     return bindPromiseWithOnSuccess(onAddResourceDataPromise)
       .to(this.setonAddResourceDataAPIStatus, (response) => {
-        this.setResourcesDataAPIResponse(response as EachResourceFetchType[]);
         onSuccess();
       })
       .catch((err) => {

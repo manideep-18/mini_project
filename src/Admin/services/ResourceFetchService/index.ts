@@ -7,9 +7,7 @@ import {
 
 export interface ResourceFetchService {
   getResourcesData(): Promise<EachResourceFetchType[]>;
-  onAddResourceData(
-    requestObject: EachResourceFetchType
-  ): Promise<EachResourceFetchType[]>;
+  onAddResourceData(requestObject: EachResourceFetchType): Promise<{}>;
   getResourceDetails(
     requestObject: ResourceDetailsRequestType
   ): Promise<EachResourceFetchType>;

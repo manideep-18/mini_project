@@ -14,9 +14,9 @@ describe('resources store test cases', () => {
     expect(resourcesStore.resourcesFetchData).toHaveLength(3);
   });
 
-  it('should test on resource adding', async () => {
+  it('should test updating resources data', async () => {
     const cloudResource: EachResourceFetchType = {};
     await resourcesStore.onAddResourceDataAPI(cloudResource);
-    expect(resourcesStore.resourcesFetchData).toHaveLength(4);
+    expect(resourcesStore.onAddResourceDataAPIStatus).toBe(API_SUCCESS);
   });
 });
