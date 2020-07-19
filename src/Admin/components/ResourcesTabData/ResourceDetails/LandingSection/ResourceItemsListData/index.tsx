@@ -7,9 +7,10 @@ import { ResourceItemType } from '../../../../../stores/types';
 import BaseTable from '../../../../../../Common/components/BaseTable';
 import { ButtonsContainer, AddButton, DeleteButton } from './styledComponents';
 import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
+import ResourceModal from '../../../../../stores/Modals/ResourceModal';
 
 interface Props {
-  resourceItemDetails: ResourceItemType[];
+  resourceDetailsData: ResourceModal;
   onDeleteResourceItems: (items: ResourceItemType[]) => void;
   onDeleteAPIStatus: APIStatus;
   onAddResourceItem: () => void;
@@ -68,7 +69,8 @@ class ResourceItemsListData extends Component<Props> {
   };
 
   render() {
-    const { resourceItemDetails, onDeleteAPIStatus } = this.props;
+    const { resourceDetailsData, onDeleteAPIStatus } = this.props;
+    const { itemsList } = resourceDetailsData;
     return (
       <div>
         <LoadingWrapper
@@ -76,7 +78,7 @@ class ResourceItemsListData extends Component<Props> {
           onRetry={this.handleDeleteResourceItems}
         >
           <BaseTable
-            dataArray={resourceItemDetails}
+            dataArray={itemsList}
             onChangeCheckbox={this.onChangeCheckbox}
           />
           {this.renderAddDeleteButtons()}

@@ -52,9 +52,6 @@ class LandingSection extends Component<Props> {
         getResourceDetailsDataAPIStatus,
         getResourcesAfterDeleteAPIStatus,
       } = resourcesStore;
-      const { resource_details, resource_items_details } = resourceDetailsData;
-
-      console.log(getResourceDetailsDataAPIStatus, '&&');
 
       return (
         <div>
@@ -64,9 +61,9 @@ class LandingSection extends Component<Props> {
               apiStatus={getResourceDetailsDataAPIStatus}
               onRetry={() => {}}
             >
-              <ResourceDetailedView resourceDetails={resource_details} />
+              <ResourceDetailedView resourceDetailsData={resourceDetailsData} />
               <ResourceItemsListData
-                resourceItemDetails={resource_items_details}
+                resourceDetailsData={resourceDetailsData}
                 onDeleteResourceItems={this.onDeleteResourceItems}
                 onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
                 onAddResourceItem={this.onAddResourceItem}

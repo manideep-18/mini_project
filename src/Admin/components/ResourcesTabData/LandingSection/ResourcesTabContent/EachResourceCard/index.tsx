@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
-import { EachResourceFetchType } from '../../../../../stores/types';
+import ResourceModal from '../../../../../stores/Modals/ResourceModal';
 import { goToAdminResourcePage } from '../../../../../utils/navigationUtils';
 
 import {
@@ -20,39 +20,33 @@ interface Props {
   history: History;
   match: any;
   location: any;
-  eachResource: EachResourceFetchType;
-  onClickResourceCard: (resource: EachResourceFetchType) => void;
+  eachResource: ResourceModal;
+  onClickResourceCard: (resource: ResourceModal) => void;
 }
 
 class EachResourceCard extends Component<Props> {
   handleClick = () => {
     const { onClickResourceCard, eachResource, history } = this.props;
     onClickResourceCard(eachResource);
-    goToAdminResourcePage(history, eachResource.resourceName);
+    goToAdminResourcePage(history, eachResource.name);
   };
 
   render() {
     const { eachResource } = this.props;
-    const {
-      logoImageUrl,
-      resourceName,
-      resourceType,
-      resourceLink,
-      resourceDescription,
-    } = eachResource;
+    const { logoImageUrl, name, type, link, description } = eachResource;
     return (
       <CardContainer>
         <LogoTextContainer>
           <Logo src={logoImageUrl} alt='icon logo' onClick={this.handleClick} />
           <TextContainer>
-            <ResourceName>{resourceName}</ResourceName>
-            <ResourceType>{resourceType}</ResourceType>
+            <ResourceName>{name}</ResourceName>
+            <ResourceType>{type}</ResourceType>
           </TextContainer>
         </LogoTextContainer>
-        <ResourceLink as='a' href={resourceLink}>
-          {resourceLink}
+        <ResourceLink as='a' href={link} target='_blank'>
+          {link}
         </ResourceLink>
-        <ResourceDescription>{resourceDescription}</ResourceDescription>
+        <ResourceDescription>{description}</ResourceDescription>
       </CardContainer>
     );
   }

@@ -4,22 +4,23 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
 
+import ResourceModal from '../Modals/ResourceModal';
 import {
-  ResourcesFetchResponse,
   EachResourceFetchType,
   ResourceDetailsFetchResponse,
   ResourceItemType,
+  ResourceDetailsRequestType,
 } from '../types';
 
 class ResourcesStore {
   @observable getResourcesDataAPIStatus!: APIStatus;
   @observable getResourcesDataAPIError!: any;
-  @observable resourcesFetchData!: ResourcesFetchResponse;
-  @observable updateResourcesDataAPIStatus!: APIStatus;
-  @observable updateResourcesDataAPIError!: any;
+  @observable resourcesFetchData!: ResourceModal[];
+  @observable onAddResourceDataAPIStatus!: APIStatus;
+  @observable onAddResourceDataAPIError!: any;
   @observable getResourceDetailsDataAPIStatus!: APIStatus;
   @observable getResourceDetailsDataAPIError!: any;
-  @observable resourceDetailsData!: ResourceDetailsFetchResponse;
+  @observable resourceDetailsData!: ResourceModal;
   @observable getResourcesAfterDeleteAPIStatus!: APIStatus;
   @observable getResourcesAfterDeleteAPIError!: any;
   resourceFetchService: ResourceFetchService;
@@ -33,9 +34,9 @@ class ResourcesStore {
   initStore() {
     this.getResourcesDataAPIStatus = API_INITIAL;
     this.getResourcesDataAPIError = '';
-    this.updateResourcesDataAPIStatus = API_INITIAL;
-    this.resourcesFetchData = { resources_data: [] };
-    this.updateResourcesDataAPIError = '';
+    this.onAddResourceDataAPIStatus = API_INITIAL;
+    this.resourcesFetchData = [];
+    this.onAddResourceDataAPIError = '';
     this.getResourceDetailsDataAPIStatus = API_INITIAL;
     this.getResourceDetailsDataAPIError = '';
     this.getResourcesAfterDeleteAPIStatus = API_INITIAL;
@@ -53,8 +54,11 @@ class ResourcesStore {
   }
 
   @action.bound
-  setResourcesDataAPIResponse(response: ResourcesFetchResponse) {
-    this.resourcesFetchData = response;
+  setResourcesDataAPIResponse(response: EachResourceFetchType[]) {
+    this.resourcesFetchData = response.map(
+      (eachResource: EachResourceFetchType) =>
+        (this.resourceDetailsData = new ResourceModal(eachResource))
+    );
   }
 
   @action.bound
@@ -67,7 +71,7 @@ class ResourcesStore {
 
     return bindPromiseWithOnSuccess(getResourcesDataPromise)
       .to(this.setGetResourcesDataAPIStatus, (response) => {
-        this.setResourcesDataAPIResponse(response as ResourcesFetchResponse);
+        this.setResourcesDataAPIResponse(response as EachResourceFetchType[]);
         onSuccess();
       })
       .catch((err) => {
@@ -77,37 +81,38 @@ class ResourcesStore {
   }
 
   @action.bound
-  setUpdateResourcesDataAPIStatus(status: APIStatus) {
-    this.updateResourcesDataAPIStatus = status;
+  setonAddResourceDataAPIStatus(status: APIStatus) {
+    this.onAddResourceDataAPIStatus = status;
   }
 
   @action.bound
-  setUpdateResourcesDataAPIError(err: any) {
-    this.updateResourcesDataAPIError = err;
+  setonAddResourceDataAPIError(err: any) {
+    this.onAddResourceDataAPIError = err;
   }
 
-  updateResourcesDataAPI(
+  onAddResourceDataAPI(
     requestObject: EachResourceFetchType,
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {
-    const updateResourcesDataPromise = this.resourceFetchService.updateResourcesData(
+    const onAddResourceDataPromise = this.resourceFetchService.onAddResourceData(
       requestObject
     );
 
-    return bindPromiseWithOnSuccess(updateResourcesDataPromise)
-      .to(this.setUpdateResourcesDataAPIStatus, (response) => {
+    return bindPromiseWithOnSuccess(onAddResourceDataPromise)
+      .to(this.setonAddResourceDataAPIStatus, (response) => {
+        this.setResourcesDataAPIResponse(response as EachResourceFetchType[]);
         onSuccess();
       })
       .catch((err) => {
-        this.setUpdateResourcesDataAPIError(err);
+        this.setonAddResourceDataAPIError(err);
         onFailure();
       });
   }
 
   @action.bound
-  setResourceDetailsDataAPIResponse(response: ResourceDetailsFetchResponse) {
-    this.resourceDetailsData = response;
+  setResourceDetailsDataAPIResponse(response: EachResourceFetchType) {
+    this.resourceDetailsData = new ResourceModal(response);
   }
 
   @action.bound
@@ -121,7 +126,7 @@ class ResourcesStore {
   }
 
   getResourceDetailsAPI(
-    requestObject: EachResourceFetchType,
+    requestObject: ResourceDetailsRequestType,
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {
@@ -132,7 +137,7 @@ class ResourcesStore {
     return bindPromiseWithOnSuccess(getResourceDetailsPromise)
       .to(this.setGetResourceDetailsAPIStatus, (response) => {
         this.setResourceDetailsDataAPIResponse(
-          response as ResourceDetailsFetchResponse
+          response as EachResourceFetchType
         );
         onSuccess();
       })
@@ -164,7 +169,7 @@ class ResourcesStore {
     return bindPromiseWithOnSuccess(getResourceItemsAfterDeletePromise)
       .to(this.setGetResourcesAfterDeleteAPIStatus, (response) => {
         this.setResourceDetailsDataAPIResponse(
-          response as ResourceDetailsFetchResponse
+          response as EachResourceFetchType
         );
         onSuccess();
       })

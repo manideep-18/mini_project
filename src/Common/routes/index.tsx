@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from '../components/Header';
+
 import Homepage from '../../Admin/routes/Resources/Homepage';
 import AddResourcePage from '../../Admin/routes/Resources/AddResourcePage';
 import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPage';
 import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
-import { REQUESTS_PAGE } from '../constants/RouteConstants';
 import RequestsHomePage from '../../Admin/routes/Requests/RequestsHomePage';
+
+import Header from '../components/Header';
+import { REQUESTS_PAGE } from '../constants/RouteConstants';
 
 export class Routes extends Component {
   render() {

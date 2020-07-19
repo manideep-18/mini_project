@@ -11,12 +11,12 @@ const resourcesStore = new ResourcesStore(new ResourceFetchServiceFixture());
 describe('resources store test cases', () => {
   it('should test resources data', async () => {
     await resourcesStore.getResourcesDataAPI({});
-    expect(resourcesStore.resourcesFetchData.resources_data).toHaveLength(3);
+    expect(resourcesStore.resourcesFetchData).toHaveLength(3);
   });
 
-  it('should test updating resources data', async () => {
+  it('should test on resource adding', async () => {
     const cloudResource: EachResourceFetchType = {};
-    await resourcesStore.updateResourcesDataAPI(cloudResource);
-    expect(resourcesStore.updateResourcesDataAPIStatus).toBe(API_SUCCESS);
+    await resourcesStore.onAddResourceDataAPI(cloudResource);
+    expect(resourcesStore.resourcesFetchData).toHaveLength(4);
   });
 });

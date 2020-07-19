@@ -1,18 +1,20 @@
 import {
-  ResourcesFetchResponse,
   EachResourceFetchType,
   ResourceDetailsFetchResponse,
   ResourceItemType,
+  ResourceDetailsRequestType,
 } from '../../stores/types';
 
 export interface ResourceFetchService {
-  getResourcesData(): Promise<ResourcesFetchResponse>;
-  updateResourcesData(requestObject: EachResourceFetchType): Promise<{}>;
-  getResourceDetails(
+  getResourcesData(): Promise<EachResourceFetchType[]>;
+  onAddResourceData(
     requestObject: EachResourceFetchType
-  ): Promise<ResourceDetailsFetchResponse>;
+  ): Promise<EachResourceFetchType[]>;
+  getResourceDetails(
+    requestObject: ResourceDetailsRequestType
+  ): Promise<EachResourceFetchType>;
 
   getResourceItemsAfterDelete(
     requestObject: ResourceItemType[]
-  ): Promise<ResourceDetailsFetchResponse>;
+  ): Promise<EachResourceFetchType>;
 }

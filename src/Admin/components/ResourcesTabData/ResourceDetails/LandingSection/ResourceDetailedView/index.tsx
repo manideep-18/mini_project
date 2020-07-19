@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { EachResourceFetchType } from '../../../../../stores/types';
+import ResourceModal from '../../../../../stores/Modals/ResourceModal';
 
 import {
   DetailedViewContainer,
@@ -14,30 +14,25 @@ import {
 } from './styledComponents';
 
 interface Props {
-  resourceDetails: EachResourceFetchType;
+  resourceDetailsData: ResourceModal;
 }
 
 class ResourceDetailedView extends Component<Props> {
   render() {
-    const { resourceDetails } = this.props;
-    const {
-      logoImageUrl,
-      resourceName,
-      resourceLink,
-      resourceDescription,
-    } = resourceDetails;
+    const { resourceDetailsData } = this.props;
+    const { logoImageUrl, name, description, link } = resourceDetailsData;
     return (
       <DetailedViewContainer>
         <ImageTextContainer>
           <ResourceIcon src={logoImageUrl} alt='resource-icon' />
           <TextsContainer>
-            <ResourceName>{resourceName}</ResourceName>
-            <ResourceLink as='a' href={resourceLink} target='_blank'>
-              {resourceLink}
+            <ResourceName>{name}</ResourceName>
+            <ResourceLink as='a' href={link} target='_blank'>
+              {link}
             </ResourceLink>
           </TextsContainer>
         </ImageTextContainer>
-        <ResourceDescription as='p'>{resourceDescription}</ResourceDescription>
+        <ResourceDescription as='p'>{description}</ResourceDescription>
         <UpdateButton buttonText='Update' />
       </DetailedViewContainer>
     );

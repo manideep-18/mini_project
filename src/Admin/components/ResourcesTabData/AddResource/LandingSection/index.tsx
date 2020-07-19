@@ -43,23 +43,24 @@ class LandingSection extends Component<Props> {
   onAddResource = (name: string, link: string, description: string) => {
     const { resourcesStore } = this.props;
     const eachResource: EachResourceFetchType = {
-      resourceName: name,
-      logoImageUrl: this.fileUpload,
-      resourceLink: link,
-      resourceDescription: description,
-      resourceType: 'cloud services',
+      name: name,
+      logo_image_url: this.fileUpload,
+      link: link,
+      description: description,
+      type: 'cloud services',
+      items_list: [],
     };
 
-    resourcesStore.updateResourcesDataAPI(eachResource, this.onSuccess);
+    resourcesStore.onAddResourceDataAPI(eachResource, this.onSuccess);
   };
 
   render() {
     const { resourcesStore } = this.props;
-    const { updateResourcesDataAPIStatus } = resourcesStore;
+    const { onAddResourceDataAPIStatus } = resourcesStore;
     return (
       <ResponsiveContainer>
         <LoadingWrapper
-          apiStatus={updateResourcesDataAPIStatus}
+          apiStatus={onAddResourceDataAPIStatus}
           onRetry={this.onAddResource}
           failureText='page not found'
         >

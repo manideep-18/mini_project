@@ -5,10 +5,11 @@ import ResponsiveContainer from '../../../../../Common/components/ResponsiveCont
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
+import { ResourceDetailsRequestType } from '../../../../stores/types';
+import ResourceModal from '../../../../stores/Modals/ResourceModal';
 
 import EachResourceCard from './EachResourceCard';
 import { ResourcesCardsContainer } from './styledComponents';
-import { EachResourceFetchType } from '../../../../stores/types';
 
 interface Props {
   resourcesStore: ResourcesStore;
@@ -16,9 +17,14 @@ interface Props {
 
 @observer
 class ResourcesTabContent extends Component<Props> {
-  onClickResourceCard = (resource: EachResourceFetchType) => {
+  onClickResourceCard = (resource: ResourceModal) => {
     const { resourcesStore } = this.props;
-    resourcesStore.getResourceDetailsAPI(resource);
+
+    const resourceName: ResourceDetailsRequestType = {
+      resource_name: resource.name,
+    };
+
+    resourcesStore.getResourceDetailsAPI(resourceName);
   };
 
   renderResourcesCards = () => {
@@ -26,9 +32,9 @@ class ResourcesTabContent extends Component<Props> {
     const { resourcesFetchData } = resourcesStore;
 
     if (resourcesFetchData)
-      return resourcesFetchData.resources_data.map((eachResource) => (
+      return resourcesFetchData.map((eachResource) => (
         <EachResourceCard
-          key={eachResource.resourceName}
+          key={eachResource.name}
           eachResource={eachResource}
           onClickResourceCard={this.onClickResourceCard}
         />

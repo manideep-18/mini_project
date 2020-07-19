@@ -1,24 +1,23 @@
 export interface EachResourceFetchType {
-  logoImageUrl: string;
-  resourceName: string;
-  resourceType: string;
-  resourceLink: string;
-  resourceDescription: string;
-}
-
-export interface ResourcesFetchResponse {
-  resources_data: EachResourceFetchType[];
+  logo_image_url: string;
+  name: string;
+  type: string;
+  link: string;
+  description: string;
+  items_list: ResourceItemType[];
 }
 
 export interface ResourceItemType {
   id: number;
   title: string;
-  resourceName?: string;
   description: string;
   link: string;
 }
 
 export interface ResourceDetailsFetchResponse {
   resource_details: EachResourceFetchType;
-  resource_items_details: ResourceItemType[];
+}
+
+export interface ResourceDetailsRequestType {
+  resource_name: string;
 }

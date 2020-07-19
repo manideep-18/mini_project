@@ -45,18 +45,18 @@ class LandingSection extends Component<Props> {
     description: string
   ) => {
     const { resourcesStore } = this.props;
+    const { onAddResourceDataAPIStatus } = resourcesStore;
+
     const eachResource: ResourceItemType = {
       id: 176,
       title: name,
-      resourceName: resourceName,
       link: link,
       description: description,
     };
   };
 
   render() {
-    const { resourcesStore, resourceLogoImageUrl } = this.props;
-    const { updateResourcesDataAPIStatus } = resourcesStore;
+    const { resourceLogoImageUrl } = this.props;
     return (
       <ResponsiveContainer>
         <FieldsImageContainer>

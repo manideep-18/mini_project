@@ -1,28 +1,30 @@
-import { ResourceFetchService } from '.';
+import { resolveWithTimeout } from '../../../Common/utils/TestUtils';
+
 import {
-  ResourcesFetchResponse,
   EachResourceFetchType,
   ResourceDetailsFetchResponse,
 } from '../../stores/types';
-import { resolveWithTimeout } from '../../../Common/utils/TestUtils';
 import resourcesFetchResponseData from '../../fixtures/resourcesFetchResponseData.json';
+import resourceAfterResourceAddData from '../../fixtures/resourceAfterResourceAddData.json';
 import resourceItemsFetchResponseData from '../../fixtures/resourceItemsFetchResponse.json';
 import resourceItemsAfterDeleteData from '../../fixtures/resourceItemsAfterDeleteData.json';
 
+import { ResourceFetchService } from '.';
+
 class ResourceFetchServiceFixture implements ResourceFetchService {
-  getResourcesData(): Promise<ResourcesFetchResponse> {
+  getResourcesData(): Promise<EachResourceFetchType[]> {
     return resolveWithTimeout(resourcesFetchResponseData);
   }
 
-  updateResourcesData(): Promise<{}> {
-    return resolveWithTimeout({});
+  onAddResourceData(): Promise<EachResourceFetchType[]> {
+    return resolveWithTimeout(resourceAfterResourceAddData);
   }
 
-  getResourceDetails(): Promise<ResourceDetailsFetchResponse> {
+  getResourceDetails(): Promise<EachResourceFetchType> {
     return resolveWithTimeout(resourceItemsFetchResponseData);
   }
 
-  getResourceItemsAfterDelete(): Promise<ResourceDetailsFetchResponse> {
+  getResourceItemsAfterDelete(): Promise<EachResourceFetchType> {
     return resolveWithTimeout(resourceItemsAfterDeleteData);
   }
 }
