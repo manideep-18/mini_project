@@ -15,8 +15,8 @@ class ResourceFetchServiceFixture implements ResourceFetchService {
     return resolveWithTimeout(resourcesFetchResponseData);
   }
 
-  onAddResourceData(): Promise<EachResourceFetchType[]> {
-    return resolveWithTimeout();
+  onAddResourceData(): Promise<{}> {
+    return resolveWithTimeout({});
   }
 
   getResourceDetails(): Promise<EachResourceFetchType> {
