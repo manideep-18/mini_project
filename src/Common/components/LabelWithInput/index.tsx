@@ -14,6 +14,7 @@ interface Props {
   onChange: any;
   value: string;
   isTextArea?: boolean;
+  disabled?: boolean;
 }
 
 class LabelWithInput extends Component<Props> {

@@ -3,6 +3,7 @@ import {
   ResourceDetailsFetchResponse,
   ResourceItemType,
   ResourceDetailsRequestType,
+  AddItemToResourceRequestType,
 } from '../../stores/types';
 
 export interface ResourceFetchService {
@@ -15,4 +16,6 @@ export interface ResourceFetchService {
   getResourceItemsAfterDelete(
     requestObject: ResourceItemType[]
   ): Promise<EachResourceFetchType>;
+
+  onAddItemToResource(requestObject: AddItemToResourceRequestType): Promise<{}>;
 }

@@ -16,7 +16,6 @@ interface Props {
 @observer
 class TabsSwitch extends Component<Props> {
   onUpdateTabStatus = (status: string) => {
-    console.log(status);
     const { onUpdateTabs, history, tabStatus } = this.props;
     onUpdateTabs(status);
     goToTabActivePage(history, status.toLowerCase());

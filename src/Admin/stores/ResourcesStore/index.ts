@@ -1,5 +1,5 @@
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
-import { observable, action } from 'mobx';
+import { action, observable } from 'mobx';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
@@ -7,9 +7,9 @@ import { ResourceFetchService } from '../../services/ResourceFetchService';
 import ResourceModal from '../Modals/ResourceModal';
 import {
   EachResourceFetchType,
-  ResourceDetailsFetchResponse,
   ResourceItemType,
   ResourceDetailsRequestType,
+  AddItemToResourceRequestType,
 } from '../types';
 
 class ResourcesStore {
@@ -23,6 +23,8 @@ class ResourcesStore {
   @observable resourceDetailsData!: ResourceModal;
   @observable getResourcesAfterDeleteAPIStatus!: APIStatus;
   @observable getResourcesAfterDeleteAPIError!: any;
+  @observable onAddItemToResourceAPIStatus!: APIStatus;
+  @observable onAddItemToResourceAPIError!: any;
   resourceFetchService: ResourceFetchService;
 
   constructor(resourceFetchService: ResourceFetchService) {
@@ -41,6 +43,8 @@ class ResourcesStore {
     this.getResourceDetailsDataAPIError = '';
     this.getResourcesAfterDeleteAPIStatus = API_INITIAL;
     this.getResourcesAfterDeleteAPIError = '';
+    this.onAddItemToResourceAPIStatus = API_INITIAL;
+    this.onAddItemToResourceAPIError = '';
   }
 
   @action.bound
@@ -174,6 +178,35 @@ class ResourcesStore {
       })
       .catch((err) => {
         this.setGetResourcesAfterDeleteAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setOnAddItemToResourceAPIStatus(status: any) {
+    this.onAddItemToResourceAPIStatus = status;
+  }
+
+  @action.bound
+  setOnAddItemToResourceAPIError(err: any) {
+    this.onAddItemToResourceAPIError = err;
+  }
+
+  onAddItemToResourceAPI(
+    requestObject: AddItemToResourceRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const onAddItemToResourcePromise = this.resourceFetchService.onAddItemToResource(
+      requestObject
+    );
+
+    return bindPromiseWithOnSuccess(onAddItemToResourcePromise)
+      .to(this.setOnAddItemToResourceAPIStatus, (response) => {
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setOnAddItemToResourceAPIError(err);
         onFailure();
       });
   }

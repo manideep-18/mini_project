@@ -21,3 +21,10 @@ export interface ResourceDetailsFetchResponse {
 export interface ResourceDetailsRequestType {
   resource_name: string;
 }
+
+export interface AddItemToResourceRequestType {
+  resource_name: string;
+  item_name: string;
+  link: string;
+  description: string;
+}

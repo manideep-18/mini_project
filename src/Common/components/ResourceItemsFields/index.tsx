@@ -11,12 +11,14 @@ import {
 } from './styledComponents';
 
 interface Props {
-  onAddResource: (
+  onAddItemToResource: (
     name: string,
     resourceName: string,
     link: string,
     description: string
   ) => void;
+
+  resourceName?: string;
 }
 
 @observer
@@ -39,9 +41,14 @@ class ResourceItemsFields extends Component<Props> {
   };
 
   handleClick = () => {
-    const { onAddResource } = this.props;
+    const { onAddItemToResource } = this.props;
     if (this.name && this.resourceName && this.link && this.description)
-      onAddResource(this.name, this.resourceName, this.link, this.description);
+      onAddItemToResource(
+        this.name,
+        this.resourceName,
+        this.link,
+        this.description
+      );
   };
 
   handleNameInputChange = (value: string) => {
@@ -61,6 +68,7 @@ class ResourceItemsFields extends Component<Props> {
   };
 
   render() {
+    const { resourceName } = this.props;
     return (
       <FieldsContainer>
         <AddResourceText>Item Details</AddResourceText>
@@ -71,8 +79,9 @@ class ResourceItemsFields extends Component<Props> {
         />
         <LabelWithInput
           labelText='Resource Name'
-          value={this.resourceName}
+          value={resourceName ? resourceName : this.resourceName}
           onChange={this.handleResourceNameInputChange}
+          disabled={resourceName ? true : false}
         />
         <LabelWithInput
           labelText='Link'

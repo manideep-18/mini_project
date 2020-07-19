@@ -26,6 +26,10 @@ class ResourceFetchServiceFixture implements ResourceFetchService {
   getResourceItemsAfterDelete(): Promise<EachResourceFetchType> {
     return resolveWithTimeout(resourceItemsAfterDeleteData);
   }
+
+  onAddItemToResource(): Promise<{}> {
+    return resolveWithTimeout({});
+  }
 }
 
 export default ResourceFetchServiceFixture;

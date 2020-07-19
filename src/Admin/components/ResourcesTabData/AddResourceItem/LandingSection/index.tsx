@@ -13,9 +13,11 @@ import ResourcesStore from '../../../../stores/ResourcesStore';
 import {
   EachResourceFetchType,
   ResourceItemType,
+  AddItemToResourceRequestType,
 } from '../../../../stores/types';
 
 import { LogoImage, FieldsImageContainer } from './styledComponents';
+import BackButton from '../../../../../Common/components/BackButton';
 
 interface Props {
   history: History;
@@ -33,36 +35,57 @@ class LandingSection extends Component<Props> {
       'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/61afd424-c83b-4d35-90ee-8222e064e6f6.png',
   };
 
-  onSuccess = () => {
-    const { history } = this.props;
-    goToAdminPage(history);
-  };
+  onSuccess = () => {};
 
-  onAddResource = (
+  onAddItemToResource = (
     name: string,
     resourceName: string,
     link: string,
     description: string
   ) => {
     const { resourcesStore } = this.props;
-    const { onAddResourceDataAPIStatus } = resourcesStore;
 
-    const eachResource: ResourceItemType = {
-      id: 176,
-      title: name,
+    const itemToAdd: AddItemToResourceRequestType = {
+      resource_name: resourceName,
+      item_name: name,
       link: link,
       description: description,
     };
+
+    resourcesStore.onAddItemToResourceAPI(itemToAdd, () => {
+      window.history.go(-1);
+      resourcesStore.getResourceDetailsAPI(
+        { resource_name: resourceName },
+        this.onSuccess
+      );
+    });
   };
 
   render() {
-    const { resourceLogoImageUrl } = this.props;
+    let resourceName;
+    if (typeof window !== 'undefined') {
+      resourceName = window.location.pathname;
+      const pathParameters = resourceName.split('/');
+      resourceName = pathParameters[pathParameters.length - 2];
+    }
+    const { resourceLogoImageUrl, resourcesStore } = this.props;
+
+    const { onAddItemToResourceAPIStatus } = resourcesStore;
     return (
       <ResponsiveContainer>
-        <FieldsImageContainer>
-          <ResourceItemsFields onAddResource={this.onAddResource} />
-          <LogoImage src={resourceLogoImageUrl} alt='resource logo' />
-        </FieldsImageContainer>
+        <BackButton />
+        <LoadingWrapper
+          apiStatus={onAddItemToResourceAPIStatus}
+          onRetry={this.onAddItemToResource}
+        >
+          <FieldsImageContainer>
+            <ResourceItemsFields
+              onAddItemToResource={this.onAddItemToResource}
+              resourceName={resourceName}
+            />
+            <LogoImage src={resourceLogoImageUrl} alt='resource logo' />
+          </FieldsImageContainer>
+        </LoadingWrapper>
       </ResponsiveContainer>
     );
   }
