@@ -5,6 +5,8 @@ import Homepage from '../../Admin/routes/Resources/Homepage';
 import AddResourcePage from '../../Admin/routes/Resources/AddResourcePage';
 import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPage';
 import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
+import { REQUESTS_PAGE } from '../constants/RouteConstants';
+import RequestsHomePage from '../../Admin/routes/Requests/RequestsHomePage';
 
 export class Routes extends Component {
   render() {
@@ -27,9 +29,11 @@ export class Routes extends Component {
               component={ResourceDetailsPage}
             />
             <Route
+              exact
               path='/admin/resources/:resource_id/add-item'
               component={AddItemPage}
             />
+            <Route exact path={REQUESTS_PAGE} component={RequestsHomePage} />
           </Switch>
         </Router>
       </div>

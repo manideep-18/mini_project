@@ -32,7 +32,7 @@ class TabsSwitch extends Component<Props> {
           tabStatus={tabStatus}
         />
         <TabButton
-          text='Request'
+          text='Requests'
           onClick={this.onUpdateTabStatus}
           tabStatus={tabStatus}
         />
