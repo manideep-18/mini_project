@@ -3,12 +3,12 @@ import { observable } from 'mobx';
 import { EachResourceFetchType, ResourceItemType } from '../../types';
 
 class ResourceModal {
-  logoImageUrl: string = '';
-  name: string = '';
-  type: string = '';
-  link: string = '';
-  description: string = '';
-  itemsList: ResourceItemType[] = [];
+  @observable logoImageUrl: string = '';
+  @observable name: string = '';
+  @observable type: string = '';
+  @observable link: string = '';
+  @observable description: string = '';
+  @observable itemsList: ResourceItemType[] = [];
 
   constructor(resourceObject: EachResourceFetchType) {
     const {

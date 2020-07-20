@@ -1,0 +1,37 @@
+[
+  {
+    "person_name": "Prathyusha",
+    "resource": "slack",
+    "item": "channel",
+    "access_level": "Read",
+    "due_date_time": "24/12/2019 12:25 AM"
+  },
+  {
+    "person_name": "Sai",
+    "resource": "slack",
+    "item": "channel",
+    "access_level": "Write",
+    "due_date_time": "24/8/2019 12:25 AM"
+  },
+  {
+    "person_name": "Ram",
+    "resource": "slack",
+    "item": "channel",
+    "access_level": "Read",
+    "due_date_time": "24/6/2019 12:25 AM"
+  },
+  {
+    "person_name": "Hemanth",
+    "resource": "slack",
+    "item": "channel",
+    "access_level": "Admin",
+    "due_date_time": "4/8/2019 12:25 AM"
+  },
+  {
+    "person_name": "Varma",
+    "resource": "slack",
+    "item": "channel",
+    "access_level": "Write",
+    "due_date_time": "24/12/2018 12:25 AM"
+  }
+]

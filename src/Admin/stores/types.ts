@@ -28,3 +28,11 @@ export interface AddItemToResourceRequestType {
   link: string;
   description: string;
 }
+
+export interface EachRequestFetchType {
+  person_name: string;
+  resource: string;
+  item: string;
+  access_level: string;
+  due_date_time: string;
+}

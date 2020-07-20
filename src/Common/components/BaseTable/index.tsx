@@ -10,6 +10,7 @@ import {
 import BaseCheckBox from '../BaseCheckbox';
 import { observer } from 'mobx-react';
 import { ResourceItemType } from '../../../Admin/stores/types';
+import { camelCase } from '../../../Admin/utils/stringConversionUtils';
 
 interface Props {
   headerArray: string[];
@@ -62,7 +63,9 @@ class BaseTable extends Component<Props> {
           />
         </CustomColumn>
         {headerArray.map((eachHeader) => (
-          <CustomColumn key={eachHeader}>{eachData[eachHeader]}</CustomColumn>
+          <CustomColumn key={eachHeader}>
+            {eachData[camelCase(eachHeader)]}
+          </CustomColumn>
         ))}
       </CustomRow>
     ));
