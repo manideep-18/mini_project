@@ -23,6 +23,7 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
+  resourceName: string = '';
   onSuccess = () => {};
 
   onDeleteResourceItems = (items: ResourceItemType[]) => {
@@ -31,17 +32,31 @@ class LandingSection extends Component<Props> {
     resourcesStore.getResourceItemsAfterDeleteAPI(items, this.onSuccess);
   };
 
+  onUpdateResourceItem = (item: ResourceItemType) => {};
+
   onAddResourceItem = () => {
     const { history } = this.props;
-    let path;
+
+    navigateToResourceAddItemPage(history, this.resourceName);
+    window.location.reload();
+  };
+
+  componentDidMount() {
+    const { resourcesStore } = this.props;
+    let path = '';
     if (typeof window !== 'undefined') {
       path = window.location.pathname;
       const pathParameters = path.split('/');
       path = pathParameters[pathParameters.length - 1];
-      navigateToResourceAddItemPage(history, path);
-      window.location.reload();
     }
-  };
+
+    this.resourceName = path;
+
+    resourcesStore.getResourceDetailsAPI(
+      { resource_name: path },
+      this.onSuccess
+    );
+  }
 
   render() {
     const { resourcesStore } = this.props;

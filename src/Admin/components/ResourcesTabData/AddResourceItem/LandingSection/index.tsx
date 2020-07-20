@@ -35,7 +35,9 @@ class LandingSection extends Component<Props> {
       'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/61afd424-c83b-4d35-90ee-8222e064e6f6.png',
   };
 
-  onSuccess = () => {};
+  onSuccess = () => {
+    window.history.go(-1);
+  };
 
   onAddItemToResource = (
     name: string,
@@ -52,13 +54,7 @@ class LandingSection extends Component<Props> {
       description: description,
     };
 
-    resourcesStore.onAddItemToResourceAPI(itemToAdd, () => {
-      window.history.go(-1);
-      resourcesStore.getResourceDetailsAPI(
-        { resource_name: resourceName },
-        this.onSuccess
-      );
-    });
+    resourcesStore.onAddItemToResourceAPI(itemToAdd, this.onSuccess);
   };
 
   render() {
@@ -68,6 +64,7 @@ class LandingSection extends Component<Props> {
       const pathParameters = resourceName.split('/');
       resourceName = pathParameters[pathParameters.length - 2];
     }
+
     const { resourceLogoImageUrl, resourcesStore } = this.props;
 
     const { onAddItemToResourceAPIStatus } = resourcesStore;

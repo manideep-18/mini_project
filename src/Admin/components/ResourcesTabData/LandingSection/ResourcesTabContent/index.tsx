@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
@@ -10,21 +11,18 @@ import ResourceModal from '../../../../stores/Modals/ResourceModal';
 
 import EachResourceCard from './EachResourceCard';
 import { ResourcesCardsContainer } from './styledComponents';
+import { goToAdminResourcePage } from '../../../../utils/navigationUtils';
 
 interface Props {
   resourcesStore: ResourcesStore;
+  history: History;
 }
 
 @observer
 class ResourcesTabContent extends Component<Props> {
   onClickResourceCard = (resource: ResourceModal) => {
-    const { resourcesStore } = this.props;
-
-    const resourceName: ResourceDetailsRequestType = {
-      resource_name: resource.name,
-    };
-
-    resourcesStore.getResourceDetailsAPI(resourceName);
+    const { history } = this.props;
+    goToAdminResourcePage(history, resource.name);
   };
 
   renderResourcesCards = () => {

@@ -27,18 +27,6 @@ class LandingSection extends Component<Props> {
     updateTabStatus(status);
   };
 
-  renderTabsContent = () => {
-    const { tabsStore, resourcesStore } = this.props;
-    const { tabStatus } = tabsStore;
-
-    switch (tabStatus) {
-      case 'Resources':
-        return <ResourcesTabContent resourcesStore={resourcesStore} />;
-      default:
-        return null;
-    }
-  };
-
   render() {
     const { tabsStore, history, resourcesStore } = this.props;
     const { tabStatus } = tabsStore;
@@ -49,7 +37,11 @@ class LandingSection extends Component<Props> {
           tabStatus={tabStatus}
           onUpdateTabs={this.handleUpdateTabs}
         />
-        <ResourcesTabContent resourcesStore={resourcesStore} />;
+        <ResourcesTabContent
+          history={history}
+          resourcesStore={resourcesStore}
+        />
+        ;
       </MainContainer>
     );
   }

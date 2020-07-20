@@ -47,8 +47,9 @@ class ResourceItemsListData extends Component<Props> {
 
   handleDeleteResourceItems = () => {
     const { onDeleteResourceItems } = this.props;
-    this.deleteItemsList = [];
+
     onDeleteResourceItems(this.deleteItemsList);
+    this.deleteItemsList = [];
   };
 
   renderAddDeleteButtons = () => {
