@@ -9,6 +9,6 @@ const requestsStore = new RequestsStore(new RequestsFetchServiceFixture());
 describe('requests store test cases', () => {
   it('should test requests data getting when getRequestsDataAPI called', async () => {
     await requestsStore.getRequestsDataAPI();
-    expect(requestsStore.requestsDataFetched.length).toBe(5);
+    expect(requestsStore.requestsDataFetched.length).toBe(7);
   });
 });

@@ -11,31 +11,31 @@ import ResourceModal from '../../../../../stores/Modals/ResourceModal';
 
 interface Props {
   resourceDetailsData: ResourceModal;
-  onDeleteResourceItems: (items: ResourceItemType[]) => void;
+  onDeleteResourceItems: (items: number[]) => void;
   onDeleteAPIStatus: APIStatus;
   onAddResourceItem: () => void;
 }
 
 @observer
 class ResourceItemsListData extends Component<Props> {
-  @observable deleteItemsList: ResourceItemType[];
+  @observable deleteItemsList: number[];
   constructor(props: Props) {
     super(props);
     this.deleteItemsList = [];
   }
 
-  onChangeCheckbox = (value: any, checked: boolean) => {
+  onChangeCheckbox = (itemId: any, checked: boolean) => {
     if (checked) {
       const resultIndex = this.deleteItemsList.findIndex(
-        (eachItem) => eachItem.id === value.id
+        (eachId) => itemId === eachId
       );
 
       if (resultIndex === -1) {
-        this.deleteItemsList.push(value);
+        this.deleteItemsList.push(itemId);
       }
     } else {
       this.deleteItemsList = this.deleteItemsList.filter(
-        (eachItem) => eachItem.id !== value.id
+        (eachId) => eachId !== itemId
       );
     }
   };

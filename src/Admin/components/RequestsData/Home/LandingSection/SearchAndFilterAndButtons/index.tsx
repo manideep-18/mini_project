@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 
 import SearchBar from '../../../../../../Common/components/SearchBar';
 import DropdownWithLabel from '../../../../../../Common/components/DropdownWithLabel';
-import { sortConstants } from '../../../../../constants/DropdownConstants';
+import {
+  sortConstants,
+  filterConstants,
+} from '../../../../../constants/DropdownConstants';
 
 import {
   MainContainer,
@@ -17,34 +20,44 @@ import { observable } from 'mobx';
 interface Props {
   checkedItemsLength: number;
   onSortStatusUpdate: (value: string) => void;
-  onFilterStatusUpdate: () => void;
+  onFilterStatusUpdate: (value: string) => void;
+  onSearchEnter: (value: string) => void;
+  onAcceptRequests: () => void;
 }
 
 @observer
 class SearchAndFilterAndButtons extends Component<Props> {
-  @observable modalStatus: boolean = false;
+  @observable acceptModalStatus: boolean = false;
+  @observable rejectModalStatus: boolean = false;
 
   onAcceptCancelOrOkClick = (value: string) => {
-    this.modalStatus = false;
+    this.acceptModalStatus = false;
+  };
+
+  onRejectCancelOrRejectClick = (value: string) => {
+    const { onAcceptRequests } = this.props;
+    this.rejectModalStatus = false;
+    if (value === 'Reject') onAcceptRequests();
   };
 
   handleAcceptModal = () => {
-    this.modalStatus = true;
+    this.acceptModalStatus = true;
   };
 
   handleRejectModal = () => {
-    this.modalStatus = true;
+    this.rejectModalStatus = true;
   };
 
   render() {
     const {
       onSortStatusUpdate,
       onFilterStatusUpdate,
+      onSearchEnter,
       checkedItemsLength,
     } = this.props;
     return (
       <MainContainer>
-        <SearchBar />
+        <SearchBar onEnterPress={onSearchEnter} />
         <ButtonsContainer>
           {checkedItemsLength > 0 ? (
             <>
@@ -67,19 +80,19 @@ class SearchAndFilterAndButtons extends Component<Props> {
               <DropdownWithLabel
                 sortText='FILTER'
                 onChange={onFilterStatusUpdate}
-                dropdownArray={[]}
+                dropdownArray={filterConstants}
               />
             </>
           )}
         </ButtonsContainer>
         <AcceptModal
-          modalStatus={this.modalStatus}
-          onAcceptCancelOrOkClick={this.onAcceptCancelOrOkClick}
+          modalStatus={this.acceptModalStatus}
+          onCancelOrOkClick={this.onAcceptCancelOrOkClick}
         />
         <AcceptModal
           isRejectActive
-          modalStatus={this.modalStatus}
-          onAcceptCancelOrOkClick={this.onAcceptCancelOrOkClick}
+          modalStatus={this.rejectModalStatus}
+          onCancelOrOkClick={this.onRejectCancelOrRejectClick}
         />
       </MainContainer>
     );

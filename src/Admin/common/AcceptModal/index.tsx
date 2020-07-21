@@ -17,7 +17,7 @@ import { observer } from 'mobx-react';
 interface Props {
   isRejectActive?: boolean;
   modalStatus: boolean;
-  onAcceptCancelOrOkClick: (value: string) => void;
+  onCancelOrOkClick: (value: string) => void;
 }
 
 @observer
@@ -26,17 +26,18 @@ class AcceptModal extends Component<Props> {
 
   static defaultProps = {
     modalStatus: false,
-    onAcceptCancelOrOkClick: () => {},
+    onCancelOrOkClick: () => {},
   };
 
   onCancelButtonClick = () => {
-    const { onAcceptCancelOrOkClick } = this.props;
-    onAcceptCancelOrOkClick('cancel');
+    const { onCancelOrOkClick } = this.props;
+    onCancelOrOkClick('cancel');
   };
 
   onOkButtonClick = () => {
-    const { onAcceptCancelOrOkClick } = this.props;
-    onAcceptCancelOrOkClick('ok');
+    const { onCancelOrOkClick, isRejectActive } = this.props;
+    if (isRejectActive) onCancelOrOkClick('Reject');
+    else onCancelOrOkClick('ok');
   };
 
   handleChangeRejectionText = (value: string) => {};
@@ -69,6 +70,7 @@ class AcceptModal extends Component<Props> {
               onClick={this.onCancelButtonClick}
             />
             <OkButton
+              isRejectActive={isRejectActive}
               buttonText={isRejectActive ? 'Reject' : 'Ok'}
               onClick={this.onOkButtonClick}
             />

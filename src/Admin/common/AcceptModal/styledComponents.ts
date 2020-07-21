@@ -32,11 +32,17 @@ export const CancelButton = styled(Button)`
   text-transform: uppercase;
 `;
 
-export const OkButton = styled(Button)`
+interface OkButtonProps {
+  isRejectActive?: boolean;
+}
+
+export const OkButton = styled(Button)<OkButtonProps>`
   margin-left: 32px;
   padding: 10px 20px;
   color: ${Colors.white};
   text-transform: uppercase;
+  background-color: ${(props) =>
+    props.isRejectActive ? Colors.neonRed : Colors.brightBlue};
 `;
 
 export const TextAndTextAreaContainer = styled.div`

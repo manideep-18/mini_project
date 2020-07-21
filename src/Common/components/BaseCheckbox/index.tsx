@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { observable, toJS } from 'mobx';
 
-import { ResourceItemType } from '../../../Admin/stores/types';
-
 import { CustomCheckBox } from './styledComponents';
 
 interface Props {
   value: any;
   onChange: (value: any, checked: boolean) => void;
-  eachData?: ResourceItemType;
+  eachDataId?: number;
 }
 
 @observer
@@ -22,9 +20,9 @@ export class BaseCheckBox extends Component<Props> {
   }
 
   handleChange = (event: any) => {
-    const { onChange, eachData } = this.props;
+    const { onChange, eachDataId } = this.props;
     this.checkedStatus = !this.checkedStatus;
-    onChange(eachData, this.checkedStatus);
+    onChange(eachDataId, this.checkedStatus);
   };
 
   render() {

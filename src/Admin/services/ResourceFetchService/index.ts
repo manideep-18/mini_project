@@ -14,7 +14,7 @@ export interface ResourceFetchService {
   ): Promise<EachResourceFetchType>;
 
   getResourceItemsAfterDelete(
-    requestObject: ResourceItemType[]
+    requestObject: number[]
   ): Promise<EachResourceFetchType>;
 
   onAddItemToResource(requestObject: AddItemToResourceRequestType): Promise<{}>;

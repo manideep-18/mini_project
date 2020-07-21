@@ -34,6 +34,7 @@ class LandingSection extends Component<Props> {
   };
 
   handleChangeCheckbox = (value: any, checked: boolean) => {
+    console.log(value, '&&&');
     if (checked) {
       const resultIndex = this.itemsChecked.findIndex(
         (eachItem: any) => eachItem.id === value.id
@@ -51,10 +52,20 @@ class LandingSection extends Component<Props> {
 
   handleSortStatusUpdate = (value: string) => {
     const { requestsStore } = this.props;
-    if (value !== '') requestsStore.getSortedRequestsDataAPI(this.onSuccess);
+    requestsStore.setSortStatus(value);
   };
 
-  handleFilterStatusUpdate = () => {};
+  handleFilterStatusUpdate = (value: string) => {
+    const { requestsStore } = this.props;
+    requestsStore.setFilterStatus(value);
+  };
+
+  handleSearchEnter = (value: string) => {
+    const { requestsStore } = this.props;
+    requestsStore.getSearchRequestsDataAPI(this.onSuccess);
+  };
+
+  handleAcceptRequests = () => {};
 
   handleRetry = () => {
     const { requestsStore } = this.props;
@@ -80,7 +91,7 @@ class LandingSection extends Component<Props> {
     const { tabStatus } = tabsStore;
     const {
       getRequestsDataAPIStatus,
-      getSortedRequestsDataAPIStatus,
+      getSearchRequestsDataAPIStatus,
     } = requestsStore;
     if (requestsStore.requestsDataFetched) {
       return (
@@ -97,17 +108,19 @@ class LandingSection extends Component<Props> {
             <ResponsiveContainer>
               <PendingRequestsText>Pending Requests</PendingRequestsText>
               <SearchAndFilterAndButtons
+                onSearchEnter={this.handleSearchEnter}
                 checkedItemsLength={this.itemsChecked.length}
                 onSortStatusUpdate={this.handleSortStatusUpdate}
                 onFilterStatusUpdate={this.handleFilterStatusUpdate}
+                onAcceptRequests={this.handleAcceptRequests}
               />
               <LoadingWrapper
-                apiStatus={getSortedRequestsDataAPIStatus}
+                apiStatus={getSearchRequestsDataAPIStatus}
                 onRetry={this.handleRetry}
               >
                 <BaseTable
                   headerArray={headerArray}
-                  dataArray={requestsStore.requestsDataFetched}
+                  dataArray={requestsStore.sortedDataWithFiltering}
                   onChangeCheckbox={this.handleChangeCheckbox}
                 />
               </LoadingWrapper>

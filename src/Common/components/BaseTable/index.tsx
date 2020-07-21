@@ -57,7 +57,7 @@ class BaseTable extends Component<Props> {
         <CustomColumn>
           {' '}
           <BaseCheckBox
-            eachData={eachData}
+            eachDataId={eachData.id}
             value=''
             onChange={onChangeCheckbox}
           />

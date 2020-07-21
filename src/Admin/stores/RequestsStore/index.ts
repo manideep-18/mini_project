@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
@@ -6,13 +6,16 @@ import { RequestsFetchService } from '../../services/RequestsFetchService';
 
 import { EachRequestFetchType } from '../types';
 import RequestModal from '../Modals/RequestModal';
+import { camelCase } from '../../utils/stringConversionUtils';
 
 class RequestsStore {
   @observable getRequestsDataAPIStatus!: APIStatus;
   @observable getRequestsDataAPIError: any;
   @observable requestsDataFetched!: RequestModal[];
-  @observable getSortedRequestsDataAPIStatus!: APIStatus;
-  @observable getSortedRequestsDataAPIError!: any;
+  @observable getSearchRequestsDataAPIStatus!: APIStatus;
+  @observable getSearchRequestsDataAPIError!: any;
+  @observable filterStatus!: string;
+  @observable sortStatus!: string;
   requestsFetchService!: RequestsFetchService;
 
   constructor(requestsFetchService: RequestsFetchService) {
@@ -25,8 +28,10 @@ class RequestsStore {
     this.getRequestsDataAPIStatus = API_INITIAL;
     this.getRequestsDataAPIError = '';
     this.requestsDataFetched = [];
-    this.getSortedRequestsDataAPIStatus = API_INITIAL;
-    this.getSortedRequestsDataAPIError = '';
+    this.getSearchRequestsDataAPIStatus = API_INITIAL;
+    this.getSearchRequestsDataAPIError = '';
+    this.filterStatus = '';
+    this.sortStatus = '';
   }
 
   @action.bound
@@ -65,30 +70,64 @@ class RequestsStore {
   }
 
   @action.bound
-  setGetSortedRequestsDataAPIStatus(status: APIStatus) {
-    this.getSortedRequestsDataAPIStatus = status;
+  setGetSearchRequestsDataAPIStatus(status: APIStatus) {
+    this.getSearchRequestsDataAPIStatus = status;
   }
 
   @action.bound
-  setGetSortedRequestsDataAPIError(err: any) {
-    this.getSortedRequestsDataAPIError = err;
+  setGetSearchRequestsDataAPIError(err: any) {
+    this.getSearchRequestsDataAPIError = err;
   }
 
-  getSortedRequestsDataAPI(
+  getSearchRequestsDataAPI(
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {
-    const getSortedRequestsDataPromise = this.requestsFetchService.getSortedRequestsData();
+    const getSearchRequestsDataPromise = this.requestsFetchService.getSearchRequestsData();
 
-    return bindPromiseWithOnSuccess(getSortedRequestsDataPromise)
-      .to(this.setGetSortedRequestsDataAPIStatus, (response) => {
+    return bindPromiseWithOnSuccess(getSearchRequestsDataPromise)
+      .to(this.setGetSearchRequestsDataAPIStatus, (response) => {
         this.setRequestsDataAPIResponse(response as EachRequestFetchType[]);
         onSuccess();
       })
       .catch((err) => {
-        this.setGetSortedRequestsDataAPIError(err);
+        this.setGetSearchRequestsDataAPIError(err);
         onFailure();
       });
+  }
+
+  @action.bound
+  setSortStatus(value: string) {
+    this.sortStatus = value;
+  }
+
+  @action.bound
+  setFilterStatus(value: string) {
+    this.filterStatus = value;
+  }
+
+  @computed get sortedDataWithFiltering(): RequestModal[] {
+    let resultSortedData = this.requestsDataFetched;
+    if (this.filterStatus !== '') {
+      resultSortedData = resultSortedData.filter(
+        (eachData) => eachData.resource === this.filterStatus
+      );
+    }
+
+    if (this.sortStatus !== '') {
+      const camelCaseSortStatus: string = camelCase(this.sortStatus);
+
+      return resultSortedData.sort(function (a: any, b: any) {
+        if (a[camelCaseSortStatus] < b[camelCaseSortStatus]) {
+          return -1;
+        }
+        if (a[camelCaseSortStatus] > b[camelCaseSortStatus]) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+    return resultSortedData;
   }
 }
 

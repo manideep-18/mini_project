@@ -5,7 +5,7 @@ import { CustomSearchBar } from './styledComponents';
 interface Props {
   id?: string;
   placeholder: string;
-  onEnterPress: () => {};
+  onEnterPress: (value: string) => void;
 }
 
 class SearchBar extends Component<Props> {
@@ -17,7 +17,7 @@ class SearchBar extends Component<Props> {
 
   handleKeyUp = (event: any) => {
     const { onEnterPress } = this.props;
-    if (event.key === 'Enter') onEnterPress();
+    if (event.key === 'Enter') onEnterPress(event.target.value);
   };
 
   render() {

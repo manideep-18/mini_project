@@ -161,7 +161,7 @@ class ResourcesStore {
   }
 
   getResourceItemsAfterDeleteAPI(
-    requestObject: ResourceItemType[],
+    requestObject: number[],
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {

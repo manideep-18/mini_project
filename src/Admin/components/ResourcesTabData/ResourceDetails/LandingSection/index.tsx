@@ -26,7 +26,7 @@ class LandingSection extends Component<Props> {
   resourceName: string = '';
   onSuccess = () => {};
 
-  onDeleteResourceItems = (items: ResourceItemType[]) => {
+  onDeleteResourceItems = (items: number[]) => {
     const { resourcesStore } = this.props;
 
     resourcesStore.getResourceItemsAfterDeleteAPI(items, this.onSuccess);

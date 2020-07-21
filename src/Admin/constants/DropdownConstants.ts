@@ -3,3 +3,5 @@ export const sortConstants: string[] = [
   'Access Level',
   'Resource',
 ];
+
+export const filterConstants: string[] = ['bitbucket', 'slack'];
