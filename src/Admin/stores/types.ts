@@ -37,3 +37,7 @@ export interface EachRequestFetchType {
   access_level: string;
   due_date_time: string;
 }
+
+export interface onAcceptRequestsDataRequestType {
+  id: number;
+}

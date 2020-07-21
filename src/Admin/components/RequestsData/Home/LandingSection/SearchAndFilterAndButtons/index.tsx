@@ -16,6 +16,7 @@ import {
 import AcceptModal from '../../../../../common/AcceptModal';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import { APIStatus } from '@ib/api-constants';
 
 interface Props {
   checkedItemsLength: number;
@@ -23,6 +24,7 @@ interface Props {
   onFilterStatusUpdate: (value: string) => void;
   onSearchEnter: (value: string) => void;
   onAcceptRequests: () => void;
+  onAcceptRequestsStatus: APIStatus;
 }
 
 @observer
@@ -31,13 +33,13 @@ class SearchAndFilterAndButtons extends Component<Props> {
   @observable rejectModalStatus: boolean = false;
 
   onAcceptCancelOrOkClick = (value: string) => {
+    const { onAcceptRequests } = this.props;
     this.acceptModalStatus = false;
+    if (value === 'Ok') onAcceptRequests();
   };
 
   onRejectCancelOrRejectClick = (value: string) => {
-    const { onAcceptRequests } = this.props;
     this.rejectModalStatus = false;
-    if (value === 'Reject') onAcceptRequests();
   };
 
   handleAcceptModal = () => {
@@ -54,6 +56,7 @@ class SearchAndFilterAndButtons extends Component<Props> {
       onFilterStatusUpdate,
       onSearchEnter,
       checkedItemsLength,
+      onAcceptRequestsStatus,
     } = this.props;
     return (
       <MainContainer>
@@ -62,6 +65,7 @@ class SearchAndFilterAndButtons extends Component<Props> {
           {checkedItemsLength > 0 ? (
             <>
               <AcceptButton
+                apiStatus={onAcceptRequestsStatus}
                 buttonText='Accept'
                 onClick={this.handleAcceptModal}
               />

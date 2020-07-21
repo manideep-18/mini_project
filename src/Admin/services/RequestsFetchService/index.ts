@@ -1,9 +1,14 @@
-import { EachRequestFetchType } from '../../stores/types';
+import {
+  EachRequestFetchType,
+  onAcceptRequestsDataRequestType,
+} from '../../stores/types';
 
 export interface RequestsFetchService {
   getRequestsData(): Promise<EachRequestFetchType[]>;
 
   getSearchRequestsData(): Promise<EachRequestFetchType[]>;
 
-  getOnAcceptRequestsData(): Promise<EachRequestFetchType[]>;
+  getOnAcceptRequestsData(
+    request: onAcceptRequestsDataRequestType[]
+  ): Promise<EachRequestFetchType[]>;
 }

@@ -4,7 +4,10 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { RequestsFetchService } from '../../services/RequestsFetchService';
 
-import { EachRequestFetchType } from '../types';
+import {
+  EachRequestFetchType,
+  onAcceptRequestsDataRequestType,
+} from '../types';
 import RequestModal from '../Modals/RequestModal';
 import { camelCase } from '../../utils/stringConversionUtils';
 
@@ -14,6 +17,8 @@ class RequestsStore {
   @observable requestsDataFetched!: RequestModal[];
   @observable getSearchRequestsDataAPIStatus!: APIStatus;
   @observable getSearchRequestsDataAPIError!: any;
+  @observable getOnAcceptRequestsDataAPIStatus!: APIStatus;
+  @observable getOnAcceptRequestsDataAPIError!: any;
   @observable filterStatus!: string;
   @observable sortStatus!: string;
   requestsFetchService!: RequestsFetchService;
@@ -30,6 +35,8 @@ class RequestsStore {
     this.requestsDataFetched = [];
     this.getSearchRequestsDataAPIStatus = API_INITIAL;
     this.getSearchRequestsDataAPIError = '';
+    this.getOnAcceptRequestsDataAPIStatus = API_INITIAL;
+    this.getOnAcceptRequestsDataAPIError = '';
     this.filterStatus = '';
     this.sortStatus = '';
   }
@@ -92,6 +99,36 @@ class RequestsStore {
       })
       .catch((err) => {
         this.setGetSearchRequestsDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetOnAcceptRequestsDataAPIStatus(status: APIStatus) {
+    this.getOnAcceptRequestsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetOnAcceptRequestsDataAPIError(err: any) {
+    this.getOnAcceptRequestsDataAPIError = err;
+  }
+
+  getOnAcceptRequestsDataAPI(
+    request: onAcceptRequestsDataRequestType[],
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getOnAcceptRequestsDataPromise = this.requestsFetchService.getOnAcceptRequestsData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getOnAcceptRequestsDataPromise)
+      .to(this.setGetOnAcceptRequestsDataAPIStatus, (response) => {
+        this.setRequestsDataAPIResponse(response as EachRequestFetchType[]);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetOnAcceptRequestsDataAPIError(err);
         onFailure();
       });
   }

@@ -37,7 +37,7 @@ class AcceptModal extends Component<Props> {
   onOkButtonClick = () => {
     const { onCancelOrOkClick, isRejectActive } = this.props;
     if (isRejectActive) onCancelOrOkClick('Reject');
-    else onCancelOrOkClick('ok');
+    else onCancelOrOkClick('Ok');
   };
 
   handleChangeRejectionText = (value: string) => {};

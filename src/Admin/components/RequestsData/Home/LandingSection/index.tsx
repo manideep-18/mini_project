@@ -13,7 +13,7 @@ import RequestsStore from '../../../../stores/RequestsStore';
 import { MainContainer, PendingRequestsText } from './styledComponents';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from './SearchAndFilterAndButtons';
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 interface Props {
   history: History;
@@ -25,7 +25,7 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  @observable itemsChecked: any = [];
+  @observable itemsChecked: any[] = [];
 
   handleUpdateTabs = (status: string) => {
     const { tabsStore, history } = this.props;
@@ -33,19 +33,19 @@ class LandingSection extends Component<Props> {
     updateTabStatus(status);
   };
 
-  handleChangeCheckbox = (value: any, checked: boolean) => {
-    console.log(value, '&&&');
+  handleChangeCheckbox = (id: number, checked: boolean) => {
     if (checked) {
       const resultIndex = this.itemsChecked.findIndex(
-        (eachItem: any) => eachItem.id === value.id
+        (eachItem: any) => eachItem.id === id
       );
 
       if (resultIndex === -1) {
-        this.itemsChecked.push(value);
+        const item = { id: id };
+        this.itemsChecked.push(item);
       }
     } else {
       this.itemsChecked = this.itemsChecked.filter(
-        (eachItem: any) => eachItem.id !== value.id
+        (eachItem: any) => eachItem.id !== id
       );
     }
   };
@@ -65,7 +65,13 @@ class LandingSection extends Component<Props> {
     requestsStore.getSearchRequestsDataAPI(this.onSuccess);
   };
 
-  handleAcceptRequests = () => {};
+  @action.bound
+  handleAcceptRequests = () => {
+    const { requestsStore } = this.props;
+
+    requestsStore.getOnAcceptRequestsDataAPI(this.itemsChecked, this.onSuccess);
+    this.itemsChecked = [];
+  };
 
   handleRetry = () => {
     const { requestsStore } = this.props;
@@ -92,6 +98,7 @@ class LandingSection extends Component<Props> {
     const {
       getRequestsDataAPIStatus,
       getSearchRequestsDataAPIStatus,
+      getOnAcceptRequestsDataAPIStatus,
     } = requestsStore;
     if (requestsStore.requestsDataFetched) {
       return (
@@ -113,6 +120,7 @@ class LandingSection extends Component<Props> {
                 onSortStatusUpdate={this.handleSortStatusUpdate}
                 onFilterStatusUpdate={this.handleFilterStatusUpdate}
                 onAcceptRequests={this.handleAcceptRequests}
+                onAcceptRequestsStatus={getOnAcceptRequestsDataAPIStatus}
               />
               <LoadingWrapper
                 apiStatus={getSearchRequestsDataAPIStatus}
@@ -120,7 +128,7 @@ class LandingSection extends Component<Props> {
               >
                 <BaseTable
                   headerArray={headerArray}
-                  dataArray={requestsStore.sortedDataWithFiltering}
+                  dataArray={requestsStore.requestsDataFetched}
                   onChangeCheckbox={this.handleChangeCheckbox}
                 />
               </LoadingWrapper>

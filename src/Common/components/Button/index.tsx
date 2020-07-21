@@ -4,6 +4,7 @@ import { APIStatus, API_FETCHING, API_SUCCESS } from '@ib/api-constants';
 
 import { CustomButton, ButtonText } from './styledComponents';
 import Loader from '../Loader';
+import LoadingWrapper from '../LoadingWrapper';
 
 interface Props {
   id?: string;
@@ -39,7 +40,14 @@ class Button extends React.Component<Props> {
     return <ButtonText css={buttonTextCss}>{buttonText}</ButtonText>;
   };
   render() {
-    const { id, className, onClick, disabled, ...other } = this.props;
+    const {
+      id,
+      className,
+      onClick,
+      disabled,
+      apiStatus,
+      ...other
+    } = this.props;
     return (
       <CustomButton
         onClick={onClick}
