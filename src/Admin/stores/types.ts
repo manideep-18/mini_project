@@ -30,6 +30,7 @@ export interface AddItemToResourceRequestType {
 }
 
 export interface EachRequestFetchType {
+  id: number;
   person_name: string;
   resource: string;
   item: string;

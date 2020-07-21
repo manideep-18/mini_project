@@ -6,6 +6,7 @@ const Colors = {
   steel: '#7e858e',
   steel60: 'rgba(126, 133, 142, 0.6)',
   white: '#ffffff',
+  greenishTeal: '#2dca73',
 };
 
 export default Colors;

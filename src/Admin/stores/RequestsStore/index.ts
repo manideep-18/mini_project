@@ -11,6 +11,8 @@ class RequestsStore {
   @observable getRequestsDataAPIStatus!: APIStatus;
   @observable getRequestsDataAPIError: any;
   @observable requestsDataFetched!: RequestModal[];
+  @observable getSortedRequestsDataAPIStatus!: APIStatus;
+  @observable getSortedRequestsDataAPIError!: any;
   requestsFetchService!: RequestsFetchService;
 
   constructor(requestsFetchService: RequestsFetchService) {
@@ -23,6 +25,8 @@ class RequestsStore {
     this.getRequestsDataAPIStatus = API_INITIAL;
     this.getRequestsDataAPIError = '';
     this.requestsDataFetched = [];
+    this.getSortedRequestsDataAPIStatus = API_INITIAL;
+    this.getSortedRequestsDataAPIError = '';
   }
 
   @action.bound
@@ -56,6 +60,33 @@ class RequestsStore {
       })
       .catch((err) => {
         this.setGetRequestsDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSortedRequestsDataAPIStatus(status: APIStatus) {
+    this.getSortedRequestsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSortedRequestsDataAPIError(err: any) {
+    this.getSortedRequestsDataAPIError = err;
+  }
+
+  getSortedRequestsDataAPI(
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSortedRequestsDataPromise = this.requestsFetchService.getSortedRequestsData();
+
+    return bindPromiseWithOnSuccess(getSortedRequestsDataPromise)
+      .to(this.setGetSortedRequestsDataAPIStatus, (response) => {
+        this.setRequestsDataAPIResponse(response as EachRequestFetchType[]);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSortedRequestsDataAPIError(err);
         onFailure();
       });
   }

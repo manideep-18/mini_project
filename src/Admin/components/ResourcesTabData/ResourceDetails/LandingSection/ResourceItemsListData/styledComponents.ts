@@ -12,7 +12,6 @@ export const AddButton = styled(Button)`
   background-color: ${(props) =>
     props.disabled ? `${Colors.lightBlueGrey}` : `${Colors.brightBlue}`};
   padding: 9px 20px;
-  margin-left: 48px;
 `;
 
 export const DeleteButton = styled(Button)`

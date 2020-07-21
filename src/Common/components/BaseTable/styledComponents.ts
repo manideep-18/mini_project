@@ -8,7 +8,7 @@ export const CustomTable = styled.table`
   border-top-right-radius: 4px;
   margin: auto;
   margin-top: 24px;
-  width: 91%;
+  width: 100%;
 `;
 
 export const CustomColumn = styled.td`
