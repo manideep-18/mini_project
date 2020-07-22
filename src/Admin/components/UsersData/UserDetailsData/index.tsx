@@ -14,6 +14,11 @@ import { observer } from 'mobx-react';
 import BaseTable from '../../../../Common/components/BaseTable';
 import { userTableHeaderList } from '../../../constants/tableHeaderConstants';
 import { observable } from 'mobx';
+import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import {
+  userItemsSortConstants,
+  userItemsFilterConstants,
+} from '../../../constants/DropdownConstants';
 
 interface Props {
   usersStore: UsersStore;
@@ -21,6 +26,7 @@ interface Props {
 
 @observer
 class UserDetailsData extends Component<Props> {
+  personName: string = '';
   @observable deleteItemsList: number[] = [];
 
   onChangeCheckbox = (itemId: any, checked: boolean) => {
@@ -37,6 +43,16 @@ class UserDetailsData extends Component<Props> {
         (eachId) => eachId !== itemId
       );
     }
+  };
+
+  handleSortTypeUpdate = (value: string) => {
+    const { usersStore } = this.props;
+    usersStore.setSortType(value);
+  };
+
+  handleFilterTypeUpdate = (value: string) => {
+    const { usersStore } = this.props;
+    usersStore.setFilterType(value);
   };
 
   handleAddUserItem = () => {};
@@ -60,18 +76,29 @@ class UserDetailsData extends Component<Props> {
     );
   };
 
+  handleRetry = () => {
+    const { usersStore } = this.props;
+    usersStore.getUserItemDataAPI(
+      { person_name: this.personName },
+      this.onSuccess
+    );
+  };
+
   onSuccess = () => {};
 
   componentDidMount() {
     const { usersStore } = this.props;
-    let personName = '';
+
     if (typeof window !== 'undefined') {
-      personName = window.location.pathname;
-      const pathParameters = personName.split('/');
-      personName = pathParameters[pathParameters.length - 1];
+      this.personName = window.location.pathname;
+      const pathParameters = this.personName.split('/');
+      this.personName = pathParameters[pathParameters.length - 1];
     }
 
-    usersStore.getUserItemDataAPI({ person_name: personName }, this.onSuccess);
+    usersStore.getUserItemDataAPI(
+      { person_name: this.personName },
+      this.onSuccess
+    );
   }
 
   render() {
@@ -85,13 +112,23 @@ class UserDetailsData extends Component<Props> {
         <ResponsiveContainer>
           <LoadingWrapper
             apiStatus={getUserItemDataAPIStatus}
-            onRetry={() => {}}
+            onRetry={this.handleRetry}
           >
             <UserInfo userInfoData={userItemDataFetched} />
+            <SearchAndFilterAndButtons
+              onSearchEnter={() => {}}
+              checkedItemsLength={0}
+              onSortStatusUpdate={this.handleSortTypeUpdate}
+              onFilterStatusUpdate={this.handleFilterTypeUpdate}
+              sortConstants={userItemsSortConstants}
+              filterConstants={userItemsFilterConstants}
+            />
             <BaseTable
               headerArray={userTableHeaderList}
               dataArray={
-                userItemDataFetched ? userItemDataFetched.itemsList : []
+                userItemDataFetched
+                  ? usersStore.sortedUserItemsDataWithFiltered
+                  : []
               }
               onChangeCheckbox={this.onChangeCheckbox}
             />

@@ -5,7 +5,10 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import { EachUserDataFetchType, userItemRequestType } from '../types';
 import UserModal from '../Modals/UserModal';
 import { camelCase } from '../../utils/stringConversionUtils';
-import { ascendingOrderAlphabetical } from '../../utils/sortingDataUtils';
+import {
+  ascendingOrderAlphabetical,
+  descendingOrderAlphabetical,
+} from '../../utils/sortingDataUtils';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;
@@ -126,6 +129,23 @@ class UsersStore {
       const camelCaseSortStatus: string = camelCase(this.sortType);
 
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
+    }
+    return resultSortedData;
+  }
+
+  @computed get sortedUserItemsDataWithFiltered() {
+    let resultSortedData = this.userItemDataFetched.itemsList;
+    if (this.filterType !== '') {
+      resultSortedData = resultSortedData.filter(
+        (eachData) => eachData.resource === this.filterType
+      );
+    }
+
+    const camelCaseSortStatus: string = camelCase('item');
+    if (this.sortType !== '' && this.sortType === 'Ascending') {
+      return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
+    } else if (this.sortType !== '' && this.sortType === 'Descending') {
+      return descendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     }
     return resultSortedData;
   }

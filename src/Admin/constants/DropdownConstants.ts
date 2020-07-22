@@ -16,3 +16,7 @@ export const usersFilterConstants: string[] = [
   'Tech Department',
   'Assert Department',
 ];
+
+export const userItemsSortConstants: string[] = ['Ascending', 'Descending'];
+
+export const userItemsFilterConstants: string[] = ['Zeplin', 'Git Hub'];
