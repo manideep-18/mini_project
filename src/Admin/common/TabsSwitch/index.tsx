@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { History } from 'history';
 
-import TabButton from '../../components/TabButton';
+import TabButton from '../../../Common/components/TabButton';
 
 import { TabsSwitchContainer } from './styledComponents';
-import { goToTabActivePage } from '../../../Admin/utils/navigationUtils';
+import { goToTabActivePage } from '../../utils/navigationUtils';
 
 interface Props {
   history: History;

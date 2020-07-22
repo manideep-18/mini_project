@@ -8,7 +8,7 @@ import ResourcesStore from '../../../stores/ResourcesStore';
 import { MainContainer } from './styledComponents';
 import { withRouter } from 'react-router-dom';
 
-import TabsSwitch from '../../../../Common/components/TabsSwitch';
+import TabsSwitch from '../../../common/TabsSwitch';
 import ResourcesTabContent from './ResourcesTabContent';
 
 interface Props {

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { History } from 'history';
 import { withRouter } from 'react-router-dom';
 
-import TabsSwitch from '../../../../../Common/components/TabsSwitch';
+import TabsSwitch from '../../../../common/TabsSwitch';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import BaseTable from '../../../../../Common/components/BaseTable';
 

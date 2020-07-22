@@ -3,7 +3,7 @@ import { History } from 'history';
 import { withRouter } from 'react-router-dom';
 
 import TabsStore from '../../../stores/TabsStore';
-import TabsSwitch from '../../../../Common/components/TabsSwitch';
+import TabsSwitch from '../../../common/TabsSwitch';
 
 import { LandingMainContainer } from './styledComponents';
 import UsersStore from '../../../stores/UsersStore';
