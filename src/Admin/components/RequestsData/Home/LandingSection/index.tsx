@@ -12,7 +12,7 @@ import RequestsStore from '../../../../stores/RequestsStore';
 
 import { MainContainer, PendingRequestsText } from './styledComponents';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
-import SearchAndFilterAndButtons from './SearchAndFilterAndButtons';
+import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAndFilterAndButtons';
 import { observable, action } from 'mobx';
 
 interface Props {
@@ -128,7 +128,7 @@ class LandingSection extends Component<Props> {
               >
                 <BaseTable
                   headerArray={headerArray}
-                  dataArray={requestsStore.requestsDataFetched}
+                  dataArray={requestsStore.sortedDataWithFiltering}
                   onChangeCheckbox={this.handleChangeCheckbox}
                 />
               </LoadingWrapper>
