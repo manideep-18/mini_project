@@ -26,13 +26,14 @@ class ResourcesTabContent extends Component<Props> {
   };
 
   renderResourcesCards = () => {
-    const { resourcesStore } = this.props;
+    const { resourcesStore, history } = this.props;
     const { resourcesFetchData } = resourcesStore;
 
     if (resourcesFetchData)
       return resourcesFetchData.map((eachResource) => (
         <EachResourceCard
           key={eachResource.name}
+          history={history}
           eachResource={eachResource}
           onClickResourceCard={this.onClickResourceCard}
         />

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
 import ResourceModal from '../../../../../stores/Modals/ResourceModal';
@@ -17,18 +16,15 @@ import {
 } from './styledComponents';
 
 interface Props {
-  history: History;
-  match: any;
-  location: any;
+  history?: History;
   eachResource: ResourceModal;
   onClickResourceCard: (resource: ResourceModal) => void;
 }
 
 class EachResourceCard extends Component<Props> {
   handleClick = () => {
-    const { onClickResourceCard, eachResource, history } = this.props;
+    const { onClickResourceCard, eachResource } = this.props;
     onClickResourceCard(eachResource);
-    goToAdminResourcePage(history, eachResource.name);
   };
 
   render() {
@@ -52,4 +48,4 @@ class EachResourceCard extends Component<Props> {
   }
 }
 
-export default withRouter(EachResourceCard);
+export default EachResourceCard;
