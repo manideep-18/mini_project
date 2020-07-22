@@ -10,6 +10,7 @@ import {
 } from '../types';
 import RequestModal from '../Modals/RequestModal';
 import { camelCase } from '../../utils/stringConversionUtils';
+import { ascendingOrderAlphabetical } from '../../utils/sortingDataUtils';
 
 class RequestsStore {
   @observable getRequestsDataAPIStatus!: APIStatus;
@@ -154,15 +155,7 @@ class RequestsStore {
     if (this.sortStatus !== '') {
       const camelCaseSortStatus: string = camelCase(this.sortStatus);
 
-      return resultSortedData.sort(function (a: any, b: any) {
-        if (a[camelCaseSortStatus] < b[camelCaseSortStatus]) {
-          return -1;
-        }
-        if (a[camelCaseSortStatus] > b[camelCaseSortStatus]) {
-          return 1;
-        }
-        return 0;
-      });
+      return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     }
     return resultSortedData;
   }

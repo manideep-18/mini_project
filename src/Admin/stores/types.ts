@@ -41,3 +41,19 @@ export interface EachRequestFetchType {
 export interface onAcceptRequestsDataRequestType {
   id: number;
 }
+
+export interface EachUserItemsListDataType {
+  id: number;
+  resource: string;
+  item: string;
+  access: string;
+  description: string;
+  link: string;
+}
+
+export interface EachUserDataFetchType {
+  person_name: string;
+  department: string;
+  job_role: string;
+  items: EachUserItemsListDataType[];
+}
