@@ -57,3 +57,7 @@ export interface EachUserDataFetchType {
   job_role: string;
   items: EachUserItemsListDataType[];
 }
+
+export interface userItemRequestType {
+  person_name: string;
+}

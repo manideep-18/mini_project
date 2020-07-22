@@ -128,6 +128,11 @@ export const Typo24DarkBlueGreyHKGroteskRegular = styled(BaseHKGroteskText)`
   color: ${Colors.darkBlueGrey};
 `;
 
+export const Typo24WhiteHKGroteskRegular = styled(BaseHKGroteskText)`
+  font-size: 24px;
+  color: ${Colors.white};
+`;
+
 export const Typo32DarkBlueGreyHKGroteskRegular = styled(BaseHKGroteskText)`
   font-size: 32px;
   color: ${Colors.darkBlueGrey};

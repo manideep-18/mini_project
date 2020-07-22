@@ -1,0 +1,47 @@
+{
+  "person_name": "Hemanth",
+  "department": "Assert Department",
+  "job_role": "UI Designer",
+  "items": [
+    {
+      "id": 2,
+      "resource": "Zeplin",
+      "item": "Gyan",
+      "access": "Read",
+      "description": "Updated payment modules based on Accessibility assessment",
+      "link": "Lorem ipsum dolor sit amet, consec"
+    },
+    {
+      "id": 6,
+      "resource": "Zeplin",
+      "item": "Slot Booking",
+      "access": "Read",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+      "link": "Lorem ipsum dolor sit amet, consec"
+    },
+    {
+      "id": 32,
+      "resource": "Zeplin",
+      "item": "Let’s Ride",
+      "access": "Read",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+      "link": "Lorem ipsum dolor sit amet, consec"
+    },
+    {
+      "id": 25,
+      "resource": "Git Hub",
+      "item": "Essentials Kit",
+      "access": "Read",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+      "link": "Lorem ipsum dolor sit amet, consec"
+    },
+    {
+      "id": 8,
+      "resource": "Git Hub",
+      "item": "COVID Dashboard",
+      "access": "Read",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+      "link": "Lorem ipsum dolor sit amet, consec"
+    }
+  ]
+}

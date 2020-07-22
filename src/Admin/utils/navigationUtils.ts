@@ -18,3 +18,7 @@ export function goToRequestsPage(history: History): void {
 export function goToTabActivePage(history: History, tabActive: string): void {
   history.push(`/admin/${tabActive}`);
 }
+
+export function goToUserDetailsPage(history: History, id: string) {
+  history.push(`/admin/users/${id}`);
+}

@@ -51,19 +51,16 @@ class BaseTableWithoutCheckbox extends Component<Props> {
     ));
   };
 
-  onClickItemCard = () => {
-    const { onClickItemCard, id } = this.props;
-    onClickItemCard(id);
-  };
-
   renderDataRows = () => {
-    const { headerArray, dataArray, id } = this.props;
+    const { headerArray, dataArray, id, onClickItemCard } = this.props;
 
     return dataArray.map((eachData) => (
       <CustomRow
         as='tr'
         key={eachData[camelCase(id)]}
-        onClick={this.onClickItemCard}
+        onClick={() => {
+          onClickItemCard(eachData[camelCase(id)]);
+        }}
       >
         {headerArray.map((eachHeader) => (
           <CustomColumn key={eachHeader}>

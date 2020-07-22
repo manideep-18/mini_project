@@ -17,6 +17,7 @@ import {
   usersFilterConstants,
 } from '../../../constants/DropdownConstants';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { goToUserDetailsPage } from '../../../utils/navigationUtils';
 
 interface Props {
   history: History;
@@ -34,7 +35,10 @@ class LandingSection extends Component<Props> {
     updateTabStatus(status);
   };
 
-  handleClickedItemCard = () => {};
+  handleClickedItemCard = (value: string) => {
+    const { history } = this.props;
+    goToUserDetailsPage(history, value);
+  };
 
   handleSearchEnter = () => {};
 

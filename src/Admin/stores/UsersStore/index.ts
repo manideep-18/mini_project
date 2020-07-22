@@ -2,7 +2,7 @@ import { UsersFetchService } from '../../services/UsersFetchService';
 import { observable, action, computed } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { EachUserDataFetchType } from '../types';
+import { EachUserDataFetchType, userItemRequestType } from '../types';
 import UserModal from '../Modals/UserModal';
 import { camelCase } from '../../utils/stringConversionUtils';
 import { ascendingOrderAlphabetical } from '../../utils/sortingDataUtils';
@@ -13,6 +13,10 @@ class UsersStore {
   @observable usersDataFetched!: UserModal[];
   @observable sortType!: string;
   @observable filterType!: string;
+  @observable getUserItemDataAPIStatus!: APIStatus;
+  @observable getUserItemDataAPIError!: any;
+  @observable userItemDataFetched!: UserModal;
+
   usersFetchService: UsersFetchService;
 
   constructor(usersFetchService: UsersFetchService) {
@@ -24,6 +28,8 @@ class UsersStore {
   init() {
     this.getUsersDataAPIStatus = API_INITIAL;
     this.getUsersDataAPIError = '';
+    this.getUserItemDataAPIStatus = API_INITIAL;
+    this.getUserItemDataAPIError = '';
     this.sortType = '';
     this.filterType = '';
   }
@@ -59,6 +65,41 @@ class UsersStore {
       })
       .catch((err) => {
         this.setGetUsersDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetUserItemDataAPIStatus(status: APIStatus) {
+    this.getUserItemDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetUserItemDataAPIResponse(response: EachUserDataFetchType) {
+    this.userItemDataFetched = new UserModal(response);
+  }
+
+  @action.bound
+  setGetUserItemDataAPIError(err: any) {
+    this.getUserItemDataAPIError = err;
+  }
+
+  getUserItemDataAPI(
+    request: userItemRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getUserItemDataPromise = this.usersFetchService.getUserItemData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getUserItemDataPromise)
+      .to(this.setGetUserItemDataAPIStatus, (response) => {
+        this.setGetUserItemDataAPIResponse(response as EachUserDataFetchType);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetUserItemDataAPIError(err);
         onFailure();
       });
   }
