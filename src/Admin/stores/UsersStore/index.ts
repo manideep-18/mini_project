@@ -21,6 +21,8 @@ class UsersStore {
   @observable getUserItemDataAPIStatus!: APIStatus;
   @observable getUserItemDataAPIError!: any;
   @observable userItemDataFetched!: UserModal;
+  @observable userItemSortType!: string;
+  @observable userItemFilterType!: string;
 
   usersFetchService: UsersFetchService;
 
@@ -37,6 +39,8 @@ class UsersStore {
     this.getUserItemDataAPIError = '';
     this.sortType = '';
     this.filterType = '';
+    this.userItemSortType = '';
+    this.userItemFilterType = '';
   }
 
   @action.bound
@@ -135,18 +139,31 @@ class UsersStore {
     return resultSortedData;
   }
 
+  @action.bound
+  setUserItemSortType(value: string) {
+    this.userItemSortType = value;
+  }
+
+  @action.bound
+  setUserItemFilterType(value: string) {
+    this.userItemFilterType = value;
+  }
+
   @computed get sortedUserItemsDataWithFiltered() {
     let resultSortedData = this.userItemDataFetched.itemsList;
-    if (this.filterType !== '') {
+    if (this.userItemFilterType !== '') {
       resultSortedData = resultSortedData.filter(
-        (eachData) => eachData.resource === this.filterType
+        (eachData) => eachData.resource === this.userItemFilterType
       );
     }
 
     const camelCaseSortStatus: string = camelCase('item');
-    if (this.sortType !== '' && this.sortType === 'Ascending') {
+    if (this.userItemSortType !== '' && this.userItemSortType === 'Ascending') {
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
-    } else if (this.sortType !== '' && this.sortType === 'Descending') {
+    } else if (
+      this.userItemSortType !== '' &&
+      this.userItemSortType === 'Descending'
+    ) {
       return descendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     }
     return resultSortedData;

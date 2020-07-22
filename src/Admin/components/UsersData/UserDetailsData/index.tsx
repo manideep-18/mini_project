@@ -47,12 +47,12 @@ class UserDetailsData extends Component<Props> {
 
   handleSortTypeUpdate = (value: string) => {
     const { usersStore } = this.props;
-    usersStore.setSortType(value);
+    usersStore.setUserItemSortType(value);
   };
 
   handleFilterTypeUpdate = (value: string) => {
     const { usersStore } = this.props;
-    usersStore.setFilterType(value);
+    usersStore.setUserItemFilterType(value);
   };
 
   handleAddUserItem = () => {};

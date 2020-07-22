@@ -38,6 +38,7 @@ class LandingSection extends Component<Props> {
   handleClickedItemCard = (value: string) => {
     const { history } = this.props;
     goToUserDetailsPage(history, value);
+    window.location.reload();
   };
 
   handleSearchEnter = () => {};
