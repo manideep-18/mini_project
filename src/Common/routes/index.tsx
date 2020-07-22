@@ -6,9 +6,10 @@ import AddResourcePage from '../../Admin/routes/Resources/AddResourcePage';
 import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPage';
 import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
 import RequestsHomePage from '../../Admin/routes/Requests/RequestsHomePage';
+import HomePage from '../../Admin/routes/Users/HomePage';
 
 import Header from '../components/Header';
-import { REQUESTS_PAGE } from '../constants/RouteConstants';
+import { REQUESTS_PAGE, USERS_PAGE } from '../constants/RouteConstants';
 
 export class Routes extends Component {
   render() {
@@ -18,7 +19,7 @@ export class Routes extends Component {
           <Switch>
             <Route exact path='/' component={Header} />
 
-            <Route exact path='/admin/' component={Homepage} />
+            <Route exact path='/admin/' component={Header} />
             <Route exact path='/admin/resources' component={Homepage} />
             <Route
               exact
@@ -36,6 +37,7 @@ export class Routes extends Component {
               component={AddItemPage}
             />
             <Route exact path={REQUESTS_PAGE} component={RequestsHomePage} />
+            <Route exact path={USERS_PAGE} component={HomePage} />
           </Switch>
         </Router>
       </div>
