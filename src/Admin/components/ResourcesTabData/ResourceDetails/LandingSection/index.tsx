@@ -7,7 +7,10 @@ import BackButton from '../../../../../Common/components/BackButton';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 
-import { ResourceItemType } from '../../../../stores/types';
+import {
+  ResourceItemType,
+  resourceItemsDeleteRequestType,
+} from '../../../../stores/types';
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import { navigateToResourceAddItemPage } from '../../../../utils/navigationUtils';
 
@@ -28,8 +31,12 @@ class LandingSection extends Component<Props> {
 
   onDeleteResourceItems = (items: number[]) => {
     const { resourcesStore } = this.props;
+    const request = items.map((eachItemId) => {
+      const eachItem = { id: eachItemId };
+      return eachItem;
+    });
 
-    resourcesStore.getResourceItemsAfterDeleteAPI(items, this.onSuccess);
+    resourcesStore.getResourceItemsAfterDeleteAPI(request, this.onSuccess);
   };
 
   onUpdateResourceItem = (item: ResourceItemType) => {};

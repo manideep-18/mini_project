@@ -10,6 +10,7 @@ import {
   ResourceItemType,
   ResourceDetailsRequestType,
   AddItemToResourceRequestType,
+  resourceItemsDeleteRequestType,
 } from '../types';
 
 class ResourcesStore {
@@ -161,7 +162,7 @@ class ResourcesStore {
   }
 
   getResourceItemsAfterDeleteAPI(
-    requestObject: number[],
+    requestObject: resourceItemsDeleteRequestType[],
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {

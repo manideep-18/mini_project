@@ -1,5 +1,3 @@
-import React from 'react';
-
 import TabsStore from '.';
 
 const tabsStore = new TabsStore();

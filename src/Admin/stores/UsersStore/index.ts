@@ -1,14 +1,16 @@
-import { UsersFetchService } from '../../services/UsersFetchService';
 import { observable, action, computed } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { EachUserDataFetchType, userItemRequestType } from '../types';
-import UserModal from '../Modals/UserModal';
-import { camelCase } from '../../utils/stringConversionUtils';
+
+import { UsersFetchService } from '../../services/UsersFetchService';
 import {
   ascendingOrderAlphabetical,
   descendingOrderAlphabetical,
 } from '../../utils/sortingDataUtils';
+import { camelCase } from '../../utils/stringConversionUtils';
+
+import { EachUserDataFetchType, userItemRequestType } from '../types';
+import UserModal from '../Modals/UserModal';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;

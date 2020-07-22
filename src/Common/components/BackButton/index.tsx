@@ -14,7 +14,7 @@ interface Props {
 
 class BackButton extends Component<Props> {
   static defaultProps = {
-    backLinkText: '/admin',
+    backLinkText: '/admin/resources',
     iconImageUrl:
       'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/264598fb-d62c-49a3-87c9-c8d06c355d85.svg',
     backText: 'Resources',

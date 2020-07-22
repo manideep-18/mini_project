@@ -15,6 +15,7 @@ class ResourceModal {
       logo_image_url,
       name,
       type,
+      link,
       description,
       items_list,
     } = resourceObject;
@@ -22,6 +23,7 @@ class ResourceModal {
     this.logoImageUrl = logo_image_url;
     this.name = name;
     this.type = type;
+    this.link = link;
     this.description = description;
     this.itemsList = items_list;
   }

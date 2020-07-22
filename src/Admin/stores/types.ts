@@ -61,3 +61,7 @@ export interface EachUserDataFetchType {
 export interface userItemRequestType {
   person_name: string;
 }
+
+export interface resourceItemsDeleteRequestType {
+  id: number;
+}
