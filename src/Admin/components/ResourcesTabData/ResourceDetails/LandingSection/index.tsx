@@ -6,10 +6,6 @@ import BackButton from '../../../../../Common/components/BackButton';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 
-import {
-  ResourceItemType,
-  resourceItemsDeleteRequestType,
-} from '../../../../stores/types';
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import { navigateToResourceAddItemPage } from '../../../../utils/navigationUtils';
 
@@ -19,11 +15,11 @@ import ResourceItemsListData from './ResourceItemsListData';
 interface Props {
   history: History;
   resourcesStore: ResourcesStore;
+  resourceName: string;
 }
 
 @observer
 class LandingSection extends Component<Props> {
-  resourceName: string = '';
   onSuccess = () => {};
 
   onDeleteResourceItems = (items: number[]) => {
@@ -36,62 +32,48 @@ class LandingSection extends Component<Props> {
     resourcesStore.getResourceItemsAfterDeleteAPI(request, this.onSuccess);
   };
 
-  onUpdateResourceItem = (item: ResourceItemType) => {};
-
   onAddResourceItem = () => {
-    const { history } = this.props;
+    const { history, resourceName } = this.props;
 
-    navigateToResourceAddItemPage(history, this.resourceName);
+    navigateToResourceAddItemPage(history, resourceName);
     window.location.reload();
   };
 
-  componentDidMount() {
-    const { resourcesStore } = this.props;
-    let path = '';
-    if (typeof window !== 'undefined') {
-      path = window.location.pathname;
-      const pathParameters = path.split('/');
-      path = pathParameters[pathParameters.length - 1];
-    }
-
-    this.resourceName = path;
+  handleRetry = () => {
+    const { resourcesStore, resourceName } = this.props;
 
     resourcesStore.getResourceDetailsAPI(
-      { resource_name: path },
+      { resource_name: resourceName },
       this.onSuccess
     );
-  }
+  };
 
   render() {
     const { resourcesStore } = this.props;
 
-    if (resourcesStore.resourceDetailsData) {
-      const {
-        resourceDetailsData,
-        getResourceDetailsDataAPIStatus,
-        getResourcesAfterDeleteAPIStatus,
-      } = resourcesStore;
+    const {
+      resourceDetailsData,
+      getResourceDetailsDataAPIStatus,
+      getResourcesAfterDeleteAPIStatus,
+    } = resourcesStore;
 
-      return (
-        <div>
-          <ResponsiveContainer>
-            <BackButton />
-            <LoadingWrapper
-              apiStatus={getResourceDetailsDataAPIStatus}
-              onRetry={() => {}}
-            >
-              <ResourceDetailedView resourceDetailsData={resourceDetailsData} />
-              <ResourceItemsListData
-                resourceDetailsData={resourceDetailsData}
-                onDeleteResourceItems={this.onDeleteResourceItems}
-                onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
-                onAddResourceItem={this.onAddResourceItem}
-              />
-            </LoadingWrapper>
-          </ResponsiveContainer>
-        </div>
-      );
-    }
+    return (
+      <ResponsiveContainer>
+        <BackButton />
+        <LoadingWrapper
+          apiStatus={getResourceDetailsDataAPIStatus}
+          onRetry={this.handleRetry}
+        >
+          <ResourceDetailedView resourceDetailsData={resourceDetailsData} />
+          <ResourceItemsListData
+            resourceDetailsData={resourceDetailsData}
+            onDeleteResourceItems={this.onDeleteResourceItems}
+            onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
+            onAddResourceItem={this.onAddResourceItem}
+          />
+        </LoadingWrapper>
+      </ResponsiveContainer>
+    );
   }
 }
 

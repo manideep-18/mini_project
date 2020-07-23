@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Button from '../../../../../../Common/components/Button';
 import Colors from '../../../../../../Common/themes/Colors';
 
+export const ItemsListButtonsContainer = styled.div``;
+
 export const ButtonsContainer = styled.div`
   margin-top: 24px;
 `;

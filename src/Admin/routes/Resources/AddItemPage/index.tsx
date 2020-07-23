@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
+import { inject, observer } from 'mobx-react';
 
 import Header from '../../../../Common/components/Header';
-
 import LandingSection from '../../../components/ResourcesTabData/AddResourceItem/LandingSection';
-import { inject, observer } from 'mobx-react';
 import ResourcesStore from '../../../stores/ResourcesStore';
+
+import { ItemPageMainContainer } from './styled-components';
 
 interface Props {
   history: History;
@@ -21,10 +22,10 @@ class AddItemPage extends Component<Props> {
   render() {
     const { resourcesStore, history } = this.props;
     return (
-      <div>
+      <ItemPageMainContainer>
         <Header />
         <LandingSection history={history} resourcesStore={resourcesStore} />
-      </div>
+      </ItemPageMainContainer>
     );
   }
 }

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { APIStatus, API_SUCCESS, API_INITIAL } from '@ib/api-constants';
+import { APIStatus } from '@ib/api-constants';
 
-import { ResourceItemType } from '../../../../../stores/types';
 import BaseTable from '../../../../../../Common/components/BaseTable';
-import { ButtonsContainer, AddButton, DeleteButton } from './styledComponents';
 import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
 import ResourceModal from '../../../../../stores/Modals/ResourceModal';
+
+import {
+  ButtonsContainer,
+  AddButton,
+  DeleteButton,
+  ItemsListButtonsContainer,
+} from './styledComponents';
 
 interface Props {
   resourceDetailsData: ResourceModal;
@@ -52,28 +57,26 @@ class ResourceItemsListData extends Component<Props> {
     this.deleteItemsList = [];
   };
 
-  renderAddDeleteButtons = () => {
-    return (
-      <ButtonsContainer>
-        <AddButton
-          buttonText='ADD ITEM'
-          disabled={this.deleteItemsList.length > 0}
-          onClick={this.handleAddResourceItem}
-        />
-        <DeleteButton
-          buttonText='DELETE'
-          disabled={this.deleteItemsList.length === 0}
-          onClick={this.handleDeleteResourceItems}
-        />
-      </ButtonsContainer>
-    );
-  };
+  renderAddDeleteButtons = () => (
+    <ButtonsContainer>
+      <AddButton
+        buttonText='ADD ITEM'
+        disabled={this.deleteItemsList.length > 0}
+        onClick={this.handleAddResourceItem}
+      />
+      <DeleteButton
+        buttonText='DELETE'
+        disabled={this.deleteItemsList.length === 0}
+        onClick={this.handleDeleteResourceItems}
+      />
+    </ButtonsContainer>
+  );
 
   render() {
     const { resourceDetailsData, onDeleteAPIStatus } = this.props;
     const { itemsList } = resourceDetailsData;
     return (
-      <div>
+      <ItemsListButtonsContainer>
         <LoadingWrapper
           apiStatus={onDeleteAPIStatus}
           onRetry={this.handleDeleteResourceItems}
@@ -84,7 +87,7 @@ class ResourceItemsListData extends Component<Props> {
           />
           {this.renderAddDeleteButtons()}
         </LoadingWrapper>
-      </div>
+      </ItemsListButtonsContainer>
     );
   }
 }

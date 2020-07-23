@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+
+import BackButton from '../../../../Common/components/BackButton';
+import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import BaseTable from '../../../../Common/components/BaseTable';
+import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+
+import { userTableHeaderList } from '../../../constants/tableHeaderConstants';
+import {
+  userItemsSortConstants,
+  userItemsFilterConstants,
+} from '../../../constants/DropdownConstants';
+import UsersStore from '../../../stores/UsersStore';
+
 import {
   DetailsContentContainer,
   ButtonsContainer,
   AddButton,
   DeleteButton,
 } from './styledComponents';
-import BackButton from '../../../../Common/components/BackButton';
-import UsersStore from '../../../stores/UsersStore';
 import UserInfo from './UserInfo';
-import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import { observer } from 'mobx-react';
-import BaseTable from '../../../../Common/components/BaseTable';
-import { userTableHeaderList } from '../../../constants/tableHeaderConstants';
-import { observable } from 'mobx';
-import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
-import {
-  userItemsSortConstants,
-  userItemsFilterConstants,
-} from '../../../constants/DropdownConstants';
 
 interface Props {
   usersStore: UsersStore;
@@ -26,8 +29,14 @@ interface Props {
 
 @observer
 class UserDetailsData extends Component<Props> {
-  personName: string = '';
-  @observable deleteItemsList: number[] = [];
+  personName: string;
+  @observable deleteItemsList: number[];
+
+  constructor(props: Props) {
+    super(props);
+    this.personName = '';
+    this.deleteItemsList = [];
+  }
 
   onChangeCheckbox = (itemId: any, checked: boolean) => {
     if (checked) {

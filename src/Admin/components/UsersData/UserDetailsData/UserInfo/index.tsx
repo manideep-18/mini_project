@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import UserModal from '../../../../stores/Modals/UserModal';
+
 import {
   IconContentContainer,
   IconContainer,
@@ -7,7 +10,6 @@ import {
   Department,
   JobRole,
 } from './styledComponents';
-import UserModal from '../../../../stores/Modals/UserModal';
 
 interface Props {
   userInfoData: UserModal;

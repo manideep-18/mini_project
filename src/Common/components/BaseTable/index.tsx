@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+
+import { camelCase } from '../../../Admin/utils/stringConversionUtils';
+
+import BaseCheckBox from '../BaseCheckbox';
+
 import {
   CustomTable,
   CustomRow,
@@ -7,10 +13,6 @@ import {
   CustomTableHeader,
   CustomTableBody,
 } from './styledComponents';
-import BaseCheckBox from '../BaseCheckbox';
-import { observer } from 'mobx-react';
-import { ResourceItemType } from '../../../Admin/stores/types';
-import { camelCase } from '../../../Admin/utils/stringConversionUtils';
 
 interface Props {
   headerArray: string[];
@@ -76,17 +78,15 @@ class BaseTable extends Component<Props> {
 
   render() {
     return (
-      <div>
-        <CustomTable>
-          <CustomTableHeader>
-            <CustomRow as='tr'>
-              <CustomHeader></CustomHeader>
-              {this.renderHeaderRow()}
-            </CustomRow>
-          </CustomTableHeader>
-          <CustomTableBody>{this.renderDataRows()}</CustomTableBody>
-        </CustomTable>
-      </div>
+      <CustomTable>
+        <CustomTableHeader>
+          <CustomRow as='tr'>
+            <CustomHeader></CustomHeader>
+            {this.renderHeaderRow()}
+          </CustomRow>
+        </CustomTableHeader>
+        <CustomTableBody>{this.renderDataRows()}</CustomTableBody>
+      </CustomTable>
     );
   }
 }

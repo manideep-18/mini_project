@@ -46,6 +46,14 @@ class ResourcesStore {
     this.getResourcesAfterDeleteAPIError = '';
     this.onAddItemToResourceAPIStatus = API_INITIAL;
     this.onAddItemToResourceAPIError = '';
+    this.resourceDetailsData = {
+      logoImageUrl: '',
+      name: '',
+      type: '',
+      link: '',
+      description: '',
+      itemsList: [],
+    };
   }
 
   @action.bound

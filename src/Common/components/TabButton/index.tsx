@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
-import { CustomTabButton, TextCss } from './styledComponents';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+
+import { CustomTabButton, TextCss } from './styledComponents';
 
 interface State {
   isActive: boolean;

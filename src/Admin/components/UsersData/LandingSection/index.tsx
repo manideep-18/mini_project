@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { History } from 'history';
+import { observer } from 'mobx-react';
 
 import TabsStore from '../../../stores/TabsStore';
 import TabsSwitch from '../../../common/TabsSwitch';
 
-import { LandingMainContainer } from './styledComponents';
-import UsersStore from '../../../stores/UsersStore';
-import { observer } from 'mobx-react';
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
-import { mainPageHeaderArray } from '../../../constants/usersPageConstants';
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+
 import {
   usersSortConstants,
   usersFilterConstants,
 } from '../../../constants/DropdownConstants';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import { goToUserDetailsPage } from '../../../utils/navigationUtils';
+import UsersStore from '../../../stores/UsersStore';
+import { mainPageHeaderArray } from '../../../constants/usersPageConstants';
+
+import { LandingMainContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -27,7 +29,7 @@ interface Props {
 @observer
 class LandingSection extends Component<Props> {
   handleUpdateTabs = (status: string) => {
-    const { tabsStore, history } = this.props;
+    const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
@@ -58,7 +60,7 @@ class LandingSection extends Component<Props> {
   onSuccess = () => {};
 
   componentDidMount() {
-    const { tabsStore, history, usersStore } = this.props;
+    const { tabsStore, usersStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus('Users');
     usersStore.getUsersDataAPI(this.onSuccess);

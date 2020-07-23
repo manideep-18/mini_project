@@ -4,8 +4,9 @@ import { History } from 'history';
 
 import TabButton from '../../../Common/components/TabButton';
 
-import { TabsSwitchContainer } from './styledComponents';
 import { goToTabActivePage } from '../../utils/navigationUtils';
+
+import { TabsSwitchContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -16,7 +17,7 @@ interface Props {
 @observer
 class TabsSwitch extends Component<Props> {
   onUpdateTabStatus = (status: string) => {
-    const { onUpdateTabs, history, tabStatus } = this.props;
+    const { onUpdateTabs, history } = this.props;
     onUpdateTabs(status);
     goToTabActivePage(history, status.toLowerCase());
   };

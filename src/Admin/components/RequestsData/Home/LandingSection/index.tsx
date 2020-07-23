@@ -3,16 +3,17 @@ import { observer } from 'mobx-react';
 import { History } from 'history';
 import { observable } from 'mobx';
 
-import TabsSwitch from '../../../../common/TabsSwitch';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import BaseTable from '../../../../../Common/components/BaseTable';
-
-import TabsStore from '../../../../stores/TabsStore';
-import RequestsStore from '../../../../stores/RequestsStore';
-
-import { MainContainer, PendingRequestsText } from './styledComponents';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAndFilterAndButtons';
+
+import TabsSwitch from '../../../../common/TabsSwitch';
+import TabsStore from '../../../../stores/TabsStore';
+import RequestsStore from '../../../../stores/RequestsStore';
+import { requestsTableHeaderList } from '../../../../constants/tableHeaderConstants';
+
+import { MainContainer, PendingRequestsText } from './styledComponents';
 
 interface Props {
   history: History;
@@ -22,10 +23,15 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  @observable itemsChecked: any[] = [];
+  @observable itemsChecked!: { id: number }[];
+
+  constructor(props: Props) {
+    super(props);
+    this.itemsChecked = [];
+  }
 
   handleUpdateTabs = (status: string) => {
-    const { tabsStore, history } = this.props;
+    const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
@@ -77,18 +83,13 @@ class LandingSection extends Component<Props> {
   onSuccess = () => {};
 
   componentDidMount() {
-    const { requestsStore } = this.props;
+    const { requestsStore, tabsStore } = this.props;
+    const { updateTabStatus } = tabsStore;
+    updateTabStatus('Requests');
     requestsStore.getRequestsDataAPI(this.onSuccess);
   }
 
   render() {
-    const headerArray: string[] = [
-      'person name',
-      'resource',
-      'item',
-      'access level',
-      'due date time',
-    ];
     const { tabsStore, requestsStore, history } = this.props;
     const { tabStatus } = tabsStore;
     const {
@@ -123,7 +124,7 @@ class LandingSection extends Component<Props> {
                 onRetry={this.handleRetry}
               >
                 <BaseTable
-                  headerArray={headerArray}
+                  headerArray={requestsTableHeaderList}
                   dataArray={requestsStore.sortedDataWithFiltering}
                   onChangeCheckbox={this.handleChangeCheckbox}
                 />
