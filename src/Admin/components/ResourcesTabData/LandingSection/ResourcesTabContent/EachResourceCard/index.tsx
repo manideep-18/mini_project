@@ -32,7 +32,12 @@ class EachResourceCard extends Component<Props> {
     return (
       <CardContainer>
         <LogoTextContainer>
-          <Logo src={logoImageUrl} alt='icon logo' onClick={this.handleClick} />
+          <Logo
+            data-testid='logoImage'
+            src={logoImageUrl}
+            alt='icon logo'
+            onClick={this.handleClick}
+          />
           <TextContainer>
             <ResourceName>{name}</ResourceName>
             <ResourceType>{type}</ResourceType>
