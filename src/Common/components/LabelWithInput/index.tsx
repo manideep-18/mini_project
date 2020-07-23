@@ -10,6 +10,7 @@ import {
 } from './styledComponents';
 
 interface Props {
+  id?: string;
   labelText: string;
   onChange: any;
   value: string;
@@ -25,12 +26,13 @@ class LabelWithInput extends Component<Props> {
   };
 
   render() {
-    const { labelText, onChange, value, isTextArea, ...other } = this.props;
+    const { labelText, onChange, value, isTextArea, id, ...other } = this.props;
     return (
       <TextInputContainer>
         <LabelText>{labelText}</LabelText>
         {isTextArea ? (
           <LabelTextArea
+            id={id}
             onChange={onChange}
             placeholder={labelText}
             value={value}
@@ -38,6 +40,7 @@ class LabelWithInput extends Component<Props> {
           />
         ) : (
           <LabelInput
+            id={id}
             placeholder={labelText}
             onChange={onChange}
             value={value}

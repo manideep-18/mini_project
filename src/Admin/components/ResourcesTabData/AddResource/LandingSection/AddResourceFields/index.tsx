@@ -11,7 +11,7 @@ import {
 } from './styledComponents';
 
 interface Props {
-  onFileUploadChange: any;
+  onFileUploadChange?: any;
   onAddResource: (name: string, link: string, description: string) => void;
 }
 
@@ -60,16 +60,19 @@ class AddResourceFields extends Component<Props> {
       <FieldsContainer>
         <AddResourceText>Add a Resource</AddResourceText>
         <LabelWithInput
+          data-testid='name'
           labelText='Name'
           value={this.name}
           onChange={this.handleNameInputChange}
         />
         <LabelWithInput
+          data-testid='link'
           labelText='Link'
           value={this.link}
           onChange={this.handleLinkInputChange}
         />
         <LabelWithInput
+          data-testid='description'
           isTextArea={true}
           labelText='Description'
           value={this.description}
@@ -77,7 +80,11 @@ class AddResourceFields extends Component<Props> {
         />
         <input type='file' onChange={this.handleFileChange} />
 
-        <CreateButton buttonText='create' onClick={this.handleClick} />
+        <CreateButton
+          data-testid='createButton'
+          buttonText='create'
+          onClick={this.handleClick}
+        />
       </FieldsContainer>
     );
   }
