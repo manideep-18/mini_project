@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { History } from 'history';
-import { withRouter } from 'react-router-dom';
 
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
@@ -12,8 +11,6 @@ import ResourcesTabContent from './ResourcesTabContent';
 
 interface Props {
   history: History;
-  match: any;
-  location: any;
   tabsStore: TabsStore;
   resourcesStore: ResourcesStore;
 }
@@ -46,4 +43,4 @@ class LandingSection extends Component<Props> {
   }
 }
 
-export default withRouter(LandingSection);
+export default LandingSection;

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
+import { History } from 'history';
 
 import Header from '../../../../Common/components/Header';
 
@@ -10,6 +12,9 @@ import LandingSection from '../../../components/ResourcesTabData/LandingSection'
 import { MainContainer } from './styledComponents';
 
 interface Props {
+  history: History;
+  location: any;
+  match: any;
   tabsStore: TabsStore;
   resourcesStore: ResourcesStore;
 }
@@ -18,15 +23,19 @@ interface Props {
 @observer
 class Homepage extends Component<Props> {
   render() {
-    const { tabsStore, resourcesStore } = this.props;
+    const { tabsStore, resourcesStore, history } = this.props;
     const { tabStatus } = tabsStore;
     return (
       <MainContainer>
         <Header isAdmin tabStatus={tabStatus} />
-        <LandingSection tabsStore={tabsStore} resourcesStore={resourcesStore} />
+        <LandingSection
+          history={history}
+          tabsStore={tabsStore}
+          resourcesStore={resourcesStore}
+        />
       </MainContainer>
     );
   }
 }
 
-export default Homepage;
+export default withRouter(Homepage);

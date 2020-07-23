@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
 import BackButton from '../../../../../Common/components/BackButton';
@@ -19,8 +18,6 @@ import ResourceItemsListData from './ResourceItemsListData';
 
 interface Props {
   history: History;
-  match: any;
-  location: any;
   resourcesStore: ResourcesStore;
 }
 
@@ -95,8 +92,7 @@ class LandingSection extends Component<Props> {
         </div>
       );
     }
-    return 'mani';
   }
 }
 
-export default withRouter(LandingSection);
+export default LandingSection;

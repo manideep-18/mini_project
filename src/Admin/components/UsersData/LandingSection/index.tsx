@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { History } from 'history';
-import { withRouter } from 'react-router-dom';
 
 import TabsStore from '../../../stores/TabsStore';
 import TabsSwitch from '../../../common/TabsSwitch';
@@ -21,8 +20,6 @@ import { goToUserDetailsPage } from '../../../utils/navigationUtils';
 
 interface Props {
   history: History;
-  match: any;
-  location: any;
   tabsStore: TabsStore;
   usersStore: UsersStore;
 }
@@ -104,4 +101,4 @@ class LandingSection extends Component<Props> {
   }
 }
 
-export default withRouter(LandingSection);
+export default LandingSection;

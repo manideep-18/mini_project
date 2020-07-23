@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 import { observer, inject } from 'mobx-react';
 
@@ -15,8 +14,6 @@ import { LogoImage, FieldsImageContainer } from './styledComponents';
 
 interface Props {
   history: History;
-  match: any;
-  location: any;
   resourcesStore: ResourcesStore;
   resourceLogoImageUrl?: string;
 }
@@ -82,4 +79,4 @@ class LandingSection extends Component<Props> {
   }
 }
 
-export default withRouter(LandingSection);
+export default LandingSection;

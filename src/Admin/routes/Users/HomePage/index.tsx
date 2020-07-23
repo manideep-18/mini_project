@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
+import { History } from 'history';
 
 import Header from '../../../../Common/components/Header';
 
@@ -9,6 +11,9 @@ import LandingSection from '../../../components/UsersData/LandingSection';
 import UsersStore from '../../../stores/UsersStore';
 
 interface Props {
+  history: History;
+  location: any;
+  match: any;
   tabsStore: TabsStore;
   usersStore: UsersStore;
 }
@@ -17,14 +22,18 @@ interface Props {
 @observer
 export class HomePage extends Component<Props> {
   render() {
-    const { tabsStore, usersStore } = this.props;
+    const { tabsStore, usersStore, history } = this.props;
     return (
       <MainContainer id='usersHomePage'>
         <Header />
-        <LandingSection tabsStore={tabsStore} usersStore={usersStore} />
+        <LandingSection
+          history={history}
+          tabsStore={tabsStore}
+          usersStore={usersStore}
+        />
       </MainContainer>
     );
   }
 }
 
-export default HomePage;
+export default withRouter(HomePage);
