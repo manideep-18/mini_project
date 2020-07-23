@@ -69,6 +69,7 @@ class ResourceItemsFields extends Component<Props> {
       <FieldsContainer>
         <AddResourceText>Item Details</AddResourceText>
         <LabelWithInput
+          data-testid='itemName'
           labelText='Item Name'
           value={this.name}
           onChange={this.handleNameInputChange}
@@ -80,18 +81,24 @@ class ResourceItemsFields extends Component<Props> {
           disabled={resourceName ? true : false}
         />
         <LabelWithInput
+          data-testid='itemLink'
           labelText='Link'
           value={this.link}
           onChange={this.handleLinkInputChange}
         />
         <LabelWithInput
+          data-testid='itemDescription'
           isTextArea={true}
           labelText='Description'
           value={this.description}
           onChange={this.handleDescriptionInputChange}
         />
 
-        <CreateButton buttonText='create' onClick={this.handleClick} />
+        <CreateButton
+          data-testid='createButton'
+          buttonText='create'
+          onClick={this.handleClick}
+        />
       </FieldsContainer>
     );
   }

@@ -6,12 +6,12 @@ import { observer, inject } from 'mobx-react';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import ResourceItemsFields from '../../../../../Common/components/ResourceItemsFields';
+import BackButton from '../../../../../Common/components/BackButton';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import { AddItemToResourceRequestType } from '../../../../stores/types';
 
 import { LogoImage, FieldsImageContainer } from './styledComponents';
-import BackButton from '../../../../../Common/components/BackButton';
 
 interface Props {
   history: History;

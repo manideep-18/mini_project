@@ -9,7 +9,7 @@ import {
   AcceptButton,
   RejectButton,
 } from './styledComponents';
-import AcceptModal from '../../../Admin/common/AcceptModal';
+import CustomModal from '../../../Admin/common/CustomModal';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
@@ -19,14 +19,14 @@ import {
 } from '../../../Admin/constants/DropdownConstants';
 
 interface Props {
-  sortConstants: string[];
-  filterConstants: string[];
-  checkedItemsLength: number;
-  onSortStatusUpdate: (value: string) => void;
-  onFilterStatusUpdate: (value: string) => void;
-  onSearchEnter: (value: string) => void;
-  onAcceptRequests: () => void;
-  onAcceptRequestsStatus: APIStatus;
+  sortConstants?: string[];
+  filterConstants?: string[];
+  checkedItemsLength?: number;
+  onSortStatusUpdate?: (value: string) => void;
+  onFilterStatusUpdate?: (value: string) => void;
+  onSearchEnter?: (value: string) => void;
+  onAcceptRequests?: () => void;
+  onAcceptRequestsStatus?: APIStatus;
 }
 
 @observer
@@ -41,13 +41,18 @@ class SearchAndFilterAndButtons extends Component<Props> {
     filterConstants: requestFilterConstants,
   };
 
-  onAcceptCancelOrOkClick = (value: string) => {
+  onOkClick = () => {
     const { onAcceptRequests } = this.props;
     this.acceptModalStatus = false;
-    if (value === 'Ok') onAcceptRequests();
+    if (onAcceptRequests) onAcceptRequests();
   };
 
-  onRejectCancelOrRejectClick = (value: string) => {
+  onCancelClick = () => {
+    this.acceptModalStatus = false;
+    this.rejectModalStatus = false;
+  };
+
+  onRejectClick = () => {
     this.rejectModalStatus = false;
   };
 
@@ -69,11 +74,12 @@ class SearchAndFilterAndButtons extends Component<Props> {
       sortConstants,
       filterConstants,
     } = this.props;
+
     return (
       <MainContainer>
-        <SearchBar onEnterPress={onSearchEnter} />
+        <SearchBar data-testid='searchBar' onEnterPress={onSearchEnter} />
         <ButtonsContainer>
-          {checkedItemsLength > 0 ? (
+          {checkedItemsLength && checkedItemsLength > 0 ? (
             <>
               <AcceptButton
                 apiStatus={onAcceptRequestsStatus}
@@ -89,25 +95,29 @@ class SearchAndFilterAndButtons extends Component<Props> {
             <>
               <DropdownWithLabel
                 sortText='SORT'
-                onChange={onSortStatusUpdate}
+                onChange={onSortStatusUpdate ? onSortStatusUpdate : () => {}}
                 dropdownArray={sortConstants}
               />
               <DropdownWithLabel
                 sortText='FILTER'
-                onChange={onFilterStatusUpdate}
+                onChange={
+                  onFilterStatusUpdate ? onFilterStatusUpdate : () => {}
+                }
                 dropdownArray={filterConstants}
               />
             </>
           )}
         </ButtonsContainer>
-        <AcceptModal
+        <CustomModal
           modalStatus={this.acceptModalStatus}
-          onCancelOrOkClick={this.onAcceptCancelOrOkClick}
+          onCancelClick={this.onCancelClick}
+          onOkClick={this.onOkClick}
         />
-        <AcceptModal
+        <CustomModal
           isRejectActive
           modalStatus={this.rejectModalStatus}
-          onCancelOrOkClick={this.onRejectCancelOrRejectClick}
+          onCancelClick={this.onCancelClick}
+          onRejectClick={this.onRejectClick}
         />
       </MainContainer>
     );

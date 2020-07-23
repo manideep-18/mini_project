@@ -29,6 +29,7 @@ export class BaseCheckBox extends Component<Props> {
     const { value } = this.props;
     return (
       <CustomCheckBox
+        data-testid='customCheckbox'
         type='checkbox'
         checked={this.checkedStatus}
         value={value}

@@ -24,16 +24,19 @@ class BaseTable extends Component<Props> {
     headerArray: ['title', 'description', 'link'],
     dataArray: [
       {
+        id: 1,
         title: 'iB Studio Trainings',
         description: 'This channel is for iB Studio trainees.',
         link: 'www.slack.iB studio.com',
       },
       {
+        id: 2,
         title: 'TAP Team',
         description: 'This channel is for TAP trainees',
         link: 'www.slack.TAP.com',
       },
       {
+        id: 3,
         title: 'Adaptive Engine',
         description: 'This channel for Adaptive Engine team',
         link: 'www.slack.AE.com',

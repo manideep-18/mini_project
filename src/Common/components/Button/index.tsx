@@ -50,8 +50,8 @@ class Button extends React.Component<Props> {
     } = this.props;
     return (
       <CustomButton
-        onClick={onClick}
         data-testid={id}
+        onClick={onClick}
         className={className}
         disabled={disabled || this.isFetching()}
         {...other}

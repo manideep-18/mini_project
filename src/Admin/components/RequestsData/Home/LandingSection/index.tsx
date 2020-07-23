@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { History } from 'history';
-import { withRouter } from 'react-router-dom';
+import { observable } from 'mobx';
 
 import TabsSwitch from '../../../../common/TabsSwitch';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
@@ -13,12 +13,9 @@ import RequestsStore from '../../../../stores/RequestsStore';
 import { MainContainer, PendingRequestsText } from './styledComponents';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAndFilterAndButtons';
-import { observable, action } from 'mobx';
 
 interface Props {
   history: History;
-  match: any;
-  location: any;
   tabsStore: TabsStore;
   requestsStore: RequestsStore;
 }
@@ -65,7 +62,6 @@ class LandingSection extends Component<Props> {
     requestsStore.getSearchRequestsDataAPI(this.onSuccess);
   };
 
-  @action.bound
   handleAcceptRequests = () => {
     const { requestsStore } = this.props;
 
@@ -140,4 +136,4 @@ class LandingSection extends Component<Props> {
   }
 }
 
-export default withRouter(LandingSection);
+export default LandingSection;

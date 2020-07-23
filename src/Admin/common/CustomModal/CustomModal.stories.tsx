@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import AcceptModal from '.';
+import CustomModal from '.';
 
 storiesOf('Admin Common Component Guide', module).add(
   'accept button modal',
-  () => <AcceptModal />
+  () => <CustomModal modalStatus={true} />
 );
