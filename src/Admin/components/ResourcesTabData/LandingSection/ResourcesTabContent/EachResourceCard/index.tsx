@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { History } from 'history';
 
 import ResourceModal from '../../../../../stores/Modals/ResourceModal';
-import { goToAdminResourcePage } from '../../../../../utils/navigationUtils';
 
 import {
   CardContainer,

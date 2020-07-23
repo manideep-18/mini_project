@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { History } from 'history';
+import { withRouter } from 'react-router-dom';
 
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
+import TabsSwitch from '../../../common/TabsSwitch';
 
 import { MainContainer } from './styledComponents';
-import { withRouter } from 'react-router-dom';
-
-import TabsSwitch from '../../../common/TabsSwitch';
 import ResourcesTabContent from './ResourcesTabContent';
 
 interface Props {

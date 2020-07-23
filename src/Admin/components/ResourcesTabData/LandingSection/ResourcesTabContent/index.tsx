@@ -6,12 +6,11 @@ import ResponsiveContainer from '../../../../../Common/components/ResponsiveCont
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
-import { ResourceDetailsRequestType } from '../../../../stores/types';
 import ResourceModal from '../../../../stores/Modals/ResourceModal';
+import { goToAdminResourcePage } from '../../../../utils/navigationUtils';
 
 import EachResourceCard from './EachResourceCard';
 import { ResourcesCardsContainer } from './styledComponents';
-import { goToAdminResourcePage } from '../../../../utils/navigationUtils';
 
 interface Props {
   resourcesStore: ResourcesStore;

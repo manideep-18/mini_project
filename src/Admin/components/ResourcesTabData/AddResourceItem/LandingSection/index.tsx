@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
-import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
-import { goToAdminPage } from '../../../../../Common/utils/navigationUtils';
 import ResourceItemsFields from '../../../../../Common/components/ResourceItemsFields';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
-import {
-  EachResourceFetchType,
-  ResourceItemType,
-  AddItemToResourceRequestType,
-} from '../../../../stores/types';
+import { AddItemToResourceRequestType } from '../../../../stores/types';
 
 import { LogoImage, FieldsImageContainer } from './styledComponents';
 import BackButton from '../../../../../Common/components/BackButton';
