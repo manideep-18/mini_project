@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
 import { Typo12SteelHKGroteskRegular } from '../../styleGuide/Typos';
 
 export const IconTextContainer = styled.div`

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import BaseInput from '../BaseInput';
-
 import {
   TextInputContainer,
   LabelText,

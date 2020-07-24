@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+
 import { Typo12SteelHKGroteskSemiBold } from '../../styleGuide/Typos';
-import BaseInput from '../BaseInput';
 import Colors from '../../themes/Colors';
+
 import BaseTextArea from '../BaseTextArea';
+import BaseInput from '../BaseInput';
 
 export const TextInputContainer = styled.div`
   display: flex;

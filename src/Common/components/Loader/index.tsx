@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactLoader from 'react-loader-spinner';
+
 import { LoaderWrapper } from './styledComponents';
 
 interface Props {

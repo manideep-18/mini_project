@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Colors from '../../themes/Colors';
 
 export const CustomSearchBar = styled.input`

@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import LoadingWrapper from '.';
-import { API_FETCHING } from '@ib/api-constants';
 import { action } from '@storybook/addon-actions';
+
+import LoadingWrapper from '.';
 
 storiesOf('Common Component Guide', module).add('Loading Wrapper', () => (
   <LoadingWrapper

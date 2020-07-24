@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { MainContainer } from './styledComponents';
 
 interface Props {

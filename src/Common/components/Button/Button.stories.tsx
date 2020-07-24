@@ -1,10 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { API_SUCCESS, API_FETCHING } from '@ib/api-constants';
+import { API_SUCCESS } from '@ib/api-constants';
 import { action } from '@storybook/addon-actions';
 
-import Button from '.';
 import Loader from '../Loader';
+
+import Button from '.';
 
 storiesOf('Common component Guide', module).add('Button component', () => (
   <Button

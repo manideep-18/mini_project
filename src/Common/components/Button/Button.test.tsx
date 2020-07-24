@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Button from '.';
 import { API_SUCCESS } from '@ib/api-constants';
+
+import Button from '.';
 
 describe('Common Component Guide', () => {
   it('should test callback function calling on click', () => {

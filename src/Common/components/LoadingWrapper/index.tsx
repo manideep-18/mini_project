@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   APIStatus,
   API_SUCCESS,
   API_FETCHING,
   API_FAILED,
 } from '@ib/api-constants';
+
 import Loader from '../Loader';
+
 import FailureView from './FailureView';
 
 interface Props {

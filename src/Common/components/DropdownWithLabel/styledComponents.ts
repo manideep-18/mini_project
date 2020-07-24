@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Typo14SteelHKGroteskRegular } from '../../styleGuide/Typos';
 
 export const ImageSelectContainer = styled.div`

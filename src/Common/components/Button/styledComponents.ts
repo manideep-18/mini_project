@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Colors from '../../themes/Colors';
-import { Typo14WhiteHKGroteskSemiBold } from '../../styleGuide/Typos';
 
 export const CustomButton = styled.button`
   padding: 15px 20px;

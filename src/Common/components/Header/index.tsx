@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   MainContainer,
@@ -9,10 +10,6 @@ import {
   ButtonImageContainer,
   AddButton,
 } from './styledComponents';
-import ResponsiveContainer from '../ResponsiveContainer';
-import Button from '../Button';
-import { navigate } from '@reach/router';
-import { Link } from 'react-router-dom';
 
 interface Props {
   logoUrl: string;

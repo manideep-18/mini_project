@@ -3,12 +3,12 @@ import { observable } from 'mobx';
 import { EachRequestFetchType } from '../../types';
 
 class RequestModal {
-  id: number = 0;
-  @observable personName: string = '';
-  @observable resource: string = '';
-  @observable item: string = '';
-  @observable accessLevel: string = '';
-  @observable dueDateTime: string = '';
+  id: number;
+  @observable personName: string;
+  @observable resource: string;
+  @observable item: string;
+  @observable accessLevel: string;
+  @observable dueDateTime: string;
 
   constructor(requestData: EachRequestFetchType) {
     this.id = requestData.id;

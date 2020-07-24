@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { API_FAILED } from '@ib/api-constants';
 
 import { Container, FailureText, RetryButton } from './styledComponents';

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'styled-components/macro';
 import { APIStatus, API_FETCHING, API_SUCCESS } from '@ib/api-constants';
 
 import { CustomButton, ButtonText } from './styledComponents';
 import Loader from '../Loader';
-import LoadingWrapper from '../LoadingWrapper';
 
 interface Props {
   id?: string;

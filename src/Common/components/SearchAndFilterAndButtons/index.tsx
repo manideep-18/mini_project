@@ -31,8 +31,14 @@ interface Props {
 
 @observer
 class SearchAndFilterAndButtons extends Component<Props> {
-  @observable acceptModalStatus: boolean = false;
-  @observable rejectModalStatus: boolean = false;
+  @observable acceptModalStatus: boolean;
+  @observable rejectModalStatus: boolean;
+
+  constructor(props: Props) {
+    super(props);
+    this.acceptModalStatus = false;
+    this.rejectModalStatus = false;
+  }
 
   static defaultProps = {
     onAcceptRequests: () => {},
