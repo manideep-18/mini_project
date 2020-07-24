@@ -5,6 +5,7 @@ import UsersStore from '../../Admin/stores/UsersStore';
 import ResourceFetchServiceFixture from '../../Admin/services/ResourceFetchService/index.fixture';
 import RequestsFetchServiceFixture from '../../Admin/services/RequestsFetchService/index.fixture';
 import UsersFetchServiceFixture from '../../Admin/services/UsersFetchService/index.fixture';
+import TabsSwitchStore from '../../User/stores/TabsSwitchStore';
 
 const tabsStore = new TabsStore();
 
@@ -14,4 +15,12 @@ const requestsStore = new RequestsStore(new RequestsFetchServiceFixture());
 
 const usersStore = new UsersStore(new UsersFetchServiceFixture());
 
-export default { tabsStore, resourcesStore, requestsStore, usersStore };
+const tabsSwitchStore = new TabsSwitchStore();
+
+export default {
+  tabsStore,
+  resourcesStore,
+  requestsStore,
+  usersStore,
+  tabsSwitchStore,
+};
