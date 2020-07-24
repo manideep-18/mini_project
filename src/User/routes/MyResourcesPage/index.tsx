@@ -8,23 +8,29 @@ import TabsSwitchStore from '../../stores/TabsSwitchStore';
 import LandingSection from '../../components/MyResources/LandingSection';
 
 import { MainContainer } from './styledComponents';
+import MyResourcesStore from '../../stores/MyResourcesStore';
 
 interface Props {
   history: History;
   match: any;
   location: any;
   tabsSwitchStore: TabsSwitchStore;
+  myResourcesStore: MyResourcesStore;
 }
 
-@inject('tabsSwitchStore')
+@inject('tabsSwitchStore', 'myResourcesStore')
 @observer
 export class MyResourcesPage extends Component<Props> {
   render() {
-    const { tabsSwitchStore, history } = this.props;
+    const { tabsSwitchStore, myResourcesStore, history } = this.props;
     return (
       <MainContainer id='userHomePage'>
         <Header />
-        <LandingSection history={history} tabsSwitchStore={tabsSwitchStore} />
+        <LandingSection
+          history={history}
+          tabsSwitchStore={tabsSwitchStore}
+          myResourcesStore={myResourcesStore}
+        />
       </MainContainer>
     );
   }

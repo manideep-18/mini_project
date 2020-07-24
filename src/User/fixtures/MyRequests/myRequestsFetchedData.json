@@ -1,0 +1,44 @@
+[
+  {
+    "id": 4,
+    "resource": "Zeplin",
+    "item": "Gyan",
+    "access": "Read",
+    "status": "Rejected"
+  },
+  {
+    "id": 3,
+    "resource": "Zeplin",
+    "item": "Slot Booking",
+    "access": "Read",
+    "status": "Accepted"
+  },
+  {
+    "id": 34,
+    "resource": "Bit Bucket",
+    "item": "Covid Dashboard",
+    "access": "Read",
+    "status": "Rejected"
+  },
+  {
+    "id": 5,
+    "resource": "Git Hub",
+    "item": "Essentials Jit",
+    "access": "Read",
+    "status": "Rejected"
+  },
+  {
+    "id": 7,
+    "resource": "Git Hub",
+    "item": "Smart Food Management",
+    "access": "Admin",
+    "status": "Accepted"
+  },
+  {
+    "id": 67,
+    "resource": "Bit Bucket",
+    "item": "Covid Dashboard",
+    "access": "Read",
+    "status": "Pending"
+  }
+]

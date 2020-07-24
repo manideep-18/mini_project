@@ -3,7 +3,7 @@ import { EachRequestFetchType } from '../../types';
 import RequestModal from '.';
 
 describe('Request Modal tests', () => {
-  it('should test all values are aligned properly', () => {
+  it('should test all values are assigned properly', () => {
     const requestData: EachRequestFetchType = {
       id: 2,
       person_name: 'Venky',
