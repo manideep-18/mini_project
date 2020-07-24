@@ -4,6 +4,7 @@ import { EachResourceFetchType } from '../../stores/types';
 import resourcesFetchResponseData from '../../fixtures/resourcesFetchResponseData.json';
 import resourceItemsFetchResponseData from '../../fixtures/resourceItemsFetchResponse.json';
 import resourceItemsAfterDeleteData from '../../fixtures/resourceItemsAfterDeleteData.json';
+import resourceItemsOnSearch from '../../fixtures/Resources/resourceItemsOnSearch.json';
 
 import { ResourceFetchService } from '.';
 
@@ -26,6 +27,10 @@ class ResourceFetchServiceFixture implements ResourceFetchService {
 
   onAddItemToResource(): Promise<{}> {
     return resolveWithTimeout({});
+  }
+
+  getSearchResourceItemsData(): Promise<EachResourceFetchType> {
+    return resolveWithTimeout(resourceItemsOnSearch);
   }
 }
 

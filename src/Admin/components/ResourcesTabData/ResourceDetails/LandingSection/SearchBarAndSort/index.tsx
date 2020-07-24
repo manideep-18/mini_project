@@ -10,16 +10,21 @@ import { requestItemSortConstants } from '../../../../../constants/DropdownConst
 
 interface Props {
   onSortStatusUpdate: (value: string) => void;
+  onEnterPress: (value: string) => void;
 }
 
 class SearchBarAndSort extends Component<Props> {
+  static defaultProps = {
+    onSortStatusUpdate: () => {},
+    onEnterPress: () => {},
+  };
   render() {
-    const { onSortStatusUpdate } = this.props;
+    const { onSortStatusUpdate, onEnterPress } = this.props;
     return (
       <ContentContainer id='resourceItemSearchBar'>
         <ItemsText>Items</ItemsText>
         <SearchBarButtonContainer>
-          <SearchBar />
+          <SearchBar onEnterPress={onEnterPress} />
           <DropdownWithLabel
             sortText='SORT'
             onChange={onSortStatusUpdate}

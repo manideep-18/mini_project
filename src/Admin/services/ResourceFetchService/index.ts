@@ -19,4 +19,6 @@ export interface ResourceFetchService {
   ): Promise<EachResourceFetchType>;
 
   onAddItemToResource(requestObject: AddItemToResourceRequestType): Promise<{}>;
+
+  getSearchResourceItemsData(): Promise<EachResourceFetchType>;
 }

@@ -35,6 +35,8 @@ class ResourcesStore {
   @observable getResourcesAfterDeleteAPIError!: any;
   @observable onAddItemToResourceAPIStatus!: APIStatus;
   @observable onAddItemToResourceAPIError!: any;
+  @observable getSearchResourceItemsDataAPIStatus!: APIStatus;
+  @observable getSearchResourceItemsDataAPIError!: any;
   @observable resourceItemSortType!: string;
   resourceFetchService: ResourceFetchService;
 
@@ -56,6 +58,8 @@ class ResourcesStore {
     this.getResourcesAfterDeleteAPIError = '';
     this.onAddItemToResourceAPIStatus = API_INITIAL;
     this.onAddItemToResourceAPIError = '';
+    this.getSearchResourceItemsDataAPIStatus = API_INITIAL;
+    this.getSearchResourceItemsDataAPIError = '';
     this.resourceDetailsData = {
       logoImageUrl: '',
       name: '',
@@ -227,6 +231,35 @@ class ResourcesStore {
       })
       .catch((err) => {
         this.setOnAddItemToResourceAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSearchResourceItemsDataAPIStatus(status: APIStatus) {
+    this.getSearchResourceItemsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchResourceItemsDataAPIError(err: any) {
+    this.getSearchResourceItemsDataAPIError = err;
+  }
+
+  getSearchResourceItemsDataAPI(
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchResourceItemsDataPromise = this.resourceFetchService.getSearchResourceItemsData();
+
+    return bindPromiseWithOnSuccess(getSearchResourceItemsDataPromise)
+      .to(this.setGetSearchResourceItemsDataAPIStatus, (response) => {
+        this.setResourceDetailsDataAPIResponse(
+          response as EachResourceFetchType
+        );
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchResourceItemsDataAPIError(err);
         onFailure();
       });
   }

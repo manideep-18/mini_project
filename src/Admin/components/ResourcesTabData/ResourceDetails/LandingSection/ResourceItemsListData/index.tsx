@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { APIStatus } from '@ib/api-constants';
+import { APIStatus, API_INITIAL } from '@ib/api-constants';
 
 import BaseTable from '../../../../../../Common/components/BaseTable';
 import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
@@ -18,11 +18,20 @@ interface Props {
   resourceItemsData: ResourceItemType[];
   onDeleteResourceItems: (items: number[]) => void;
   onDeleteAPIStatus: APIStatus;
+  onSearchAPIStatus: APIStatus;
   onAddResourceItem: () => void;
 }
 
 @observer
 class ResourceItemsListData extends Component<Props> {
+  static defaultProps = {
+    resourceItemsData: [],
+    onDeleteResourceItems: () => {},
+    onDeleteAPIStatus: API_INITIAL,
+    onSearchAPIStatus: API_INITIAL,
+    onAddResourceItem: () => {},
+  };
+
   @observable deleteItemsList: number[];
   constructor(props: Props) {
     super(props);
@@ -73,12 +82,16 @@ class ResourceItemsListData extends Component<Props> {
   );
 
   render() {
-    const { resourceItemsData, onDeleteAPIStatus } = this.props;
+    const {
+      resourceItemsData,
+      onDeleteAPIStatus,
+      onSearchAPIStatus,
+    } = this.props;
 
     return (
       <ItemsListButtonsContainer>
         <LoadingWrapper
-          apiStatus={onDeleteAPIStatus}
+          apiStatus={onDeleteAPIStatus || onSearchAPIStatus}
           onRetry={this.handleDeleteResourceItems}
         >
           <BaseTable

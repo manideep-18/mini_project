@@ -46,6 +46,11 @@ class LandingSection extends Component<Props> {
     resourcesStore.setResourceItemSortType(value);
   };
 
+  handleOnSearchEnter = (value: string) => {
+    const { resourcesStore } = this.props;
+    resourcesStore.getSearchResourceItemsDataAPI(this.onSuccess);
+  };
+
   handleRetry = () => {
     const { resourcesStore, resourceName } = this.props;
 
@@ -62,6 +67,7 @@ class LandingSection extends Component<Props> {
       sortedResourceItemsData,
       resourceDetailsData,
       getResourceDetailsDataAPIStatus,
+      getSearchResourceItemsDataAPIStatus,
       getResourcesAfterDeleteAPIStatus,
     } = resourcesStore;
 
@@ -73,12 +79,16 @@ class LandingSection extends Component<Props> {
           onRetry={this.handleRetry}
         >
           <ResourceDetailedView resourceDetailsData={resourceDetailsData} />
-          <SearchBarAndSort onSortStatusUpdate={this.handleSortStatusUpdate} />
+          <SearchBarAndSort
+            onSortStatusUpdate={this.handleSortStatusUpdate}
+            onEnterPress={this.handleOnSearchEnter}
+          />
           <ResourceItemsListData
             resourceItemsData={sortedResourceItemsData}
             onDeleteResourceItems={this.onDeleteResourceItems}
             onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
             onAddResourceItem={this.onAddResourceItem}
+            onSearchAPIStatus={getSearchResourceItemsDataAPIStatus}
           />
         </LoadingWrapper>
       </DetailsMainContainer>
