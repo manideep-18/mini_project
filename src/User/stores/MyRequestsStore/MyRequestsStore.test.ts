@@ -7,8 +7,8 @@ const myRequestsStore = new MyRequestsStore(
 );
 
 describe('MyRequestsStore test cases', () => {
-  it('should test myResourcesDataFetched length after calling getMyResourcesData', async () => {
-    await myRequestsStore.getMyResourcesDataAPI();
-    expect(myRequestsStore.myResourcesDataFetched.length).toBe(6);
+  it('should test myRequestsDataFetched length after calling getMyRequestsData', async () => {
+    await myRequestsStore.getMyRequestsDataAPI();
+    expect(myRequestsStore.myRequestsDataFetched.length).toBe(6);
   });
 });

@@ -15,10 +15,12 @@ import {
   ADMIN_EACH_USER_PAGE,
   USER_MY_REQUESTS_PAGE,
   USER_MY_RESOURCES_PAGE,
+  USER_REQUEST_PAGE,
 } from '../constants/RouteConstants';
 import UserDetailsPage from '../../Admin/routes/Users/UserDetailsPage';
 import MyRequestsPage from '../../User/routes/MyRequestsPage';
 import { MyResourcesPage } from '../../User/routes/MyResourcesPage';
+import { RequestDetailedPage } from '../../User/routes/MyRequestsPage/RequestDetailedPage';
 
 export class Routes extends Component {
   render() {
@@ -57,6 +59,11 @@ export class Routes extends Component {
               exact
               path={USER_MY_REQUESTS_PAGE}
               component={MyRequestsPage}
+            />
+            <Route
+              exact
+              path={USER_REQUEST_PAGE}
+              component={RequestDetailedPage}
             />
             <Route
               exact

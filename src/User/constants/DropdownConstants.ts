@@ -1,6 +1,6 @@
-export const myResourcesSortConstants: string[] = ['Ascending', 'Descending'];
+export const myRequestsSortConstants: string[] = ['Ascending', 'Descending'];
 
-export const myResourcesFilterConstants: string[] = [
+export const myRequestsFilterConstants: string[] = [
   'Zeplin',
   'Git Hub',
   'Bit Bucket',

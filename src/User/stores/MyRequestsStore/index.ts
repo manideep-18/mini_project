@@ -6,7 +6,7 @@ import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import MyRequestModal from '../Modals/MyRequestModal';
 import { camelCase } from '../../../Common/utils/StringConversionUtils';
 import {
-  myResourcesInitialSortStatus,
+  myRequestsInitialSortStatus,
   ascendingSort,
   descendingSort,
 } from '../../constants/SortFilterConstants';
@@ -16,60 +16,60 @@ import {
 } from '../../../Common/utils/SortingDataUtils';
 
 class MyRequestsStore {
-  @observable getMyResourcesDataAPIStatus!: APIStatus;
-  @observable getMyResourcesDataAPIError!: any;
-  @observable myResourcesDataFetched!: MyRequestModal[];
+  @observable getMyRequestsDataAPIStatus!: APIStatus;
+  @observable getMyRequestsDataAPIError!: any;
+  @observable myRequestsDataFetched!: MyRequestModal[];
   @observable sortType!: string;
   @observable filterType!: string;
-  myResourcesFetchService: MyRequestsFetchService;
+  myRequestsFetchService: MyRequestsFetchService;
 
-  constructor(myResourcesFetchService: MyRequestsFetchService) {
-    this.myResourcesFetchService = myResourcesFetchService;
+  constructor(myRequestsFetchService: MyRequestsFetchService) {
+    this.myRequestsFetchService = myRequestsFetchService;
     this.init();
   }
 
   @action.bound
   init() {
-    this.getMyResourcesDataAPIStatus = API_INITIAL;
-    this.getMyResourcesDataAPIError = '';
-    this.myResourcesDataFetched = [];
+    this.getMyRequestsDataAPIStatus = API_INITIAL;
+    this.getMyRequestsDataAPIError = '';
+    this.myRequestsDataFetched = [];
     this.sortType = '';
     this.filterType = '';
   }
 
   @action.bound
-  setGetMyResourcesDataAPIStatus(status: APIStatus) {
-    this.getMyResourcesDataAPIStatus = status;
+  setGetMyRequestsDataAPIStatus(status: APIStatus) {
+    this.getMyRequestsDataAPIStatus = status;
   }
 
   @action.bound
-  setGetMyResourcesDataAPIError(err: any) {
-    this.getMyResourcesDataAPIError = err;
+  setGetMyRequestsDataAPIError(err: any) {
+    this.getMyRequestsDataAPIError = err;
   }
 
   @action.bound
-  setGetMyResourcesDataResponse(response: EachMyResourceFetchType[]) {
+  setGetMyRequestsDataResponse(response: EachMyResourceFetchType[]) {
     let eachMyResourceData;
-    this.myResourcesDataFetched = response.map(
+    this.myRequestsDataFetched = response.map(
       (eachData) => (eachMyResourceData = new MyRequestModal(eachData))
     );
   }
 
-  getMyResourcesDataAPI(
+  getMyRequestsDataAPI(
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {
-    const getMyResourcesDataPromise = this.myResourcesFetchService.getMyResourcesData();
+    const getMyRequestsDataPromise = this.myRequestsFetchService.getMyRequestsData();
 
-    return bindPromiseWithOnSuccess(getMyResourcesDataPromise)
-      .to(this.setGetMyResourcesDataAPIStatus, (response) => {
-        this.setGetMyResourcesDataResponse(
+    return bindPromiseWithOnSuccess(getMyRequestsDataPromise)
+      .to(this.setGetMyRequestsDataAPIStatus, (response) => {
+        this.setGetMyRequestsDataResponse(
           response as EachMyResourceFetchType[]
         );
         onSuccess();
       })
       .catch((err) => {
-        this.setGetMyResourcesDataAPIError(err);
+        this.setGetMyRequestsDataAPIError(err);
         onFailure();
       });
   }
@@ -85,14 +85,14 @@ class MyRequestsStore {
   }
 
   @computed get sortedDataWithFiltered() {
-    let resultSortedData = this.myResourcesDataFetched;
+    let resultSortedData = this.myRequestsDataFetched;
     if (this.filterType !== '') {
       resultSortedData = resultSortedData.filter(
         (eachData) => eachData.resource === this.filterType
       );
     }
 
-    const camelCaseSortStatus: string = camelCase(myResourcesInitialSortStatus);
+    const camelCaseSortStatus: string = camelCase(myRequestsInitialSortStatus);
     if (this.sortType !== '' && this.sortType === ascendingSort) {
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     } else if (this.sortType !== '' && this.sortType === descendingSort) {

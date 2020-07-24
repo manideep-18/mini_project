@@ -7,17 +7,20 @@ import { nameSpacesConversion } from '../../../../Common/utils/StringConversionU
 
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import TabsSection from '../../../common/Components/TabsSection';
-import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
+import {
+  goToUserTabActivePage,
+  goToUserRequestPage,
+} from '../../../utils/NavigationUtils';
 
-import { TabsAndResourcesListContainer } from './styledComponents';
+import { TabsAndRequestsListContainer } from './styledComponents';
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
-import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
+import { myRequestsTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import MyRequestsStore from '../../../stores/MyRequestsStore';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import {
-  myResourcesSortConstants,
-  myResourcesFilterConstants,
+  myRequestsSortConstants,
+  myRequestsFilterConstants,
 } from '../../../constants/DropdownConstants';
 
 interface Props {
@@ -50,18 +53,27 @@ export class LandingSection extends Component<Props> {
     setFilterType(value);
   };
 
+  handleOnClickItemCard = (value: any) => {
+    const { myRequestsStore, history } = this.props;
+    const itemCard = myRequestsStore.myRequestsDataFetched.filter(
+      (eachRequest) => eachRequest.id === value
+    );
+    // console.log(itemCard, '***');
+    goToUserRequestPage(history, itemCard[0].id);
+  };
+
   onSuccess = () => {};
 
   handleRetry = () => {
     const { myRequestsStore } = this.props;
-    myRequestsStore.getMyResourcesDataAPI(this.onSuccess);
+    myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   };
 
   componentDidMount() {
     const { myRequestsStore, tabsSwitchStore } = this.props;
     const { updateTabStatus } = tabsSwitchStore;
     updateTabStatus('My Requests');
-    myRequestsStore.getMyResourcesDataAPI(this.onSuccess);
+    myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   }
 
   render() {
@@ -70,10 +82,10 @@ export class LandingSection extends Component<Props> {
     // console.log(tabStatus, '???');
     const {
       sortedDataWithFiltered,
-      getMyResourcesDataAPIStatus,
+      getMyRequestsDataAPIStatus,
     } = myRequestsStore;
     return (
-      <TabsAndResourcesListContainer>
+      <TabsAndRequestsListContainer>
         <ResponsiveContainer>
           <TabsSection
             tabStatus={tabStatus}
@@ -84,21 +96,21 @@ export class LandingSection extends Component<Props> {
             checkedItemsLength={0}
             onSortStatusUpdate={this.handleSortTypeUpdate}
             onFilterStatusUpdate={this.handleFilterTypeUpdate}
-            sortConstants={myResourcesSortConstants}
-            filterConstants={myResourcesFilterConstants}
+            sortConstants={myRequestsSortConstants}
+            filterConstants={myRequestsFilterConstants}
           />
           <LoadingWrapper
-            apiStatus={getMyResourcesDataAPIStatus}
+            apiStatus={getMyRequestsDataAPIStatus}
             onRetry={this.handleRetry}
           >
             <BaseTableWithoutCheckbox
-              headerArray={myResourcesTableHeaderConstants}
+              headerArray={myRequestsTableHeaderConstants}
               dataArray={sortedDataWithFiltered}
-              onClickItemCard={() => {}}
+              onClickItemCard={this.handleOnClickItemCard}
             />
           </LoadingWrapper>
         </ResponsiveContainer>
-      </TabsAndResourcesListContainer>
+      </TabsAndRequestsListContainer>
     );
   }
 }

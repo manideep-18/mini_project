@@ -1,4 +1,4 @@
-export const myResourcesTableHeaderConstants: string[] = [
+export const myRequestsTableHeaderConstants: string[] = [
   'resource',
   'item',
   'access',

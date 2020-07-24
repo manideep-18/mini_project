@@ -6,7 +6,7 @@ import myRequestsFetchedData from '../../fixtures/MyRequests/myRequestsFetchedDa
 import { MyRequestsFetchService } from '.';
 
 class MyRequestsFetchServiceFixture implements MyRequestsFetchService {
-  getMyResourcesData(): Promise<EachMyResourceFetchType[]> {
+  getMyRequestsData(): Promise<EachMyResourceFetchType[]> {
     return resolveWithTimeout(myRequestsFetchedData);
   }
 }
