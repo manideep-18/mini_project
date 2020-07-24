@@ -14,6 +14,7 @@ import {
   userItemsFilterConstants,
 } from '../../../constants/DropdownConstants';
 import UsersStore from '../../../stores/UsersStore';
+import { ADMIN_USERS_PAGE } from '../../../utils/RouteConstants';
 
 import {
   DetailsContentContainer,
@@ -117,7 +118,7 @@ class UserDetailsData extends Component<Props> {
 
     return (
       <DetailsContentContainer>
-        <BackButton backLinkText='/admin/users' backText='users' />
+        <BackButton backLinkText={ADMIN_USERS_PAGE} backText='users' />
         <ResponsiveContainer>
           <LoadingWrapper
             apiStatus={getUserItemDataAPIStatus}

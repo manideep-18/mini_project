@@ -4,7 +4,7 @@ import { History } from 'history';
 
 import TabButton from '../../../Common/components/TabButton';
 
-import { goToTabActivePage } from '../../utils/navigationUtils';
+import { goToTabActivePage } from '../../utils/NavigationUtils';
 
 import { TabsSwitchContainer } from './styledComponents';
 

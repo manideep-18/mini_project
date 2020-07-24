@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { initialTabStatus } from '../../../Admin/constants/TabsConstants';
+
+import { ADD_RESOURCE_PAGE } from '../../constants/RouteConstants';
+
 import {
   MainContainer,
   IbhubsLogo,
@@ -45,8 +49,8 @@ export class Header extends Component<Props> {
           <ImagesContainer>
             <IbhubsLogo src={logoUrl} alt={logoAltText} />
             <ButtonImageContainer>
-              {isAdmin && tabStatus === 'Resources' && (
-                <Link to='/admin/resources/add-resource'>
+              {isAdmin && tabStatus === initialTabStatus && (
+                <Link to={ADD_RESOURCE_PAGE}>
                   <AddButton buttonText='+ ADD' />
                 </Link>
               )}

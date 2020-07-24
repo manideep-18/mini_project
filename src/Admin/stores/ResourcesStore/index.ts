@@ -6,8 +6,8 @@ import { ResourceFetchService } from '../../services/ResourceFetchService';
 import {
   ascendingOrderAlphabetical,
   descendingOrderAlphabetical,
-} from '../../utils/sortingDataUtils';
-import { camelCase } from '../../utils/stringConversionUtils';
+} from '../../utils/SortingDataUtils';
+import { camelCase } from '../../utils/StringConversionUtils';
 import {
   ascendingSort,
   descendingSort,

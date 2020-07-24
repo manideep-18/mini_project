@@ -5,7 +5,7 @@ import { observer, inject } from 'mobx-react';
 
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
-import { goToAdminPage } from '../../../../../Common/utils/navigationUtils';
+import { goToAdminPage } from '../../../../../Common/utils/NavigationUtils';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import { EachResourceFetchType } from '../../../../stores/types';

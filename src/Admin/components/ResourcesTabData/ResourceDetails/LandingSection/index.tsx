@@ -7,7 +7,7 @@ import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
-import { navigateToResourceAddItemPage } from '../../../../utils/navigationUtils';
+import { navigateToResourceAddItemPage } from '../../../../utils/NavigationUtils';
 
 import ResourceDetailedView from './ResourceDetailedView';
 import ResourceItemsListData from './ResourceItemsListData';

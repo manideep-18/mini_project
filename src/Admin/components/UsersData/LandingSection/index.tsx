@@ -14,7 +14,7 @@ import {
   usersSortConstants,
   usersFilterConstants,
 } from '../../../constants/DropdownConstants';
-import { goToUserDetailsPage } from '../../../utils/navigationUtils';
+import { goToUserDetailsPage } from '../../../utils/NavigationUtils';
 import UsersStore from '../../../stores/UsersStore';
 import { mainPageHeaderArray } from '../../../constants/UsersPageConstants';
 

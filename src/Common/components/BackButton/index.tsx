@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { RESOURCES_PAGE } from '../../constants/RouteConstants';
+
 import {
   IconTextContainer,
   BackLink,
@@ -15,7 +17,7 @@ interface Props {
 
 class BackButton extends Component<Props> {
   static defaultProps = {
-    backLinkText: '/admin/resources',
+    backLinkText: RESOURCES_PAGE,
     iconImageUrl:
       'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/264598fb-d62c-49a3-87c9-c8d06c355d85.svg',
     backText: 'Resources',

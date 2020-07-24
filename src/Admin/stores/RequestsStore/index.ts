@@ -3,8 +3,8 @@ import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { RequestsFetchService } from '../../services/RequestsFetchService';
-import { camelCase } from '../../utils/stringConversionUtils';
-import { ascendingOrderAlphabetical } from '../../utils/sortingDataUtils';
+import { camelCase } from '../../utils/StringConversionUtils';
+import { ascendingOrderAlphabetical } from '../../utils/SortingDataUtils';
 
 import {
   EachRequestFetchType,

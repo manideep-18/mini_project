@@ -7,7 +7,7 @@ import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import ResourceModal from '../../../../stores/Modals/ResourceModal';
-import { goToAdminResourcePage } from '../../../../utils/navigationUtils';
+import { goToAdminResourcePage } from '../../../../utils/NavigationUtils';
 
 import EachResourceCard from './EachResourceCard';
 import { ResourcesCardsContainer } from './styledComponents';

@@ -6,8 +6,8 @@ import { UsersFetchService } from '../../services/UsersFetchService';
 import {
   ascendingOrderAlphabetical,
   descendingOrderAlphabetical,
-} from '../../utils/sortingDataUtils';
-import { camelCase } from '../../utils/stringConversionUtils';
+} from '../../utils/SortingDataUtils';
+import { camelCase } from '../../utils/StringConversionUtils';
 import {
   descendingSort,
   ascendingSort,
