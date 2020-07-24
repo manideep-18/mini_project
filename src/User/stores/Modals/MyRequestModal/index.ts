@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 import { EachMyResourceFetchType } from '../../types';
 
-class MyResourceModal {
+class MyRequestModal {
   id: number;
   @observable resource: string;
   @observable item: string;
@@ -17,4 +17,4 @@ class MyResourceModal {
   }
 }
 
-export default MyResourceModal;
+export default MyRequestModal;

@@ -5,7 +5,7 @@ import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import { camelCase } from '../../../Common/utils/StringConversionUtils';
 
 import { RequestsFetchService } from '../../services/RequestsFetchService';
-import { ascendingOrderAlphabetical } from '../../utils/SortingDataUtils';
+import { ascendingOrderAlphabetical } from '../../../Common/utils/SortingDataUtils';
 
 import {
   EachRequestFetchType,

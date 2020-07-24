@@ -5,31 +5,31 @@ import { History } from 'history';
 
 import Header from '../../../Common/components/Header';
 import TabsSwitchStore from '../../stores/TabsSwitchStore';
-import LandingSection from '../../components/MyResources/LandingSection';
+import LandingSection from '../../components/MyRequests/LandingSection';
 
 import { MainContainer } from './styledComponents';
-import MyResourcesStore from '../../stores/MyResourcesStore';
+import MyRequestsStore from '../../stores/MyRequestsStore';
 
 interface Props {
   history: History;
   match: any;
   location: any;
   tabsSwitchStore: TabsSwitchStore;
-  myResourcesStore: MyResourcesStore;
+  myRequestsStore: MyRequestsStore;
 }
 
-@inject('tabsSwitchStore', 'myResourcesStore')
+@inject('tabsSwitchStore', 'myRequestsStore')
 @observer
 export class MyResourcesPage extends Component<Props> {
   render() {
-    const { tabsSwitchStore, myResourcesStore, history } = this.props;
+    const { tabsSwitchStore, myRequestsStore, history } = this.props;
     return (
       <MainContainer id='userHomePage'>
         <Header />
         <LandingSection
           history={history}
           tabsSwitchStore={tabsSwitchStore}
-          myResourcesStore={myResourcesStore}
+          myRequestsStore={myRequestsStore}
         />
       </MainContainer>
     );

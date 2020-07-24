@@ -1,5 +1,5 @@
 import { EachMyResourceFetchType } from '../../stores/types';
 
-export interface MyResourcesFetchService {
+export interface MyRequestsFetchService {
   getMyResourcesData(): Promise<EachMyResourceFetchType[]>;
 }

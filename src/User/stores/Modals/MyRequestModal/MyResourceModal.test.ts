@@ -1,7 +1,7 @@
 import { EachMyResourceFetchType } from '../../types';
-import MyResourceModal from '.';
+import MyRequestModal from '.';
 
-describe('MyResourceModal test cases', () => {
+describe('MyRequestModal test cases', () => {
   it('should all values are assigned properly', () => {
     const eachMyResouceData: EachMyResourceFetchType = {
       id: 4,
@@ -11,7 +11,7 @@ describe('MyResourceModal test cases', () => {
       status: 'Rejected',
     };
 
-    const myResourceModal = new MyResourceModal(eachMyResouceData);
+    const myResourceModal = new MyRequestModal(eachMyResouceData);
 
     expect(myResourceModal.id).toBe(4);
     expect(myResourceModal.resource).toBe('Zeplin');

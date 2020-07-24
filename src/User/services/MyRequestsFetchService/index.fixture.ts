@@ -3,12 +3,12 @@ import { resolveWithTimeout } from '../../../Common/utils/TestUtils';
 import { EachMyResourceFetchType } from '../../stores/types';
 import myRequestsFetchedData from '../../fixtures/MyRequests/myRequestsFetchedData.json';
 
-import { MyResourcesFetchService } from '.';
+import { MyRequestsFetchService } from '.';
 
-class MyResourcesFetchServiceFixture implements MyResourcesFetchService {
+class MyRequestsFetchServiceFixture implements MyRequestsFetchService {
   getMyResourcesData(): Promise<EachMyResourceFetchType[]> {
     return resolveWithTimeout(myRequestsFetchedData);
   }
 }
 
-export default MyResourcesFetchServiceFixture;
+export default MyRequestsFetchServiceFixture;
