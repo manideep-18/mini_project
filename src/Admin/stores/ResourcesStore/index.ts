@@ -8,6 +8,11 @@ import {
   descendingOrderAlphabetical,
 } from '../../utils/sortingDataUtils';
 import { camelCase } from '../../utils/stringConversionUtils';
+import {
+  ascendingSort,
+  descendingSort,
+  resourceInitialSortStatus,
+} from '../../constants/SortFilterConstants';
 
 import ResourceModal from '../Modals/ResourceModal';
 import {
@@ -234,15 +239,15 @@ class ResourcesStore {
   @computed get sortedResourceItemsData() {
     let resultSortedData = this.resourceDetailsData.itemsList;
 
-    const camelCaseSortStatus: string = camelCase('title');
+    const camelCaseSortStatus: string = camelCase(resourceInitialSortStatus);
     if (
       this.resourceItemSortType !== '' &&
-      this.resourceItemSortType === 'Ascending'
+      this.resourceItemSortType === ascendingSort
     ) {
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     } else if (
       this.resourceItemSortType !== '' &&
-      this.resourceItemSortType === 'Descending'
+      this.resourceItemSortType === descendingSort
     ) {
       return descendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     }

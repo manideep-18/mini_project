@@ -11,7 +11,7 @@ import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAn
 import TabsSwitch from '../../../../common/TabsSwitch';
 import TabsStore from '../../../../stores/TabsStore';
 import RequestsStore from '../../../../stores/RequestsStore';
-import { requestsTableHeaderList } from '../../../../constants/tableHeaderConstants';
+import { requestsTableHeaderList } from '../../../../constants/TableHeaderConstants';
 
 import { MainContainer, PendingRequestsText } from './styledComponents';
 

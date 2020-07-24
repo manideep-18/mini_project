@@ -8,6 +8,11 @@ import {
   descendingOrderAlphabetical,
 } from '../../utils/sortingDataUtils';
 import { camelCase } from '../../utils/stringConversionUtils';
+import {
+  descendingSort,
+  ascendingSort,
+  userInitialSortStatus,
+} from '../../constants/SortFilterConstants';
 
 import { EachUserDataFetchType, userItemRequestType } from '../types';
 import UserModal from '../Modals/UserModal';
@@ -157,12 +162,15 @@ class UsersStore {
       );
     }
 
-    const camelCaseSortStatus: string = camelCase('item');
-    if (this.userItemSortType !== '' && this.userItemSortType === 'Ascending') {
+    const camelCaseSortStatus: string = camelCase(userInitialSortStatus);
+    if (
+      this.userItemSortType !== '' &&
+      this.userItemSortType === ascendingSort
+    ) {
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     } else if (
       this.userItemSortType !== '' &&
-      this.userItemSortType === 'Descending'
+      this.userItemSortType === descendingSort
     ) {
       return descendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     }

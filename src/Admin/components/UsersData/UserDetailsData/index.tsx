@@ -8,7 +8,7 @@ import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import BaseTable from '../../../../Common/components/BaseTable';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 
-import { userTableHeaderList } from '../../../constants/tableHeaderConstants';
+import { userTableHeaderList } from '../../../constants/TableHeaderConstants';
 import {
   userItemsSortConstants,
   userItemsFilterConstants,

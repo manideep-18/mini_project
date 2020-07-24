@@ -16,7 +16,7 @@ import {
 } from '../../../constants/DropdownConstants';
 import { goToUserDetailsPage } from '../../../utils/navigationUtils';
 import UsersStore from '../../../stores/UsersStore';
-import { mainPageHeaderArray } from '../../../constants/usersPageConstants';
+import { mainPageHeaderArray } from '../../../constants/UsersPageConstants';
 
 import { LandingMainContainer } from './styledComponents';
 
