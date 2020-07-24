@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
-import { camelCase } from '../../../Admin/utils/StringConversionUtils';
+import { camelCase } from '../../utils/StringConversionUtils';
 
 import BaseCheckBox from '../BaseCheckbox';
 

@@ -12,9 +12,11 @@ import Header from '../components/Header';
 import {
   REQUESTS_PAGE,
   USERS_PAGE,
-  EACH_USER_PAGE,
+  ADMIN_EACH_USER_PAGE,
+  USER_MY_RESOURCES_PAGE,
 } from '../constants/RouteConstants';
 import UserDetailsPage from '../../Admin/routes/Users/UserDetailsPage';
+import MyRequestsPage from '../../User/routes/MyResourcesPage';
 
 export class Routes extends Component {
   render() {
@@ -43,7 +45,17 @@ export class Routes extends Component {
             />
             <Route exact path={REQUESTS_PAGE} component={RequestsHomePage} />
             <Route exact path={USERS_PAGE} component={HomePage} />
-            <Route exact path={EACH_USER_PAGE} component={UserDetailsPage} />
+            <Route
+              exact
+              path={ADMIN_EACH_USER_PAGE}
+              component={UserDetailsPage}
+            />
+            <Route exact path='/user/' component={Header} />
+            <Route
+              exact
+              path={USER_MY_RESOURCES_PAGE}
+              component={MyRequestsPage}
+            />
           </Switch>
         </Router>
       </div>

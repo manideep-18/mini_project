@@ -10,7 +10,7 @@ import {
 
 import { observer } from 'mobx-react';
 
-import { camelCase } from '../../../Admin/utils/StringConversionUtils';
+import { camelCase } from '../../utils/StringConversionUtils';
 
 interface Props {
   id: string;

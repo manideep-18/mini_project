@@ -5,3 +5,7 @@ export function camelCase(str: string) {
     })
     .replace(/\s+/g, '');
 }
+
+export function nameSpacesConversion(str: string) {
+  return str.replace(/\s+/g, '-').toLowerCase();
+}

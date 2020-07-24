@@ -2,8 +2,9 @@ import { observable, action, computed } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
+import { camelCase } from '../../../Common/utils/StringConversionUtils';
+
 import { RequestsFetchService } from '../../services/RequestsFetchService';
-import { camelCase } from '../../utils/StringConversionUtils';
 import { ascendingOrderAlphabetical } from '../../utils/SortingDataUtils';
 
 import {

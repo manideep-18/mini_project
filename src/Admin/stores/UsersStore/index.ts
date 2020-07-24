@@ -7,7 +7,7 @@ import {
   ascendingOrderAlphabetical,
   descendingOrderAlphabetical,
 } from '../../utils/SortingDataUtils';
-import { camelCase } from '../../utils/StringConversionUtils';
+import { camelCase } from '../../../Common/utils/StringConversionUtils';
 import {
   descendingSort,
   ascendingSort,
