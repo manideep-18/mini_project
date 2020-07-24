@@ -67,7 +67,7 @@ export class LandingSection extends Component<Props> {
   render() {
     const { tabsSwitchStore, myRequestsStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
-    console.log(tabStatus, '???');
+    // console.log(tabStatus, '???');
     const {
       sortedDataWithFiltered,
       getMyResourcesDataAPIStatus,
@@ -75,10 +75,10 @@ export class LandingSection extends Component<Props> {
     return (
       <TabsAndResourcesListContainer>
         <ResponsiveContainer>
-          {/* <TabsSection
+          <TabsSection
             tabStatus={tabStatus}
             onTabStatusChanged={this.handleTabStatusChange}
-          /> */}
+          />
           <SearchAndFilterAndButtons
             onSearchEnter={this.handleSearchEnter}
             checkedItemsLength={0}

@@ -9,3 +9,5 @@ export const USERS_PAGE = '/admin/users';
 export const ADMIN_EACH_USER_PAGE = '/admin/users/:user_id';
 
 export const USER_MY_REQUESTS_PAGE = '/user/my-requests';
+
+export const USER_MY_RESOURCES_PAGE = '/user/my-resources';
