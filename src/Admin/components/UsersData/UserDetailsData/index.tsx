@@ -7,6 +7,7 @@ import ResponsiveContainer from '../../../../Common/components/ResponsiveContain
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import BaseTable from '../../../../Common/components/BaseTable';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import { USERS_PAGE } from '../../../../Common/constants/RouteConstants';
 
 import { userTableHeaderList } from '../../../constants/TableHeaderConstants';
 import {
@@ -14,7 +15,6 @@ import {
   userItemsFilterConstants,
 } from '../../../constants/DropdownConstants';
 import UsersStore from '../../../stores/UsersStore';
-import { ADMIN_USERS_PAGE } from '../../../utils/RouteConstants';
 
 import {
   DetailsContentContainer,
@@ -118,7 +118,7 @@ class UserDetailsData extends Component<Props> {
 
     return (
       <DetailsContentContainer>
-        <BackButton backLinkText={ADMIN_USERS_PAGE} backText='users' />
+        <BackButton backLinkText={USERS_PAGE} backText='users' />
         <ResponsiveContainer>
           <LoadingWrapper
             apiStatus={getUserItemDataAPIStatus}

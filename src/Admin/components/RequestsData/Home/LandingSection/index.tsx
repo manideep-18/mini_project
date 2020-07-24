@@ -117,10 +117,12 @@ class LandingSection extends Component<Props> {
                 onSortStatusUpdate={this.handleSortStatusUpdate}
                 onFilterStatusUpdate={this.handleFilterStatusUpdate}
                 onAcceptRequests={this.handleAcceptRequests}
-                onAcceptRequestsStatus={getOnAcceptRequestsDataAPIStatus}
               />
               <LoadingWrapper
-                apiStatus={getSearchRequestsDataAPIStatus}
+                apiStatus={
+                  getSearchRequestsDataAPIStatus ||
+                  getOnAcceptRequestsDataAPIStatus
+                }
                 onRetry={this.handleRetry}
               >
                 <BaseTable

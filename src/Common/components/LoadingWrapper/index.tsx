@@ -9,6 +9,7 @@ import {
 import Loader from '../Loader';
 
 import FailureView from './FailureView';
+import { LoaderContainer } from './styledComponents';
 
 interface Props {
   apiStatus: APIStatus;
@@ -39,7 +40,7 @@ class LoadingWrapper extends React.Component<Props> {
       case API_SUCCESS:
         return children;
       case API_FETCHING:
-        return renderLoadingView();
+        return <LoaderContainer>{renderLoadingView()}</LoaderContainer>;
       case API_FAILED:
         return (
           <FailureView

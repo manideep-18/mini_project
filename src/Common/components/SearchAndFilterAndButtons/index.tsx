@@ -42,7 +42,6 @@ class SearchAndFilterAndButtons extends Component<Props> {
 
   static defaultProps = {
     onAcceptRequests: () => {},
-    onAcceptRequestsStatus: API_INITIAL,
     sortConstants: requestSortConstants,
     filterConstants: requestFilterConstants,
   };
