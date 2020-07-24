@@ -20,3 +20,5 @@ export const usersFilterConstants: string[] = [
 export const userItemsSortConstants: string[] = ['Ascending', 'Descending'];
 
 export const userItemsFilterConstants: string[] = ['Zeplin', 'Git Hub'];
+
+export const requestItemSortConstants: string[] = ['Ascending', 'Descending'];

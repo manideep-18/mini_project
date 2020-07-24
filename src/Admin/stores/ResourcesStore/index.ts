@@ -1,13 +1,17 @@
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
-import { action, observable } from 'mobx';
+import { action, observable, computed } from 'mobx';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import { ResourceFetchService } from '../../services/ResourceFetchService';
+import {
+  ascendingOrderAlphabetical,
+  descendingOrderAlphabetical,
+} from '../../utils/sortingDataUtils';
+import { camelCase } from '../../utils/stringConversionUtils';
 
 import ResourceModal from '../Modals/ResourceModal';
 import {
   EachResourceFetchType,
-  ResourceItemType,
   ResourceDetailsRequestType,
   AddItemToResourceRequestType,
   resourceItemsDeleteRequestType,
@@ -26,6 +30,7 @@ class ResourcesStore {
   @observable getResourcesAfterDeleteAPIError!: any;
   @observable onAddItemToResourceAPIStatus!: APIStatus;
   @observable onAddItemToResourceAPIError!: any;
+  @observable resourceItemSortType!: string;
   resourceFetchService: ResourceFetchService;
 
   constructor(resourceFetchService: ResourceFetchService) {
@@ -54,6 +59,7 @@ class ResourcesStore {
       description: '',
       itemsList: [],
     };
+    this.resourceItemSortType = '';
   }
 
   @action.bound
@@ -218,6 +224,30 @@ class ResourcesStore {
         this.setOnAddItemToResourceAPIError(err);
         onFailure();
       });
+  }
+
+  @action.bound
+  setResourceItemSortType(value: string) {
+    this.resourceItemSortType = value;
+  }
+
+  @computed get sortedResourceItemsData() {
+    let resultSortedData = this.resourceDetailsData.itemsList;
+
+    const camelCaseSortStatus: string = camelCase('title');
+    if (
+      this.resourceItemSortType !== '' &&
+      this.resourceItemSortType === 'Ascending'
+    ) {
+      return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
+    } else if (
+      this.resourceItemSortType !== '' &&
+      this.resourceItemSortType === 'Descending'
+    ) {
+      return descendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
+    }
+
+    return resultSortedData;
   }
 }
 

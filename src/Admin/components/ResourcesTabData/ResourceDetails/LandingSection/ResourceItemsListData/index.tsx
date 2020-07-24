@@ -5,7 +5,7 @@ import { APIStatus } from '@ib/api-constants';
 
 import BaseTable from '../../../../../../Common/components/BaseTable';
 import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
-import ResourceModal from '../../../../../stores/Modals/ResourceModal';
+import { ResourceItemType } from '../../../../../stores/types';
 
 import {
   ButtonsContainer,
@@ -15,7 +15,7 @@ import {
 } from './styledComponents';
 
 interface Props {
-  resourceDetailsData: ResourceModal;
+  resourceItemsData: ResourceItemType[];
   onDeleteResourceItems: (items: number[]) => void;
   onDeleteAPIStatus: APIStatus;
   onAddResourceItem: () => void;
@@ -73,8 +73,8 @@ class ResourceItemsListData extends Component<Props> {
   );
 
   render() {
-    const { resourceDetailsData, onDeleteAPIStatus } = this.props;
-    const { itemsList } = resourceDetailsData;
+    const { resourceItemsData, onDeleteAPIStatus } = this.props;
+
     return (
       <ItemsListButtonsContainer>
         <LoadingWrapper
@@ -82,7 +82,7 @@ class ResourceItemsListData extends Component<Props> {
           onRetry={this.handleDeleteResourceItems}
         >
           <BaseTable
-            dataArray={itemsList}
+            dataArray={resourceItemsData}
             onChangeCheckbox={this.onChangeCheckbox}
           />
           {this.renderAddDeleteButtons()}

@@ -11,6 +11,8 @@ import { navigateToResourceAddItemPage } from '../../../../utils/navigationUtils
 
 import ResourceDetailedView from './ResourceDetailedView';
 import ResourceItemsListData from './ResourceItemsListData';
+import SearchBarAndSort from './SearchBarAndSort';
+import { DetailsMainContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -39,6 +41,11 @@ class LandingSection extends Component<Props> {
     window.location.reload();
   };
 
+  handleSortStatusUpdate = (value: string) => {
+    const { resourcesStore } = this.props;
+    resourcesStore.setResourceItemSortType(value);
+  };
+
   handleRetry = () => {
     const { resourcesStore, resourceName } = this.props;
 
@@ -52,27 +59,29 @@ class LandingSection extends Component<Props> {
     const { resourcesStore } = this.props;
 
     const {
+      sortedResourceItemsData,
       resourceDetailsData,
       getResourceDetailsDataAPIStatus,
       getResourcesAfterDeleteAPIStatus,
     } = resourcesStore;
 
     return (
-      <ResponsiveContainer>
+      <DetailsMainContainer>
         <BackButton />
         <LoadingWrapper
           apiStatus={getResourceDetailsDataAPIStatus}
           onRetry={this.handleRetry}
         >
           <ResourceDetailedView resourceDetailsData={resourceDetailsData} />
+          <SearchBarAndSort onSortStatusUpdate={this.handleSortStatusUpdate} />
           <ResourceItemsListData
-            resourceDetailsData={resourceDetailsData}
+            resourceItemsData={sortedResourceItemsData}
             onDeleteResourceItems={this.onDeleteResourceItems}
             onDeleteAPIStatus={getResourcesAfterDeleteAPIStatus}
             onAddResourceItem={this.onAddResourceItem}
           />
         </LoadingWrapper>
-      </ResponsiveContainer>
+      </DetailsMainContainer>
     );
   }
 }
