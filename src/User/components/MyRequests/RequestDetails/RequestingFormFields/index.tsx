@@ -4,6 +4,9 @@ import {
   AllFieldsMainContainer,
   LeftSideFieldsContainer,
   RightSideFieldsContainer,
+  SubmitButton,
+  FieldsButtonsContainer,
+  ButtonsContainer,
 } from './styledComponents';
 import MyRequestsStore from '../../../../stores/MyRequestsStore';
 import LabelWithInput from '../../../../../Common/components/LabelWithInput';
@@ -23,6 +26,8 @@ interface Option {
 
 interface Props {
   myRequestsStore: MyRequestsStore;
+  requestingStatus: string;
+  onSubmitClick: () => void;
 }
 
 @observer
@@ -39,6 +44,21 @@ export class RequestingFormFields extends Component<Props> {
     this.itemNameSelected = { label: '', value: '' };
     this.remarks = '';
   }
+
+  handleSubmitButton = () => {
+    const { onSubmitClick } = this.props;
+    if (
+      this.remarks &&
+      this.resourceNameSelected &&
+      this.itemNameSelected &&
+      this.accessLevelSelected
+    )
+      onSubmitClick();
+  };
+
+  renderSubmitButton = () => (
+    <SubmitButton buttonText='Submit' onClick={this.handleSubmitButton} />
+  );
 
   handleRemarksTextChange = (event: any) => {
     this.remarks = event.target.value;
@@ -57,7 +77,7 @@ export class RequestingFormFields extends Component<Props> {
   };
 
   render() {
-    const { myRequestsStore } = this.props;
+    const { myRequestsStore, requestingStatus } = this.props;
     const { requestDataFetched } = myRequestsStore;
     const {
       resource,
@@ -69,68 +89,77 @@ export class RequestingFormFields extends Component<Props> {
     } = requestDataFetched;
 
     return (
-      <AllFieldsMainContainer>
-        <LeftSideFieldsContainer>
-          {resource !== '' ? (
-            <LabelWithInput
-              labelText='resource name'
-              value={resource}
-              disabled
-            />
-          ) : (
-            <CustomizedSelectWithLabel
-              labelText='resource name'
-              options={resourceNameOptions}
-              selectedOption={this.resourceNameSelected}
-              onChange={this.handleResourceNameOptions}
-            />
-          )}
-          {item !== '' ? (
-            <LabelWithInput labelText='item name' value={item} disabled />
-          ) : (
-            <CustomizedSelectWithLabel
-              labelText='resource name'
-              options={itemOptions}
-              selectedOption={this.itemNameSelected}
-              onChange={this.handleItemNameOptions}
-            />
-          )}
-          {access !== '' ? (
-            <LabelWithInput labelText='Access Level' value={access} disabled />
-          ) : (
-            <CustomizedSelectWithLabel
-              labelText='Access Level'
-              options={accessLevelOptions}
-              selectedOption={this.accessLevelSelected}
-              onChange={this.handleAccessLevelOptions}
-            />
-          )}
-          {remarks !== '' ? (
+      <FieldsButtonsContainer>
+        <AllFieldsMainContainer>
+          <LeftSideFieldsContainer>
+            {resource !== '' ? (
+              <LabelWithInput
+                labelText='resource name'
+                value={resource}
+                disabled
+              />
+            ) : (
+              <CustomizedSelectWithLabel
+                labelText='resource name'
+                options={resourceNameOptions}
+                selectedOption={this.resourceNameSelected}
+                onChange={this.handleResourceNameOptions}
+              />
+            )}
+            {item !== '' ? (
+              <LabelWithInput labelText='item name' value={item} disabled />
+            ) : (
+              <CustomizedSelectWithLabel
+                labelText='resource name'
+                options={itemOptions}
+                selectedOption={this.itemNameSelected}
+                onChange={this.handleItemNameOptions}
+              />
+            )}
+            {access !== '' ? (
+              <LabelWithInput
+                labelText='Access Level'
+                value={access}
+                disabled
+              />
+            ) : (
+              <CustomizedSelectWithLabel
+                labelText='Access Level'
+                options={accessLevelOptions}
+                selectedOption={this.accessLevelSelected}
+                onChange={this.handleAccessLevelOptions}
+              />
+            )}
+            {remarks !== '' ? (
+              <LabelWithInput
+                isTextArea
+                labelText='remarks'
+                value={remarks}
+                disabled
+              />
+            ) : (
+              <LabelWithInput
+                isTextArea
+                labelText='remarks'
+                value={this.remarks}
+                onChange={this.handleRemarksTextChange}
+              />
+            )}
+          </LeftSideFieldsContainer>
+          <RightSideFieldsContainer>
             <LabelWithInput
               isTextArea
-              labelText='remarks'
-              value={remarks}
+              labelText='reason for access'
+              value={reasonForAccess}
               disabled
             />
-          ) : (
-            <LabelWithInput
-              isTextArea
-              labelText='remarks'
-              value={this.remarks}
-              onChange={this.handleRemarksTextChange}
-            />
-          )}
-        </LeftSideFieldsContainer>
-        <RightSideFieldsContainer>
-          <LabelWithInput
-            isTextArea
-            labelText='reason for access'
-            value={reasonForAccess}
-            disabled
-          />
-          <LabelWithInput labelText='status' value={status} disabled />
-        </RightSideFieldsContainer>
-      </AllFieldsMainContainer>
+            <LabelWithInput labelText='status' value={status} disabled />
+          </RightSideFieldsContainer>
+        </AllFieldsMainContainer>
+        <ButtonsContainer>
+          {requestingStatus === 'Accepted' && this.renderSubmitButton()}
+        </ButtonsContainer>
+      </FieldsButtonsContainer>
     );
   }
 }

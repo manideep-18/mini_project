@@ -17,22 +17,22 @@ interface Props {
 
 @observer
 export class RequestDetails extends Component<Props> {
-  // renderForm = () => {
-  //   const { requestingStatus, myRequestsStore, requestingId } = this.props;
-  //   switch (requestingStatus) {
-  //     case 'Rejected':
-  //       return (
-  //         <RequestingFormFields
-  //           myRequestsStore={myRequestsStore}
-  //           requestingId={requestingId}
-  //         />
-  //       );
-  //     default:
-  //       return null;
-  //   }
-  // };
+  handleSubmitClick = () => {};
 
-  handleRetry = () => {};
+  handleRetry = () => {
+    const { myRequestsStore, requestingId, requestingStatus } = this.props;
+    const request = { request_id: requestingId };
+    switch (requestingStatus) {
+      case 'Rejected':
+        myRequestsStore.getMyRequestRejectedDataAPI(request, this.onSuccess);
+        break;
+      case 'Pending':
+        myRequestsStore.getMyRequestPendingDataAPI(request, this.onSuccess);
+        break;
+      default:
+        myRequestsStore.getMyRequestAcceptDataAPI(request, this.onSuccess);
+    }
+  };
 
   onSuccess = () => {};
 
@@ -73,7 +73,11 @@ export class RequestDetails extends Component<Props> {
               }
               onRetry={this.handleRetry}
             >
-              <RequestingFormFields myRequestsStore={myRequestsStore} />
+              <RequestingFormFields
+                requestingStatus={requestingStatus}
+                myRequestsStore={myRequestsStore}
+                onSubmitClick={this.handleSubmitClick}
+              />
             </LoadingWrapper>
           </FormContainer>
         </ResponsiveContainer>

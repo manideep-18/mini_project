@@ -7,6 +7,10 @@ export function goToUserTabActivePage(
   history.push(`/user/${tabActive}`);
 }
 
+export function goToUserMyRequestsPage(history: History): void {
+  history.push(`/user/my-requests`);
+}
+
 export function goToUserRequestingPage(
   history: History,
   status: string,
