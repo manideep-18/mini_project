@@ -9,7 +9,7 @@ import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import TabsSection from '../../../common/Components/TabsSection';
 import {
   goToUserTabActivePage,
-  goToUserRequestPage,
+  goToUserRequestingPage,
 } from '../../../utils/NavigationUtils';
 
 import { TabsAndRequestsListContainer } from './styledComponents';
@@ -59,7 +59,7 @@ export class LandingSection extends Component<Props> {
       (eachRequest) => eachRequest.id === value
     );
     // console.log(itemCard, '***');
-    goToUserRequestPage(history, itemCard[0].id);
+    goToUserRequestingPage(history, itemCard[0].status, itemCard[0].id);
   };
 
   onSuccess = () => {};

@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import { EachMyResourceFetchType } from '../../types';
+import { EachMyRequestFetchType } from '../../types';
 
 class MyRequestModal {
   id: number;
@@ -7,13 +7,17 @@ class MyRequestModal {
   @observable item: string;
   @observable access: string;
   @observable status: string;
+  @observable remarks: string;
+  @observable reasonForAccess: string;
 
-  constructor(myResourceData: EachMyResourceFetchType) {
-    this.id = myResourceData.id;
-    this.resource = myResourceData.resource;
-    this.item = myResourceData.item;
-    this.access = myResourceData.access;
-    this.status = myResourceData.status;
+  constructor(myRequestData: EachMyRequestFetchType) {
+    this.id = myRequestData.id;
+    this.resource = myRequestData.resource;
+    this.item = myRequestData.item;
+    this.access = myRequestData.access;
+    this.status = myRequestData.status;
+    this.remarks = myRequestData.remarks;
+    this.reasonForAccess = myRequestData.reason_for_access;
   }
 }
 

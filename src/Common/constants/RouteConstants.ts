@@ -12,4 +12,5 @@ export const USER_MY_REQUESTS_PAGE = '/user/my-requests';
 
 export const USER_MY_RESOURCES_PAGE = '/user/my-resources';
 
-export const USER_REQUEST_PAGE = '/user/my-requests/:request_id';
+export const USER_REQUESTING_PAGE =
+  '/user/my-requests/:request_status/:request_id';

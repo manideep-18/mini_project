@@ -13,7 +13,7 @@ interface Option {
 }
 
 interface Props {
-  label: string;
+  labelText: string;
   options: Option[];
   placeholder?: string;
   isDisabled?: boolean;
@@ -38,17 +38,23 @@ class CustomizedSelectWithLabel extends Component<Props> {
   };
 
   render() {
-    const { label, options, selectedOption, isDisabled } = this.props;
+    const {
+      labelText,
+      options,
+      selectedOption,
+      isDisabled,
+      placeholder,
+    } = this.props;
     return (
       <LabelSelectContainer>
-        <LabelText>{label}</LabelText>
+        <LabelText>{labelText}</LabelText>
         <SelectContainer>
           <Select
             options={options}
             isDisabled={isDisabled}
             value={selectedOption}
             onChange={this.handleChange}
-            placeholder='this'
+            placeholder={placeholder}
           />
         </SelectContainer>
       </LabelSelectContainer>

@@ -1,22 +1,26 @@
-import { EachMyResourceFetchType } from '../../types';
+import { EachMyRequestFetchType } from '../../types';
 import MyRequestModal from '.';
 
 describe('MyRequestModal test cases', () => {
   it('should all values are assigned properly', () => {
-    const eachMyResouceData: EachMyResourceFetchType = {
+    const eachMyRequestData: EachMyRequestFetchType = {
       id: 4,
       resource: 'Zeplin',
       item: 'Gyan',
       access: 'Read',
       status: 'Rejected',
+      remarks: 'remarks',
+      reason_for_access: 'Invalid',
     };
 
-    const myResourceModal = new MyRequestModal(eachMyResouceData);
+    const myRequestModal = new MyRequestModal(eachMyRequestData);
 
-    expect(myResourceModal.id).toBe(4);
-    expect(myResourceModal.resource).toBe('Zeplin');
-    expect(myResourceModal.item).toBe('Gyan');
-    expect(myResourceModal.access).toBe('Read');
-    expect(myResourceModal.status).toBe('Rejected');
+    expect(myRequestModal.id).toBe(4);
+    expect(myRequestModal.resource).toBe('Zeplin');
+    expect(myRequestModal.item).toBe('Gyan');
+    expect(myRequestModal.access).toBe('Read');
+    expect(myRequestModal.status).toBe('Rejected');
+    expect(myRequestModal.remarks).toBe('remarks');
+    expect(myRequestModal.reasonForAccess).toBe('Invalid');
   });
 });

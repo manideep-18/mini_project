@@ -15,7 +15,7 @@ import {
   ADMIN_EACH_USER_PAGE,
   USER_MY_REQUESTS_PAGE,
   USER_MY_RESOURCES_PAGE,
-  USER_REQUEST_PAGE,
+  USER_REQUESTING_PAGE,
 } from '../constants/RouteConstants';
 import UserDetailsPage from '../../Admin/routes/Users/UserDetailsPage';
 import MyRequestsPage from '../../User/routes/MyRequestsPage';
@@ -62,7 +62,7 @@ export class Routes extends Component {
             />
             <Route
               exact
-              path={USER_REQUEST_PAGE}
+              path={USER_REQUESTING_PAGE}
               component={RequestDetailedPage}
             />
             <Route

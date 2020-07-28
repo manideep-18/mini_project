@@ -10,6 +10,7 @@ storiesOf('Common Component Guide', module).add(
     <CustomizedSelectWithLabel
       onChange={action('change')}
       selectedOption={{ value: 'vanilla', label: 'Vanilla' }}
+      labelText=''
     />
   )
 );
