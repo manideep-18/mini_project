@@ -33,11 +33,12 @@ export class RequestDetailedPage extends Component<Props> {
       this.requestingStatus = pathParameters[pathParameters.length - 2];
       this.requestingId = pathParameters[pathParameters.length - 1];
     }
-    const { myRequestsStore } = this.props;
+    const { myRequestsStore, history } = this.props;
     return (
       <div>
         <Header />
         <RequestDetails
+          history={history}
           requestingStatus={this.requestingStatus}
           requestingId={this.requestingId}
           myRequestsStore={myRequestsStore}

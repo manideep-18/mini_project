@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { History } from 'history';
 import MyRequestsStore from '../../../stores/MyRequestsStore';
 import BackButton from '../../../../Common/components/BackButton';
 import { USER_MY_REQUESTS_PAGE } from '../../../../Common/constants/RouteConstants';
@@ -8,8 +9,10 @@ import RequestingFormFields from './RequestingFormFields';
 import { FormContainer } from './styledComponents';
 import { observer } from 'mobx-react';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { goToUserMyRequestsPage } from '../../../utils/NavigationUtils';
 
 interface Props {
+  history: History;
   requestingStatus: string;
   requestingId: string;
   myRequestsStore: MyRequestsStore;
@@ -17,7 +20,10 @@ interface Props {
 
 @observer
 export class RequestDetails extends Component<Props> {
-  handleSubmitClick = () => {};
+  handleSubmitClick = () => {
+    const { history } = this.props;
+    goToUserMyRequestsPage(history);
+  };
 
   handleRetry = () => {
     const { myRequestsStore, requestingId, requestingStatus } = this.props;

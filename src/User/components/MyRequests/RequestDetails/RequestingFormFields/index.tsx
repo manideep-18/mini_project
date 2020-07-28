@@ -60,8 +60,8 @@ export class RequestingFormFields extends Component<Props> {
     <SubmitButton buttonText='Submit' onClick={this.handleSubmitButton} />
   );
 
-  handleRemarksTextChange = (event: any) => {
-    this.remarks = event.target.value;
+  handleRemarksTextChange = (value: string) => {
+    this.remarks = value;
   };
 
   handleAccessLevelOptions = (status: Option) => {
