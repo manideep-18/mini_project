@@ -19,8 +19,8 @@ import MyRequestsStore from '../../../stores/MyRequestsStore';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import {
-  myRequestsSortConstants,
-  myRequestsFilterConstants,
+  userSortConstants,
+  userFilterConstants,
 } from '../../../constants/DropdownConstants';
 
 interface Props {
@@ -58,7 +58,7 @@ export class LandingSection extends Component<Props> {
     const itemCard = myRequestsStore.myRequestsDataFetched.filter(
       (eachRequest) => eachRequest.id === value
     );
-    // console.log(itemCard, '***');
+
     goToUserRequestingPage(history, itemCard[0].status, itemCard[0].id);
   };
 
@@ -79,7 +79,7 @@ export class LandingSection extends Component<Props> {
   render() {
     const { tabsSwitchStore, myRequestsStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
-    // console.log(tabStatus, '???');
+
     const {
       sortedDataWithFiltered,
       getMyRequestsDataAPIStatus,
@@ -96,8 +96,8 @@ export class LandingSection extends Component<Props> {
             checkedItemsLength={0}
             onSortStatusUpdate={this.handleSortTypeUpdate}
             onFilterStatusUpdate={this.handleFilterTypeUpdate}
-            sortConstants={myRequestsSortConstants}
-            filterConstants={myRequestsFilterConstants}
+            sortConstants={userSortConstants}
+            filterConstants={userFilterConstants}
           />
           <LoadingWrapper
             apiStatus={getMyRequestsDataAPIStatus}

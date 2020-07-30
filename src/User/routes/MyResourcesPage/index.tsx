@@ -6,23 +6,29 @@ import { inject, observer } from 'mobx-react';
 import TabsSwitchStore from '../../stores/TabsSwitchStore';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
+import MyResourcesStore from '../../stores/MyResourcesStore';
 
 interface Props {
   history: History;
   match: any;
   location: any;
   tabsSwitchStore: TabsSwitchStore;
+  myResourcesStore: MyResourcesStore;
 }
 
-@inject('tabsSwitchStore')
+@inject('tabsSwitchStore', 'myResourcesStore')
 @observer
 export class MyResourcesPage extends Component<Props> {
   render() {
-    const { tabsSwitchStore, history } = this.props;
+    const { tabsSwitchStore, history, myResourcesStore } = this.props;
     return (
       <MainContainer id='myResourcesHomePage'>
         <Header />
-        <LandingSection history={history} tabsSwitchStore={tabsSwitchStore} />
+        <LandingSection
+          history={history}
+          tabsSwitchStore={tabsSwitchStore}
+          myResourcesStore={myResourcesStore}
+        />
       </MainContainer>
     );
   }

@@ -11,3 +11,10 @@ export interface EachMyRequestFetchType {
 export interface FormDataRequestType {
   request_id: string;
 }
+
+export interface EachMyResourceFetchType {
+  resource: string;
+  item: string;
+  access: string;
+  link: string;
+}

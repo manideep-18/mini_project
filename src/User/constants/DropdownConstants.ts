@@ -1,6 +1,6 @@
-export const myRequestsSortConstants: string[] = ['Ascending', 'Descending'];
+export const userSortConstants: string[] = ['Ascending', 'Descending'];
 
-export const myRequestsFilterConstants: string[] = [
+export const userFilterConstants: string[] = [
   'Zeplin',
   'Git Hub',
   'Bit Bucket',

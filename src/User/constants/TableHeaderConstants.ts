@@ -4,3 +4,10 @@ export const myRequestsTableHeaderConstants: string[] = [
   'access',
   'status',
 ];
+
+export const myResourcesTableHeaderConstants: string[] = [
+  'resource',
+  'item',
+  'access',
+  'link',
+];

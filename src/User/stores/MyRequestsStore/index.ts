@@ -6,7 +6,7 @@ import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import MyRequestModal from '../Modals/MyRequestModal';
 import { camelCase } from '../../../Common/utils/StringConversionUtils';
 import {
-  myRequestsInitialSortStatus,
+  userInitialSortStatus,
   ascendingSort,
   descendingSort,
 } from '../../constants/SortFilterConstants';
@@ -207,7 +207,7 @@ class MyRequestsStore {
       );
     }
 
-    const camelCaseSortStatus: string = camelCase(myRequestsInitialSortStatus);
+    const camelCaseSortStatus: string = camelCase(userInitialSortStatus);
     if (this.sortType !== '' && this.sortType === ascendingSort) {
       return ascendingOrderAlphabetical(resultSortedData, camelCaseSortStatus);
     } else if (this.sortType !== '' && this.sortType === descendingSort) {
