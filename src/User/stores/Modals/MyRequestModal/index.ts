@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+
 import { EachMyRequestFetchType } from '../../types';
 
 class MyRequestModal {

@@ -1,4 +1,16 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
+
+import LabelWithInput from '../../../../../Common/components/LabelWithInput';
+import CustomizedSelectWithLabel from '../../../../../Common/components/CustomizedSelectWithLabel';
+
+import {
+  accessLevelOptions,
+  resourceNameOptions,
+  itemOptions,
+} from '../../../../constants/SelectOptionsConstants';
+import MyRequestModal from '../../../../stores/Modals/MyRequestModal';
 
 import {
   AllFieldsMainContainer,
@@ -8,16 +20,6 @@ import {
   FieldsButtonsContainer,
   ButtonsContainer,
 } from './styledComponents';
-import MyRequestsStore from '../../../../stores/MyRequestsStore';
-import LabelWithInput from '../../../../../Common/components/LabelWithInput';
-import { observer } from 'mobx-react';
-import CustomizedSelectWithLabel from '../../../../../Common/components/CustomizedSelectWithLabel';
-import {
-  accessLevelOptions,
-  resourceNameOptions,
-  itemOptions,
-} from '../../../../constants/SelectOptionsConstants';
-import { observable } from 'mobx';
 
 interface Option {
   label: string;
@@ -25,7 +27,7 @@ interface Option {
 }
 
 interface Props {
-  myRequestsStore: MyRequestsStore;
+  requestDataFetched: MyRequestModal;
   requestingStatus: string;
   onSubmitClick: () => void;
 }
@@ -77,8 +79,7 @@ export class RequestingFormFields extends Component<Props> {
   };
 
   render() {
-    const { myRequestsStore, requestingStatus } = this.props;
-    const { requestDataFetched } = myRequestsStore;
+    const { requestDataFetched, requestingStatus } = this.props;
     const {
       resource,
       item,

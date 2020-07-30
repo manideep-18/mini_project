@@ -4,6 +4,9 @@ import { observer } from 'mobx-react';
 
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
 import { nameSpacesConversion } from '../../../../Common/utils/StringConversionUtils';
+import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import TabsSection from '../../../common/Components/TabsSection';
@@ -11,17 +14,14 @@ import {
   goToUserTabActivePage,
   goToUserRequestingPage,
 } from '../../../utils/NavigationUtils';
-
-import { TabsAndRequestsListContainer } from './styledComponents';
-import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
 import { myRequestsTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import MyRequestsStore from '../../../stores/MyRequestsStore';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import {
   userSortConstants,
   userFilterConstants,
 } from '../../../constants/DropdownConstants';
+
+import { TabsAndRequestsListContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -38,8 +38,6 @@ export class LandingSection extends Component<Props> {
     updateTabStatus(value);
     goToUserTabActivePage(history, nameSpacesConversion(value));
   };
-
-  handleSearchEnter = () => {};
 
   handleSortTypeUpdate = (value: string) => {
     const { myRequestsStore } = this.props;
@@ -92,7 +90,7 @@ export class LandingSection extends Component<Props> {
             onTabStatusChanged={this.handleTabStatusChange}
           />
           <SearchAndFilterAndButtons
-            onSearchEnter={this.handleSearchEnter}
+            onSearchEnter={() => {}}
             checkedItemsLength={0}
             onSortStatusUpdate={this.handleSortTypeUpdate}
             onFilterStatusUpdate={this.handleFilterTypeUpdate}

@@ -1,19 +1,22 @@
 import { observable, action, computed } from 'mobx';
-import { MyRequestsFetchService } from '../../services/MyRequestsFetchService';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { EachMyRequestFetchType, FormDataRequestType } from '../types';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
-import MyRequestModal from '../Modals/MyRequestModal';
+
 import { camelCase } from '../../../Common/utils/StringConversionUtils';
+import {
+  ascendingOrderAlphabetical,
+  descendingOrderAlphabetical,
+} from '../../../Common/utils/SortingDataUtils';
+
+import { MyRequestsFetchService } from '../../services/MyRequestsFetchService';
 import {
   userInitialSortStatus,
   ascendingSort,
   descendingSort,
 } from '../../constants/SortFilterConstants';
-import {
-  ascendingOrderAlphabetical,
-  descendingOrderAlphabetical,
-} from '../../../Common/utils/SortingDataUtils';
+
+import { EachMyRequestFetchType, FormDataRequestType } from '../types';
+import MyRequestModal from '../Modals/MyRequestModal';
 
 class MyRequestsStore {
   @observable getMyRequestsDataAPIStatus!: APIStatus;

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import Header from '../../../../Common/components/Header';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
-import { inject, observer } from 'mobx-react';
+
+import Header from '../../../../Common/components/Header';
+
 import MyRequestsStore from '../../../stores/MyRequestsStore';
 import RequestDetails from '../../../components/MyRequests/RequestDetails';
+
+import { RequestDetailsContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -33,9 +37,10 @@ export class RequestDetailedPage extends Component<Props> {
       this.requestingStatus = pathParameters[pathParameters.length - 2];
       this.requestingId = pathParameters[pathParameters.length - 1];
     }
+
     const { myRequestsStore, history } = this.props;
     return (
-      <div>
+      <RequestDetailsContainer>
         <Header />
         <RequestDetails
           history={history}
@@ -43,7 +48,7 @@ export class RequestDetailedPage extends Component<Props> {
           requestingId={this.requestingId}
           myRequestsStore={myRequestsStore}
         />
-      </div>
+      </RequestDetailsContainer>
     );
   }
 }

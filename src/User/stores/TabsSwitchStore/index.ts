@@ -1,10 +1,12 @@
 import { observable, action } from 'mobx';
 
+import { initialTabStatus } from '../../constants/TabStatusConstants';
+
 class TabsSwitchStore {
   @observable tabStatus: string;
 
   constructor() {
-    this.tabStatus = 'My Resources';
+    this.tabStatus = initialTabStatus;
   }
 
   @action.bound

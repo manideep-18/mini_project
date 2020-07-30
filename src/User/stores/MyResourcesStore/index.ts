@@ -1,19 +1,22 @@
 import { MyResourceFetchService } from '../../services/MyResourcesFetchService';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
-import { EachMyResourceFetchType } from '../types';
-import { observable, action, toJS, computed } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
-import MyResourceModal from '../Modals/MyResourceModal';
+import { observable, action, computed } from 'mobx';
+
 import { camelCase } from '../../../Common/utils/StringConversionUtils';
+import {
+  ascendingOrderAlphabetical,
+  descendingOrderAlphabetical,
+} from '../../../Common/utils/SortingDataUtils';
+
 import {
   userInitialSortStatus,
   ascendingSort,
   descendingSort,
 } from '../../constants/SortFilterConstants';
-import {
-  ascendingOrderAlphabetical,
-  descendingOrderAlphabetical,
-} from '../../../Common/utils/SortingDataUtils';
+
+import { EachMyResourceFetchType } from '../types';
+import MyResourceModal from '../Modals/MyResourceModal';
 
 class MyResourcesStore {
   @observable getMyResourcesDataAPIStatus!: APIStatus;

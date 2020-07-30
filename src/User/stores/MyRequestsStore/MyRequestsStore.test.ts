@@ -1,8 +1,9 @@
 import MyRequestsFetchServiceFixture from '../../services/MyRequestsFetchService/index.fixture';
 import { ascendingSort } from '../../constants/SortFilterConstants';
 
-import MyRequestsStore from '.';
 import MyRequestModal from '../Modals/MyRequestModal';
+
+import MyRequestsStore from '.';
 
 const myRequestsStore = new MyRequestsStore(
   new MyRequestsFetchServiceFixture()

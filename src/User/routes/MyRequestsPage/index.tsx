@@ -4,11 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 
 import Header from '../../../Common/components/Header';
+
 import TabsSwitchStore from '../../stores/TabsSwitchStore';
 import LandingSection from '../../components/MyRequests/LandingSection';
+import MyRequestsStore from '../../stores/MyRequestsStore';
 
 import { MainContainer } from './styledComponents';
-import MyRequestsStore from '../../stores/MyRequestsStore';
 
 interface Props {
   history: History;

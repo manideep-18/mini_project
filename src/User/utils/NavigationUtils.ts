@@ -1,5 +1,7 @@
 import { History } from 'history';
 
+import { USER_MY_REQUESTS_PAGE } from '../../Common/constants/RouteConstants';
+
 export function goToUserTabActivePage(
   history: History,
   tabActive: string
@@ -8,7 +10,7 @@ export function goToUserTabActivePage(
 }
 
 export function goToUserMyRequestsPage(history: History): void {
-  history.push(`/user/my-requests`);
+  history.push(USER_MY_REQUESTS_PAGE);
 }
 
 export function goToUserRequestingPage(

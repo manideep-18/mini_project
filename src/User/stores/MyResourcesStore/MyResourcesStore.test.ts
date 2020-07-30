@@ -1,7 +1,7 @@
 import MyResourcesFetchServiceFixture from '../../services/MyResourcesFetchService/index.fixture';
+import { ascendingSort } from '../../constants/SortFilterConstants';
 
 import MyResourcesStore from '.';
-import { ascendingSort } from '../../constants/SortFilterConstants';
 
 const myResourcesStore = new MyResourcesStore(
   new MyResourcesFetchServiceFixture()

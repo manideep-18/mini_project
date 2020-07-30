@@ -62,32 +62,31 @@ export class RequestDetails extends Component<Props> {
       getMyRequestRejectedDataAPIStatus,
       getMyRequestPendingDataAPIStatus,
       getMyRequestAcceptDataAPIStatus,
+      requestDataFetched,
     } = myRequestsStore;
     return (
-      <div>
-        <ResponsiveContainer>
-          <BackButton
-            backLinkText={USER_MY_REQUESTS_PAGE}
-            backText='Requests page'
-          />
-          <FormContainer>
-            <LoadingWrapper
-              apiStatus={
-                getMyRequestRejectedDataAPIStatus ||
-                getMyRequestPendingDataAPIStatus ||
-                getMyRequestAcceptDataAPIStatus
-              }
-              onRetry={this.handleRetry}
-            >
-              <RequestingFormFields
-                requestingStatus={requestingStatus}
-                myRequestsStore={myRequestsStore}
-                onSubmitClick={this.handleSubmitClick}
-              />
-            </LoadingWrapper>
-          </FormContainer>
-        </ResponsiveContainer>
-      </div>
+      <ResponsiveContainer>
+        <BackButton
+          backLinkText={USER_MY_REQUESTS_PAGE}
+          backText='Requests page'
+        />
+        <FormContainer>
+          <LoadingWrapper
+            apiStatus={
+              getMyRequestRejectedDataAPIStatus ||
+              getMyRequestPendingDataAPIStatus ||
+              getMyRequestAcceptDataAPIStatus
+            }
+            onRetry={this.handleRetry}
+          >
+            <RequestingFormFields
+              requestingStatus={requestingStatus}
+              requestDataFetched={requestDataFetched}
+              onSubmitClick={this.handleSubmitClick}
+            />
+          </LoadingWrapper>
+        </FormContainer>
+      </ResponsiveContainer>
     );
   }
 }

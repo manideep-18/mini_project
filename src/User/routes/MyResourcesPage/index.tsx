@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { MainContainer } from './styledComponents';
-import Header from '../../../Common/components/Header';
-import LandingSection from '../../components/MyResources/LandingSection';
-import { inject, observer } from 'mobx-react';
-import TabsSwitchStore from '../../stores/TabsSwitchStore';
-import { withRouter } from 'react-router-dom';
 import { History } from 'history';
+import { withRouter } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
+
+import Header from '../../../Common/components/Header';
+
+import LandingSection from '../../components/MyResources/LandingSection';
+import TabsSwitchStore from '../../stores/TabsSwitchStore';
 import MyResourcesStore from '../../stores/MyResourcesStore';
+
+import { MainContainer } from './styledComponents';
 
 interface Props {
   history: History;
