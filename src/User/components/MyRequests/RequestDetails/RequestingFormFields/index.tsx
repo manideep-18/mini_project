@@ -35,15 +35,15 @@ interface Props {
 @observer
 export class RequestingFormFields extends Component<Props> {
   @observable remarks: string;
-  @observable resourceNameSelected: Option;
-  @observable itemNameSelected: Option;
-  @observable accessLevelSelected: Option;
+  @observable resourceNameSelected: any;
+  @observable itemNameSelected: any;
+  @observable accessLevelSelected: any;
 
   constructor(props: Props) {
     super(props);
-    this.accessLevelSelected = { label: '', value: '' };
-    this.resourceNameSelected = { label: '', value: '' };
-    this.itemNameSelected = { label: '', value: '' };
+    this.accessLevelSelected = '';
+    this.resourceNameSelected = '';
+    this.itemNameSelected = '';
     this.remarks = '';
   }
 
@@ -105,6 +105,7 @@ export class RequestingFormFields extends Component<Props> {
                 options={resourceNameOptions}
                 selectedOption={this.resourceNameSelected}
                 onChange={this.handleResourceNameOptions}
+                placeholder='Select One Option'
               />
             )}
             {item !== '' ? (
@@ -115,6 +116,7 @@ export class RequestingFormFields extends Component<Props> {
                 options={itemOptions}
                 selectedOption={this.itemNameSelected}
                 onChange={this.handleItemNameOptions}
+                placeholder='Select One Option'
               />
             )}
             {access !== '' ? (
@@ -129,6 +131,7 @@ export class RequestingFormFields extends Component<Props> {
                 options={accessLevelOptions}
                 selectedOption={this.accessLevelSelected}
                 onChange={this.handleAccessLevelOptions}
+                placeholder='Select One Option'
               />
             )}
             {remarks !== '' ? (

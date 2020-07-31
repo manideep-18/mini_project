@@ -18,7 +18,7 @@ interface Props {
   placeholder?: string;
   isDisabled?: boolean;
   onChange: (value: Option) => void;
-  selectedOption: Option;
+  selectedOption: any;
 }
 
 class CustomizedSelectWithLabel extends Component<Props> {
