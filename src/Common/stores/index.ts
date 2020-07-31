@@ -10,6 +10,8 @@ import MyRequestsFetchServiceFixture from '../../User/services/MyRequestsFetchSe
 import MyRequestsStore from '../../User/stores/MyRequestsStore';
 import MyResourcesStore from '../../User/stores/MyResourcesStore';
 import MyResourcesFetchServiceFixture from '../../User/services/MyResourcesFetchService/index.fixture';
+import UserStore from '../../UserProfile/stores/UserStore';
+import UserServiceFixture from '../../UserProfile/services/UserService/index.fixture';
 
 const tabsStore = new TabsStore();
 
@@ -29,6 +31,8 @@ const myResourcesStore = new MyResourcesStore(
   new MyResourcesFetchServiceFixture()
 );
 
+const userStore = new UserStore(new UserServiceFixture());
+
 export default {
   tabsStore,
   resourcesStore,
@@ -37,4 +41,5 @@ export default {
   tabsSwitchStore,
   myRequestsStore,
   myResourcesStore,
+  userStore,
 };

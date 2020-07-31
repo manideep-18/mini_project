@@ -20,7 +20,7 @@ interface Props {
 
 @inject('tabsStore', 'usersStore')
 @observer
-export class HomePage extends Component<Props> {
+export class UsersHomePage extends Component<Props> {
   render() {
     const { tabsStore, usersStore, history } = this.props;
     return (
@@ -36,4 +36,4 @@ export class HomePage extends Component<Props> {
   }
 }
 
-export default withRouter(HomePage);
+export default withRouter(UsersHomePage);

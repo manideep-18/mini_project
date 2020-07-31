@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Homepage from '../../Admin/routes/Resources/Homepage';
+import ResourcesHomepage from '../../Admin/routes/Resources/Homepage';
 import AddResourcePage from '../../Admin/routes/Resources/AddResourcePage';
 import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPage';
 import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
 import RequestsHomePage from '../../Admin/routes/Requests/RequestsHomePage';
-import HomePage from '../../Admin/routes/Users/HomePage';
+import UsersHomePage from '../../Admin/routes/Users/HomePage';
 
 import Header from '../components/Header';
 import {
   REQUESTS_PAGE,
-  USERS_PAGE,
+  ADMIN_USERS_PAGE,
   ADMIN_EACH_USER_PAGE,
   USER_MY_REQUESTS_PAGE,
   USER_MY_RESOURCES_PAGE,
   USER_REQUESTING_PAGE,
+  HOME_PAGE,
 } from '../constants/RouteConstants';
 import UserDetailsPage from '../../Admin/routes/Users/UserDetailsPage';
 import MyRequestsPage from '../../User/routes/MyRequestsPage';
 import { MyResourcesPage } from '../../User/routes/MyResourcesPage';
 import { RequestDetailedPage } from '../../User/routes/MyRequestsPage/RequestDetailedPage';
+import HomePage from '../../UserProfile/routes/HomePage';
 
 export class Routes extends Component {
   render() {
@@ -28,10 +30,14 @@ export class Routes extends Component {
       <div>
         <Router>
           <Switch>
-            <Route exact path='/' component={Header} />
+            <Route exact path={HOME_PAGE} component={HomePage} />
 
             <Route exact path='/admin/' component={Header} />
-            <Route exact path='/admin/resources' component={Homepage} />
+            <Route
+              exact
+              path='/admin/resources'
+              component={ResourcesHomepage}
+            />
             <Route
               exact
               path='/admin/resources/add-resource'
@@ -48,7 +54,7 @@ export class Routes extends Component {
               component={AddItemPage}
             />
             <Route exact path={REQUESTS_PAGE} component={RequestsHomePage} />
-            <Route exact path={USERS_PAGE} component={HomePage} />
+            <Route exact path={ADMIN_USERS_PAGE} component={UsersHomePage} />
             <Route
               exact
               path={ADMIN_EACH_USER_PAGE}
