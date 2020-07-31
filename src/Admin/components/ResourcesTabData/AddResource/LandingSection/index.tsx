@@ -5,10 +5,10 @@ import { observer, inject } from 'mobx-react';
 
 import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
-import { goToAdminPage } from '../../../../../Common/utils/NavigationUtils';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
 import { EachResourceFetchType } from '../../../../stores/types';
+import { goToAdminHomeResourcesPage } from '../../../../utils/NavigationUtils';
 
 import AddResourceFields from './AddResourceFields';
 import { LogoImage, FieldsImageContainer } from './styledComponents';
@@ -34,7 +34,7 @@ class LandingSection extends Component<Props> {
 
   onSuccess = () => {
     const { history } = this.props;
-    goToAdminPage(history);
+    goToAdminHomeResourcesPage(history);
   };
 
   onAddResource = (name: string, link: string, description: string) => {

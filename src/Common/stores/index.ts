@@ -12,6 +12,8 @@ import MyResourcesStore from '../../User/stores/MyResourcesStore';
 import MyResourcesFetchServiceFixture from '../../User/services/MyResourcesFetchService/index.fixture';
 import UserStore from '../../UserProfile/stores/UserStore';
 import UserServiceFixture from '../../UserProfile/services/UserService/index.fixture';
+import AuthServiceFixture from '../../Admin/services/AuthService/index.fixture';
+import AuthStore from '../../Admin/stores/AuthStore';
 
 const tabsStore = new TabsStore();
 
@@ -33,6 +35,8 @@ const myResourcesStore = new MyResourcesStore(
 
 const userStore = new UserStore(new UserServiceFixture());
 
+const adminAuthStore = new AuthStore(new AuthServiceFixture());
+
 export default {
   tabsStore,
   resourcesStore,
@@ -42,4 +46,5 @@ export default {
   myRequestsStore,
   myResourcesStore,
   userStore,
+  adminAuthStore,
 };

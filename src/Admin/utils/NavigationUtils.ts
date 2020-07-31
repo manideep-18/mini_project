@@ -1,5 +1,9 @@
 import { History } from 'history';
 
+export function goToAdminHomeResourcesPage(history: History): void {
+  history.push(`/admin/resources`);
+}
+
 export function goToAdminResourcePage(history: History, id: string): void {
   history.push(`/admin/resources/${id}`);
 }

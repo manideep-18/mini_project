@@ -65,3 +65,12 @@ export interface userItemRequestType {
 export interface resourceItemsDeleteRequestType {
   id: number;
 }
+
+export interface LoginOrRegisterRequest {
+  user_name: string;
+  user_password: string;
+}
+
+export interface LoginOrRegisterResponse {
+  is_admin_logged_in: boolean;
+}

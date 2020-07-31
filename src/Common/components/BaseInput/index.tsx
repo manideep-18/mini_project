@@ -4,7 +4,8 @@ import { Input } from './styledComponents';
 
 interface Props {
   id: string;
-  onChange: any;
+  type?: string;
+  onChange: (value: string) => void;
   className?: any;
   value: any;
   placeholder?: string;
@@ -15,6 +16,7 @@ class BaseInput extends React.Component<Props> {
   static defaultProps = {
     id: 'textInput',
     value: '',
+    type: 'text',
   };
 
   handleChange = (event: any) => {
@@ -25,6 +27,7 @@ class BaseInput extends React.Component<Props> {
   render() {
     const {
       id,
+      type,
       onChange,
       className,
       value,
@@ -35,7 +38,7 @@ class BaseInput extends React.Component<Props> {
     return (
       <Input
         data-testid={id}
-        type='text'
+        type={type}
         disabled={disabled}
         placeholder={placeholder}
         value={value}

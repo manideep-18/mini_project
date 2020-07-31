@@ -23,6 +23,7 @@ import MyRequestsPage from '../../User/routes/MyRequestsPage';
 import { MyResourcesPage } from '../../User/routes/MyResourcesPage';
 import { RequestDetailedPage } from '../../User/routes/MyRequestsPage/RequestDetailedPage';
 import HomePage from '../../UserProfile/routes/HomePage';
+import LoginPage from '../../Admin/routes/LoginPage';
 
 export class Routes extends Component {
   render() {
@@ -32,7 +33,7 @@ export class Routes extends Component {
           <Switch>
             <Route exact path={HOME_PAGE} component={HomePage} />
 
-            <Route exact path='/admin/' component={Header} />
+            <Route exact path='/admin/' component={LoginPage} />
             <Route
               exact
               path='/admin/resources'
