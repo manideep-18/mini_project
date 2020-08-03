@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AriaModal from 'react-aria-modal';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
 import {
   TextButtonsContainer,
@@ -11,8 +13,6 @@ import {
   TextAndTextAreaContainer,
   RejectionTextArea,
 } from './styledComponents';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 interface Props {
   isRejectActive?: boolean;
@@ -31,24 +31,40 @@ class CustomModal extends Component<Props> {
     onCancelClick: () => {},
   };
 
-  onCancelButtonClick = () => {
+  onCancelButtonClick = (): void => {
     const { onCancelClick } = this.props;
     onCancelClick();
   };
 
-  onOkButtonClick = () => {
+  onOkButtonClick = (): void => {
     const { onOkClick } = this.props;
     if (onOkClick) onOkClick();
   };
 
-  onRejectButtonClick = () => {
+  onRejectButtonClick = (): void => {
     const { onRejectClick } = this.props;
     if (onRejectClick) onRejectClick();
   };
 
-  handleChangeRejectionText = (value: string) => {};
+  handleChangeRejectionText = (value: string): void => {};
 
-  render() {
+  renderRejectionTextArea = (): React.ReactNode => {
+    const { isRejectActive } = this.props;
+    if (isRejectActive) {
+      return (
+        <TextAndTextAreaContainer>
+          <RejectionText>Reason for rejection</RejectionText>
+          <RejectionTextArea
+            value={this.rejectionText}
+            onChange={this.handleChangeRejectionText}
+          />
+        </TextAndTextAreaContainer>
+      );
+    }
+    return null;
+  };
+
+  render(): React.ReactNode {
     const { modalStatus, isRejectActive } = this.props;
     return (
       <AriaModal
@@ -61,15 +77,7 @@ class CustomModal extends Component<Props> {
           <AcceptText>{`Do you want ${
             isRejectActive ? 'Reject' : 'accept'
           } ?`}</AcceptText>
-          {isRejectActive && (
-            <TextAndTextAreaContainer>
-              <RejectionText>Reason for rejection</RejectionText>
-              <RejectionTextArea
-                value={this.rejectionText}
-                onChange={this.handleChangeRejectionText}
-              />
-            </TextAndTextAreaContainer>
-          )}
+          {this.renderRejectionTextArea()}
           <ButtonsContainer>
             <CancelButton
               id=''

@@ -54,7 +54,11 @@ class LoginFieldsSection extends Component<Props> {
             value={this.password}
             onChange={this.handlePasswordChange}
           />
-          <LoginButton buttonText='Login' onClick={this.handleLogin} />
+          <LoginButton
+            id='loginButton'
+            buttonText='Login'
+            onClick={this.handleLogin}
+          />
         </FieldsContainer>
       </ResponsiveContainer>
     );

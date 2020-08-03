@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { History } from 'history';
+import { inject, observer } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
 
-import { MainContainer } from './styledComponents';
 import Header from '../../../Common/components/Header';
 import LoginFieldsSection from '../../../Common/components/LoginFieldsSection';
-import { inject, observer } from 'mobx-react';
-import AuthStore from '../../stores/AuthStore';
-import { withRouter } from 'react-router-dom';
-import { goToAdminHomeResourcesPage } from '../../utils/NavigationUtils';
 import LoadingWrapper from '../../../Common/components/LoadingWrapper';
+
+import AuthStore from '../../stores/AuthStore';
+import { goToAdminHomeResourcesPage } from '../../utils/NavigationUtils';
+
+import { MainContainer } from './styledComponents';
 
 interface Props {
   history: History;
