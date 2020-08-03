@@ -8,6 +8,7 @@ import { inject, observer } from 'mobx-react';
 import AuthStore from '../../stores/AuthStore';
 import { withRouter } from 'react-router-dom';
 import { goToAdminHomeResourcesPage } from '../../utils/NavigationUtils';
+import LoadingWrapper from '../../../Common/components/LoadingWrapper';
 
 interface Props {
   history: History;
@@ -31,10 +32,17 @@ class LoginPage extends Component<Props> {
   };
 
   render() {
+    const { adminAuthStore } = this.props;
+    const { loginOrRegisterAPIStatus } = adminAuthStore;
     return (
       <MainContainer id='loginPage'>
         <Header />
-        <LoginFieldsSection onLoginClick={this.handleLoginClick} />
+        <LoadingWrapper
+          apiStatus={loginOrRegisterAPIStatus}
+          onRetry={this.handleLoginClick}
+        >
+          <LoginFieldsSection onLoginClick={this.handleLoginClick} />
+        </LoadingWrapper>
       </MainContainer>
     );
   }
