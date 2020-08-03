@@ -51,6 +51,10 @@ export interface EachUserItemsListDataType {
   link: string;
 }
 
+export interface SearchRequestType {
+  search_request_text: string;
+}
+
 export interface EachUserDataFetchType {
   person_name: string;
   department: string;

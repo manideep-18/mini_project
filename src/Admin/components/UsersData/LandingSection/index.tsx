@@ -9,6 +9,7 @@ import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWit
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
 import {
   usersSortConstants,
@@ -40,8 +41,6 @@ class LandingSection extends Component<Props> {
     window.location.reload();
   };
 
-  handleSearchEnter = (): void => {};
-
   handleSortTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setSortType(value);
@@ -52,12 +51,18 @@ class LandingSection extends Component<Props> {
     usersStore.setFilterType(value);
   };
 
+  onSuccess = () => {};
+
   handleRetry = (): void => {
     const { usersStore } = this.props;
     usersStore.getUsersDataAPI(this.onSuccess);
   };
 
-  onSuccess = () => {};
+  handleSearchEnter = (value: string): void => {
+    const { usersStore } = this.props;
+    const request = { search_request_text: value };
+    usersStore.getSearchUsersDataAPI(request, this.onSuccess);
+  };
 
   componentDidMount() {
     const { tabsStore, usersStore } = this.props;
@@ -69,7 +74,7 @@ class LandingSection extends Component<Props> {
   render(): React.ReactNode {
     const { tabsStore, usersStore, history } = this.props;
     const { tabStatus } = tabsStore;
-    const { getUsersDataAPIStatus } = usersStore;
+    const { getUsersDataAPIStatus, getSearchUsersDataAPIStatus } = usersStore;
     return (
       <LandingMainContainer>
         <TabsSwitch
@@ -88,7 +93,10 @@ class LandingSection extends Component<Props> {
           />
           <LoadingWrapper
             onRetry={this.handleRetry}
-            apiStatus={getUsersDataAPIStatus}
+            apiStatus={getLoadingStatus(
+              getUsersDataAPIStatus,
+              getSearchUsersDataAPIStatus
+            )}
           >
             <BaseTableWithoutCheckbox
               id='Person Name'

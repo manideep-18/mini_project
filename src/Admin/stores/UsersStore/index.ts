@@ -14,13 +14,19 @@ import {
   userInitialSortStatus,
 } from '../../constants/SortFilterConstants';
 
-import { EachUserDataFetchType, userItemRequestType } from '../types';
+import {
+  EachUserDataFetchType,
+  userItemRequestType,
+  SearchRequestType,
+} from '../types';
 import UserModal from '../Modals/UserModal';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;
   @observable getUsersDataAPIError!: any;
   @observable usersDataFetched!: UserModal[];
+  @observable getSearchUsersDataAPIStatus!: APIStatus;
+  @observable getSearchUsersDataAPIError!: any;
   @observable sortType!: string;
   @observable filterType!: string;
   @observable getUserItemDataAPIStatus!: APIStatus;
@@ -40,6 +46,8 @@ class UsersStore {
   init() {
     this.getUsersDataAPIStatus = API_INITIAL;
     this.getUsersDataAPIError = '';
+    this.getSearchUsersDataAPIStatus = API_INITIAL;
+    this.getSearchUsersDataAPIError = '';
     this.getUserItemDataAPIStatus = API_INITIAL;
     this.getUserItemDataAPIError = '';
     this.sortType = '';
@@ -79,6 +87,36 @@ class UsersStore {
       })
       .catch((err) => {
         this.setGetUsersDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSearchUsersDataAPIStatus(status: APIStatus) {
+    this.getSearchUsersDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchUsersDataAPIError(error: any) {
+    this.getSearchUsersDataAPIError = error;
+  }
+
+  getSearchUsersDataAPI(
+    request: SearchRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchUsersDataPromise = this.usersFetchService.getSearchUsersData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getSearchUsersDataPromise)
+      .to(this.setGetSearchUsersDataAPIStatus, (response) => {
+        this.setGetUsersDataAPIResponse(response as EachUserDataFetchType[]);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchUsersDataAPIError(err);
         onFailure();
       });
   }
