@@ -1,8 +1,9 @@
 import { observable, action } from 'mobx';
-import AuthService from '../../services/AuthService';
-import { LoginOrRegisterResponse, LoginOrRegisterRequest } from '../types';
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
+
+import AuthService from '../../services/AuthService';
+import { LoginOrRegisterResponse, LoginOrRegisterRequest } from '../types';
 
 class AuthStore {
   @observable loginOrRegisterAPIStatus!: APIStatus;

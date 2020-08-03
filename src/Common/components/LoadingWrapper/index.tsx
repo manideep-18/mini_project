@@ -27,7 +27,7 @@ class LoadingWrapper extends React.Component<Props> {
     failureText: 'page not found',
   };
 
-  renderData = () => {
+  renderData = (): React.ReactNode => {
     const {
       apiStatus,
       children,

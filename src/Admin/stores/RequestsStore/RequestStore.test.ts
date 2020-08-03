@@ -1,8 +1,8 @@
-import RequestsStore from '.';
-
 import RequestsFetchServiceFixture from '../../services/RequestsFetchService/index.fixture';
 
 import { onAcceptRequestsDataRequestType } from '../types';
+
+import RequestsStore from '.';
 
 const requestsStore = new RequestsStore(new RequestsFetchServiceFixture());
 

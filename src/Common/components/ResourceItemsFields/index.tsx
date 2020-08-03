@@ -40,26 +40,26 @@ class ResourceItemsFields extends Component<Props> {
     this.description = '';
   };
 
-  handleClick = () => {
+  handleClick = (): void => {
     const { onAddItemToResource, resourceName } = this.props;
 
     if (this.name && this.link && this.description && resourceName)
       onAddItemToResource(this.name, resourceName, this.link, this.description);
   };
 
-  handleNameInputChange = (value: string) => {
+  handleNameInputChange = (value: string): void => {
     this.name = value;
   };
 
-  handleResourceNameInputChange = (value: string) => {
+  handleResourceNameInputChange = (value: string): void => {
     this.resourceName = value;
   };
 
-  handleLinkInputChange = (value: string) => {
+  handleLinkInputChange = (value: string): void => {
     this.link = value;
   };
 
-  handleDescriptionInputChange = (value: string) => {
+  handleDescriptionInputChange = (value: string): void => {
     this.description = value;
   };
 

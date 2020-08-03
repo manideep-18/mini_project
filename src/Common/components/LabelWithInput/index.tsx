@@ -10,7 +10,7 @@ import {
 interface Props {
   id?: string;
   labelText: string;
-  onChange: any;
+  onChange: (value: string) => void;
   value: string;
   isTextArea?: boolean;
   disabled?: boolean;

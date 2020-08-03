@@ -46,7 +46,7 @@ class BaseTable extends Component<Props> {
     ],
   };
 
-  renderHeaderRow = () => {
+  renderHeaderRow = (): React.ReactNode => {
     const { headerArray } = this.props;
 
     return headerArray.map((eachHeader) => (
@@ -54,7 +54,7 @@ class BaseTable extends Component<Props> {
     ));
   };
 
-  renderDataRows = () => {
+  renderDataRows = (): React.ReactNode => {
     const { headerArray, dataArray, onChangeCheckbox } = this.props;
 
     return dataArray.map((eachData) => (

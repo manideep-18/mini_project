@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+
+import { camelCase } from '../../utils/StringConversionUtils';
+
 import {
   CustomTable,
   CustomRow,
@@ -7,10 +11,6 @@ import {
   CustomTableHeader,
   CustomTableBody,
 } from './styledComponents';
-
-import { observer } from 'mobx-react';
-
-import { camelCase } from '../../utils/StringConversionUtils';
 
 interface Props {
   id: string;
@@ -43,7 +43,7 @@ class BaseTableWithoutCheckbox extends Component<Props> {
     ],
   };
 
-  renderHeaderRow = () => {
+  renderHeaderRow = (): React.ReactNode => {
     const { headerArray } = this.props;
 
     return headerArray.map((eachHeader) => (
@@ -51,7 +51,7 @@ class BaseTableWithoutCheckbox extends Component<Props> {
     ));
   };
 
-  renderDataRows = () => {
+  renderDataRows = (): React.ReactNode => {
     const { headerArray, dataArray, id, onClickItemCard } = this.props;
 
     return dataArray.map((eachData) => (

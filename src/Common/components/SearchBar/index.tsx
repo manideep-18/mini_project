@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
 import { CustomSearchBar } from './styledComponents';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 interface Props {
   id?: string;
@@ -25,11 +25,11 @@ class SearchBar extends Component<Props> {
     this.searchValue = '';
   }
 
-  handleChange = (event: any) => {
+  handleChange = (event: any): void => {
     this.searchValue = event.target.value;
   };
 
-  handleKeyUp = (event: any) => {
+  handleKeyUp = (event: any): void => {
     const { onEnterPress } = this.props;
 
     if (event.key === 'Enter') {
