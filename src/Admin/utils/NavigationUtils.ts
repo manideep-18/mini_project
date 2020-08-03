@@ -21,10 +21,6 @@ export function navigateToResourceAddItemPage(
   history.push(`${ADMIN_RESOURCES_PAGE}/${id}/add-item`);
 }
 
-export function goToRequestsPage(history: History): void {
-  history.push(`/requests`);
-}
-
 export function goToTabActivePage(history: History, tabActive: string): void {
   history.push(`${ADMIN_HOME_PAGE}/${tabActive}`);
 }
