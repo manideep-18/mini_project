@@ -6,13 +6,14 @@ import ResponsiveContainer from '../../../../Common/components/ResponsiveContain
 import { nameSpacesConversion } from '../../../../Common/utils/StringConversionUtils';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
-import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
 import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import TabsSection from '../../../common/Components/TabsSection';
 import MyResourcesStore from '../../../stores/MyResourcesStore';
+import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import {
   userSortConstants,
   userFilterConstants,
@@ -50,6 +51,11 @@ export class LandingSection extends Component<Props> {
 
   onSuccess = (): void => {};
 
+  handleSearchEnter = (value: string): void => {
+    const { myResourcesStore } = this.props;
+    myResourcesStore.getSearchMyResourcesDataAPI(this.onSuccess);
+  };
+
   handleRetry = (): void => {
     const { myResourcesStore } = this.props;
 
@@ -68,6 +74,7 @@ export class LandingSection extends Component<Props> {
     const {
       sortedDataWithFiltered,
       getMyResourcesDataAPIStatus,
+      getSearchMyResourcesDataAPIStatus,
     } = myResourcesStore;
 
     return (
@@ -78,7 +85,7 @@ export class LandingSection extends Component<Props> {
             onTabStatusChanged={this.handleTabStatusChange}
           />
           <SearchAndFilterAndButtons
-            onSearchEnter={() => {}}
+            onSearchEnter={this.handleSearchEnter}
             checkedItemsLength={0}
             onSortStatusUpdate={this.handleSortTypeUpdate}
             onFilterStatusUpdate={this.handleFilterTypeUpdate}
@@ -86,7 +93,10 @@ export class LandingSection extends Component<Props> {
             filterConstants={userFilterConstants}
           />
           <LoadingWrapper
-            apiStatus={getMyResourcesDataAPIStatus}
+            apiStatus={getLoadingStatus(
+              getMyResourcesDataAPIStatus,
+              getSearchMyResourcesDataAPIStatus
+            )}
             onRetry={this.handleRetry}
           >
             <BaseTableWithoutCheckbox

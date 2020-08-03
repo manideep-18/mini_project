@@ -12,6 +12,7 @@ import MyRequestsStore from '../../../stores/MyRequestsStore';
 
 import RequestingFormFields from './RequestingFormFields';
 import { FormContainer } from './styledComponents';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
 interface Props {
   history: History;
@@ -22,7 +23,7 @@ interface Props {
 
 @observer
 export class RequestDetails extends Component<Props> {
-  handleSubmitClick = () => {
+  handleSubmitClick = (): void => {
     const { history } = this.props;
     goToUserMyRequestsPage(history);
   };
@@ -68,11 +69,11 @@ export class RequestDetails extends Component<Props> {
         />
         <FormContainer>
           <LoadingWrapper
-            apiStatus={
-              getMyRequestRejectedDataAPIStatus ||
-              getMyRequestPendingDataAPIStatus ||
+            apiStatus={getLoadingStatus(
+              getMyRequestRejectedDataAPIStatus,
+              getMyRequestPendingDataAPIStatus,
               getMyRequestAcceptDataAPIStatus
-            }
+            )}
             onRetry={this.handleRetry}
           >
             <RequestingFormFields

@@ -1,0 +1,26 @@
+[
+  {
+    "resource": "Zeplin",
+    "item": "Gyan",
+    "access": "Read",
+    "link": "Lorem ipsum dolor sit amet, consec"
+  },
+  {
+    "resource": "Zeplin",
+    "item": "Slot Booking",
+    "access": "Write",
+    "link": "Lorem ipsum dolor sit amet, consec"
+  },
+  {
+    "resource": "Git Hub",
+    "item": "Essentials Kit",
+    "access": "Write",
+    "link": "Lorem ipsum dolor sit amet, consec"
+  },
+  {
+    "resource": "Git Hub",
+    "item": "Smart Food Management",
+    "access": "Read",
+    "link": "Lorem ipsum dolor sit amet, consec"
+  }
+]

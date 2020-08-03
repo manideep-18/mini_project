@@ -22,19 +22,19 @@ interface Props {
 
 @observer
 class HeadingButtonsSection extends Component<Props> {
-  onSuccess = () => {
+  onSuccess = (): void => {
     const { userStore, history } = this.props;
     const { profileStatus } = userStore;
     goToProfileStatusPage(history, profileStatus);
   };
 
-  handleAdminClick = () => {
+  handleAdminClick = (): void => {
     const { userStore } = this.props;
     const request = { profile_request_type: 'Admin' };
     userStore.getUserProfileAPI(request, this.onSuccess);
   };
 
-  handleUserClick = () => {
+  handleUserClick = (): void => {
     const { userStore } = this.props;
     const request = { profile_request_type: 'User' };
     userStore.getUserProfileAPI(request, this.onSuccess);

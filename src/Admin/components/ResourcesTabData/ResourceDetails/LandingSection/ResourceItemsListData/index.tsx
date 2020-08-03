@@ -6,6 +6,7 @@ import { APIStatus, API_INITIAL } from '@ib/api-constants';
 import BaseTable from '../../../../../../Common/components/BaseTable';
 import LoadingWrapper from '../../../../../../Common/components/LoadingWrapper';
 import { ResourceItemType } from '../../../../../stores/types';
+import { getLoadingStatus } from '../../../../../../Common/utils/APIUtils';
 
 import {
   ButtonsContainer,
@@ -95,7 +96,7 @@ class ResourceItemsListData extends Component<Props> {
     return (
       <ItemsListButtonsContainer>
         <LoadingWrapper
-          apiStatus={onDeleteAPIStatus || onSearchAPIStatus}
+          apiStatus={getLoadingStatus(onDeleteAPIStatus, onSearchAPIStatus)}
           onRetry={this.handleDeleteResourceItems}
         >
           <BaseTable

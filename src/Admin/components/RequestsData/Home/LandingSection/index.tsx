@@ -7,6 +7,7 @@ import ResponsiveContainer from '../../../../../Common/components/ResponsiveCont
 import BaseTable from '../../../../../Common/components/BaseTable';
 import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAndFilterAndButtons';
+import { getLoadingStatus } from '../../../../../Common/utils/APIUtils';
 
 import TabsSwitch from '../../../../common/TabsSwitch';
 import TabsStore from '../../../../stores/TabsStore';
@@ -124,10 +125,10 @@ class LandingSection extends Component<Props> {
                 onAcceptRequests={this.handleAcceptRequests}
               />
               <LoadingWrapper
-                apiStatus={
-                  getSearchRequestsDataAPIStatus ||
+                apiStatus={getLoadingStatus(
+                  getSearchRequestsDataAPIStatus,
                   getOnAcceptRequestsDataAPIStatus
-                }
+                )}
                 onRetry={this.handleRetry}
               >
                 <BaseTable
