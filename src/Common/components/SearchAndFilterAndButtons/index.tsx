@@ -27,6 +27,7 @@ interface Props {
   onFilterStatusUpdate?: (value: string) => void;
   onSearchEnter?: (value: string) => void;
   onAcceptRequests?: () => void;
+  onRejectRequests?: () => void;
   onAcceptRequestsStatus?: APIStatus;
 }
 
@@ -59,7 +60,9 @@ class SearchAndFilterAndButtons extends Component<Props> {
   };
 
   onRejectClick = () => {
+    const { onRejectRequests } = this.props;
     this.rejectModalStatus = false;
+    if (onRejectRequests) onRejectRequests();
   };
 
   handleAcceptModal = () => {

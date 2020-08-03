@@ -81,6 +81,13 @@ class LandingSection extends Component<Props> {
     this.clearItemsChecked();
   };
 
+  handleRejectRequests = (): void => {
+    const { requestsStore } = this.props;
+
+    requestsStore.getOnRejectRequestsDataAPI(this.itemsChecked, this.onSuccess);
+    this.clearItemsChecked();
+  };
+
   handleRetry = (): void => {
     const { requestsStore } = this.props;
     requestsStore.getRequestsDataAPI(this.onSuccess);
@@ -102,6 +109,7 @@ class LandingSection extends Component<Props> {
       getRequestsDataAPIStatus,
       getSearchRequestsDataAPIStatus,
       getOnAcceptRequestsDataAPIStatus,
+      getOnRejectRequestsDataAPIStatus,
     } = requestsStore;
     if (requestsStore.requestsDataFetched) {
       return (
@@ -123,11 +131,13 @@ class LandingSection extends Component<Props> {
                 onSortStatusUpdate={this.handleSortStatusUpdate}
                 onFilterStatusUpdate={this.handleFilterStatusUpdate}
                 onAcceptRequests={this.handleAcceptRequests}
+                onRejectRequests={this.handleRejectRequests}
               />
               <LoadingWrapper
                 apiStatus={getLoadingStatus(
                   getSearchRequestsDataAPIStatus,
-                  getOnAcceptRequestsDataAPIStatus
+                  getOnAcceptRequestsDataAPIStatus,
+                  getOnRejectRequestsDataAPIStatus
                 )}
                 onRetry={this.handleRetry}
               >

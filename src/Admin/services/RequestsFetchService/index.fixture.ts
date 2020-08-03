@@ -6,6 +6,7 @@ import { EachRequestFetchType } from '../../stores/types';
 import requestsDataFetchResponse from '../../fixtures/Requests/requestsDataFetchResponse.json';
 import searchRequestsData from '../../fixtures/Requests/searchRequestsData.json';
 import onAcceptRequestsData from '../../fixtures/Requests/onAcceptRequestsData.json';
+import onRejectRequestsData from '../../fixtures/Requests/onRejectRequestsData.json';
 
 class RequestsFetchServiceFixture implements RequestsFetchService {
   getRequestsData(): Promise<EachRequestFetchType[]> {
@@ -18,6 +19,10 @@ class RequestsFetchServiceFixture implements RequestsFetchService {
 
   getOnAcceptRequestsData(): Promise<EachRequestFetchType[]> {
     return resolveWithTimeout(onAcceptRequestsData);
+  }
+
+  getOnRejectRequestsData(): Promise<EachRequestFetchType[]> {
+    return resolveWithTimeout(onRejectRequestsData);
   }
 }
 

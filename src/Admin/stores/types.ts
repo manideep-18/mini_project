@@ -38,7 +38,7 @@ export interface EachRequestFetchType {
   due_date_time: string;
 }
 
-export interface onAcceptRequestsDataRequestType {
+export interface onAcceptOrRejectRequestsDataRequestType {
   id: number;
 }
 
