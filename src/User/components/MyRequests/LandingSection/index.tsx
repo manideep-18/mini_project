@@ -31,7 +31,7 @@ interface Props {
 
 @observer
 export class LandingSection extends Component<Props> {
-  handleTabStatusChange = (value: string) => {
+  handleTabStatusChange = (value: string): void => {
     const { tabsSwitchStore, history } = this.props;
     const { updateTabStatus } = tabsSwitchStore;
 
@@ -39,19 +39,19 @@ export class LandingSection extends Component<Props> {
     goToUserTabActivePage(history, nameSpacesConversion(value));
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { myRequestsStore } = this.props;
     const { setSortType } = myRequestsStore;
     setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { myRequestsStore } = this.props;
     const { setFilterType } = myRequestsStore;
     setFilterType(value);
   };
 
-  handleOnClickItemCard = (value: any) => {
+  handleOnClickItemCard = (value: any): void => {
     const { myRequestsStore, history } = this.props;
     const itemCard = myRequestsStore.myRequestsDataFetched.filter(
       (eachRequest) => eachRequest.id === value
@@ -62,7 +62,7 @@ export class LandingSection extends Component<Props> {
 
   onSuccess = () => {};
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { myRequestsStore } = this.props;
     myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   };

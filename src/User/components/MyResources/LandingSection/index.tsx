@@ -28,7 +28,7 @@ interface Props {
 
 @observer
 export class LandingSection extends Component<Props> {
-  handleTabStatusChange = (value: string) => {
+  handleTabStatusChange = (value: string): void => {
     const { tabsSwitchStore, history } = this.props;
     const { updateTabStatus } = tabsSwitchStore;
 
@@ -36,21 +36,21 @@ export class LandingSection extends Component<Props> {
     goToUserTabActivePage(history, nameSpacesConversion(value));
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { myResourcesStore } = this.props;
     const { setSortType } = myResourcesStore;
     setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { myResourcesStore } = this.props;
     const { setFilterType } = myResourcesStore;
     setFilterType(value);
   };
 
-  onSuccess = () => {};
+  onSuccess = (): void => {};
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { myResourcesStore } = this.props;
 
     myResourcesStore.getMyResourcesDataAPI(this.onSuccess);

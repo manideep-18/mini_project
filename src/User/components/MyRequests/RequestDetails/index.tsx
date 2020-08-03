@@ -27,7 +27,9 @@ export class RequestDetails extends Component<Props> {
     goToUserMyRequestsPage(history);
   };
 
-  handleRetry = () => {
+  onSuccess = (): void => {};
+
+  handleRequestingStatus = (): void => {
     const { myRequestsStore, requestingId, requestingStatus } = this.props;
     const request = { request_id: requestingId };
     switch (requestingStatus) {
@@ -42,22 +44,14 @@ export class RequestDetails extends Component<Props> {
     }
   };
 
-  onSuccess = () => {};
+  handleRetry = (): void => {
+    this.handleRequestingStatus();
+  };
 
   componentDidMount() {
-    const { myRequestsStore, requestingId, requestingStatus } = this.props;
-    const request = { request_id: requestingId };
-    switch (requestingStatus) {
-      case 'Rejected':
-        myRequestsStore.getMyRequestRejectedDataAPI(request, this.onSuccess);
-        break;
-      case 'Pending':
-        myRequestsStore.getMyRequestPendingDataAPI(request, this.onSuccess);
-        break;
-      default:
-        myRequestsStore.getMyRequestAcceptDataAPI(request, this.onSuccess);
-    }
+    this.handleRequestingStatus();
   }
+
   render(): React.ReactNode {
     const { requestingStatus, myRequestsStore } = this.props;
     const {
