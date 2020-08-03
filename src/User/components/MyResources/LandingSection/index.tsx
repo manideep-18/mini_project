@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { History } from 'history';
-import { ResourcesDetailsContainer } from './styledComponents';
+import { observer } from 'mobx-react';
+
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
-import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import { nameSpacesConversion } from '../../../../Common/utils/StringConversionUtils';
-import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
-import TabsSection from '../../../common/Components/TabsSection';
-import MyResourcesStore from '../../../stores/MyResourcesStore';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
 import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
-import { observer } from 'mobx-react';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+
+import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
+import TabsSwitchStore from '../../../stores/TabsSwitchStore';
+import TabsSection from '../../../common/Components/TabsSection';
+import MyResourcesStore from '../../../stores/MyResourcesStore';
 import {
   userSortConstants,
   userFilterConstants,
 } from '../../../constants/DropdownConstants';
+
+import { ResourcesDetailsContainer } from './styledComponents';
 
 interface Props {
   history: History;

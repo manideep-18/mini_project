@@ -1,7 +1,5 @@
 import {
   EachResourceFetchType,
-  ResourceDetailsFetchResponse,
-  ResourceItemType,
   ResourceDetailsRequestType,
   AddItemToResourceRequestType,
   resourceItemsDeleteRequestType,

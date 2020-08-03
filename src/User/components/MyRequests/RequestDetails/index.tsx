@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { History } from 'history';
-import MyRequestsStore from '../../../stores/MyRequestsStore';
+import { observer } from 'mobx-react';
+
 import BackButton from '../../../../Common/components/BackButton';
 import { USER_MY_REQUESTS_PAGE } from '../../../../Common/constants/RouteConstants';
-
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+
+import { goToUserMyRequestsPage } from '../../../utils/NavigationUtils';
+import MyRequestsStore from '../../../stores/MyRequestsStore';
+
 import RequestingFormFields from './RequestingFormFields';
 import { FormContainer } from './styledComponents';
-import { observer } from 'mobx-react';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import { goToUserMyRequestsPage } from '../../../utils/NavigationUtils';
 
 interface Props {
   history: History;
