@@ -55,7 +55,7 @@ class AddResourceFields extends Component<Props> {
     this.description = value;
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <FieldsContainer>
         <AddResourceText>Add a Resource</AddResourceText>

@@ -39,7 +39,7 @@ class LoginFieldsSection extends Component<Props> {
       onLoginClick(this.userName, this.password);
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <ResponsiveContainer>
         <FieldsContainer>

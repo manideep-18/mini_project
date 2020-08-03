@@ -21,7 +21,7 @@ interface Props {
 @inject('tabsStore', 'usersStore')
 @observer
 export class UsersHomePage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, usersStore, history } = this.props;
     return (
       <MainContainer id='usersHomePage'>

@@ -45,7 +45,7 @@ class TabButton extends React.Component<Props, State> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     const { text } = this.props;
     return (
       <CustomTabButton

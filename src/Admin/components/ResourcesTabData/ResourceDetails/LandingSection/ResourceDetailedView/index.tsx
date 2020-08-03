@@ -18,7 +18,7 @@ interface Props {
 }
 
 class ResourceDetailedView extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { resourceDetailsData } = this.props;
     const { logoImageUrl, name, description, link } = resourceDetailsData;
     return (

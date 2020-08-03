@@ -25,7 +25,7 @@ export class BaseCheckBox extends Component<Props> {
     onChange(eachDataId, this.checkedStatus);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { value } = this.props;
     return (
       <CustomCheckBox

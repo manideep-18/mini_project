@@ -44,7 +44,7 @@ class ResourceDetailsPage extends Component<Props> {
     );
   }
 
-  render() {
+  render(): React.ReactNode {
     const { resourcesStore, history } = this.props;
     return (
       <DetailsPageMainContainer>

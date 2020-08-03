@@ -19,7 +19,7 @@ interface Props {
 @inject('resourcesStore')
 @observer
 class AddItemPage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { resourcesStore, history } = this.props;
     return (
       <ItemPageMainContainer>

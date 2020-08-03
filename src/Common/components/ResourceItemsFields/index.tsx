@@ -63,7 +63,7 @@ class ResourceItemsFields extends Component<Props> {
     this.description = value;
   };
 
-  render() {
+  render(): React.ReactNode {
     const { resourceName } = this.props;
     return (
       <FieldsContainer>

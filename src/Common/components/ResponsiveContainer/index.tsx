@@ -8,7 +8,7 @@ interface Props {
 }
 
 export class ResponsiveContainer extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { className, children } = this.props;
     return <MainContainer className={className}>{children}</MainContainer>;
   }

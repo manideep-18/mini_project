@@ -22,7 +22,7 @@ interface Props {
 @inject('tabsSwitchStore', 'myRequestsStore')
 @observer
 export class MyResourcesPage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { tabsSwitchStore, myRequestsStore, history } = this.props;
     return (
       <MainContainer id='userHomePage'>

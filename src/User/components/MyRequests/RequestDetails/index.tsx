@@ -56,7 +56,7 @@ export class RequestDetails extends Component<Props> {
         myRequestsStore.getMyRequestAcceptDataAPI(request, this.onSuccess);
     }
   }
-  render() {
+  render(): React.ReactNode {
     const { requestingStatus, myRequestsStore } = this.props;
     const {
       getMyRequestRejectedDataAPIStatus,

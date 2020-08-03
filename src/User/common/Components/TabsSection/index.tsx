@@ -18,7 +18,7 @@ class TabsSection extends Component<Props> {
     onTabStatusChanged(value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { tabStatus } = this.props;
     return (
       <TabsContainer>

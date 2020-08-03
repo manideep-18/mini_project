@@ -33,7 +33,7 @@ class LoginPage extends Component<Props> {
     adminAuthStore.loginOrRegisterAPI(request, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { adminAuthStore } = this.props;
     const { loginOrRegisterAPIStatus } = adminAuthStore;
     return (

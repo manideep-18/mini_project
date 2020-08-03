@@ -23,7 +23,7 @@ class LabelWithInput extends Component<Props> {
     value: '',
   };
 
-  render() {
+  render(): React.ReactNode {
     const { labelText, onChange, value, isTextArea, id, ...other } = this.props;
     return (
       <TextInputContainer>

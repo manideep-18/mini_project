@@ -17,7 +17,7 @@ class FailureView extends React.Component<Props> {
     onRetry: () => {},
   };
 
-  render() {
+  render(): React.ReactNode {
     const { failureText, retryText, onRetry, retryTextCss } = this.props;
     return (
       <Container>

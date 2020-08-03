@@ -39,7 +39,7 @@ class UserDetailsData extends Component<Props> {
     this.deleteItemsList = [];
   }
 
-  onChangeCheckbox = (itemId: any, checked: boolean) => {
+  onChangeCheckbox = (itemId: any, checked: boolean): void => {
     if (checked) {
       const resultIndex = this.deleteItemsList.findIndex(
         (eachId) => itemId === eachId
@@ -55,21 +55,21 @@ class UserDetailsData extends Component<Props> {
     }
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setUserItemSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setUserItemFilterType(value);
   };
 
-  handleAddUserItem = () => {};
+  handleAddUserItem = (): void => {};
 
-  handleDeleteUserItems = () => {};
+  handleDeleteUserItems = (): void => {};
 
-  renderAddDeleteButtons = () => {
+  renderAddDeleteButtons = (): React.ReactNode => {
     return (
       <ButtonsContainer>
         <AddButton
@@ -86,7 +86,7 @@ class UserDetailsData extends Component<Props> {
     );
   };
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { usersStore } = this.props;
     usersStore.getUserItemDataAPI(
       { person_name: this.personName },
@@ -94,7 +94,7 @@ class UserDetailsData extends Component<Props> {
     );
   };
 
-  onSuccess = () => {};
+  onSuccess = (): void => {};
 
   componentDidMount() {
     const { usersStore } = this.props;
@@ -111,7 +111,7 @@ class UserDetailsData extends Component<Props> {
     );
   }
 
-  render() {
+  render(): React.ReactNode {
     const { usersStore } = this.props;
 
     const { userItemDataFetched, getUserItemDataAPIStatus } = usersStore;

@@ -17,13 +17,13 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  handleUpdateTabs = (status: string) => {
+  handleUpdateTabs = (status: string): void => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, history, resourcesStore } = this.props;
     const { tabStatus } = tabsStore;
     return (

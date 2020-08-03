@@ -35,7 +35,7 @@ class DropdownWithLabel extends Component<Props> {
     ));
   };
 
-  render() {
+  render(): React.ReactNode {
     const { sortText } = this.props;
     return (
       <ImageSelectContainer>

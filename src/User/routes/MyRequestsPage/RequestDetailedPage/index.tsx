@@ -29,7 +29,7 @@ export class RequestDetailedPage extends Component<Props> {
     this.requestingId = '';
   }
 
-  render() {
+  render(): React.ReactNode {
     let url;
     if (typeof window !== 'undefined') {
       url = window.location.pathname;

@@ -69,7 +69,7 @@ class SearchAndFilterAndButtons extends Component<Props> {
     this.rejectModalStatus = true;
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       onSortStatusUpdate,
       onFilterStatusUpdate,

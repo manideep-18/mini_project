@@ -32,11 +32,15 @@ class ResourceItemsListData extends Component<Props> {
     onAddResourceItem: () => {},
   };
 
-  @observable deleteItemsList: number[];
+  @observable deleteItemsList!: number[];
   constructor(props: Props) {
     super(props);
-    this.deleteItemsList = [];
+    this.clearDeleteItems();
   }
+
+  clearDeleteItems = () => {
+    this.deleteItemsList = [];
+  };
 
   onChangeCheckbox = (itemId: any, checked: boolean) => {
     if (checked) {
@@ -63,7 +67,7 @@ class ResourceItemsListData extends Component<Props> {
     const { onDeleteResourceItems } = this.props;
 
     onDeleteResourceItems(this.deleteItemsList);
-    this.deleteItemsList = [];
+    this.clearDeleteItems();
   };
 
   renderAddDeleteButtons = () => (
@@ -81,7 +85,7 @@ class ResourceItemsListData extends Component<Props> {
     </ButtonsContainer>
   );
 
-  render() {
+  render(): React.ReactNode {
     const {
       resourceItemsData,
       onDeleteAPIStatus,

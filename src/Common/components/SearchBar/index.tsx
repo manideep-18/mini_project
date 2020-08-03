@@ -38,7 +38,7 @@ class SearchBar extends Component<Props> {
     }
   };
 
-  render() {
+  render(): React.ReactNode {
     const { placeholder, id } = this.props;
     return (
       <CustomSearchBar

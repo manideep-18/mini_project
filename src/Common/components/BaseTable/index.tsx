@@ -76,7 +76,7 @@ class BaseTable extends Component<Props> {
     ));
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <CustomTable>
         <CustomTableHeader>

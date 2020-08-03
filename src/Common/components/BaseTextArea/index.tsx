@@ -20,7 +20,7 @@ class BaseTextArea extends React.Component<Props> {
     onChange(event.target.value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       onChange,
       id,

@@ -74,7 +74,7 @@ export class LandingSection extends Component<Props> {
     myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsSwitchStore, myRequestsStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
 

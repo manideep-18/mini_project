@@ -20,7 +20,7 @@ interface Props {
 @inject('usersStore')
 @observer
 class UserDetailsPage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { usersStore } = this.props;
     return (
       <DetailsPageMainContainer>

@@ -71,7 +71,7 @@ class BaseTableWithoutCheckbox extends Component<Props> {
     ));
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <div>
         <CustomTable>

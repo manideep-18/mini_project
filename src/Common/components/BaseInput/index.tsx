@@ -24,7 +24,7 @@ class BaseInput extends React.Component<Props> {
     onChange(event.target.value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       id,
       type,

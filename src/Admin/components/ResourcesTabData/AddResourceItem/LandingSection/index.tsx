@@ -48,7 +48,7 @@ class LandingSection extends Component<Props> {
     resourcesStore.onAddItemToResourceAPI(itemToAdd, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
     let resourceName;
     if (typeof window !== 'undefined') {
       resourceName = window.location.pathname;

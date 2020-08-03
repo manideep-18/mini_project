@@ -59,7 +59,7 @@ export class LandingSection extends Component<Props> {
     myResourcesStore.getMyResourcesDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsSwitchStore, myResourcesStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
     const {

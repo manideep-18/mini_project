@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+
+import SearchBar from '../../../../../../Common/components/SearchBar';
+import DropdownWithLabel from '../../../../../../Common/components/DropdownWithLabel';
+import { requestItemSortConstants } from '../../../../../constants/DropdownConstants';
+
 import {
   ItemsText,
   SearchBarButtonContainer,
   ContentContainer,
 } from './styledComponents';
-import SearchBar from '../../../../../../Common/components/SearchBar';
-import DropdownWithLabel from '../../../../../../Common/components/DropdownWithLabel';
-import { requestItemSortConstants } from '../../../../../constants/DropdownConstants';
 
 interface Props {
   onSortStatusUpdate: (value: string) => void;
@@ -18,7 +20,7 @@ class SearchBarAndSort extends Component<Props> {
     onSortStatusUpdate: () => {},
     onEnterPress: () => {},
   };
-  render() {
+  render(): React.ReactNode {
     const { onSortStatusUpdate, onEnterPress } = this.props;
     return (
       <ContentContainer id='resourceItemSearchBar'>

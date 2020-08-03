@@ -37,7 +37,7 @@ class CustomizedSelectWithLabel extends Component<Props> {
     onChange(status);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       labelText,
       options,

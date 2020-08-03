@@ -16,13 +16,13 @@ interface Props {
 
 @observer
 class TabsSwitch extends Component<Props> {
-  onUpdateTabStatus = (status: string) => {
+  onUpdateTabStatus = (status: string): void => {
     const { onUpdateTabs, history } = this.props;
     onUpdateTabs(status);
     goToTabActivePage(history, status.toLowerCase());
   };
 
-  render() {
+  render(): React.ReactNode {
     const { tabStatus } = this.props;
     return (
       <TabsSwitchContainer>

@@ -20,7 +20,7 @@ interface Props {
 @inject('userStore')
 @observer
 class HomePage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { userStore, history } = this.props;
     return (
       <MainContainer id='loginHomePage'>

@@ -16,7 +16,7 @@ interface Props {
 }
 
 class UserInfo extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { userInfoData } = this.props;
 
     if (userInfoData) {

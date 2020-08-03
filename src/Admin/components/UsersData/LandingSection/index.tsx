@@ -28,31 +28,31 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  handleUpdateTabs = (status: string) => {
+  handleUpdateTabs = (status: string): void => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
 
-  handleClickedItemCard = (value: string) => {
+  handleClickedItemCard = (value: string): void => {
     const { history } = this.props;
     goToUserDetailsPage(history, value);
     window.location.reload();
   };
 
-  handleSearchEnter = () => {};
+  handleSearchEnter = (): void => {};
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setFilterType(value);
   };
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { usersStore } = this.props;
     usersStore.getUsersDataAPI(this.onSuccess);
   };
@@ -66,7 +66,7 @@ class LandingSection extends Component<Props> {
     usersStore.getUsersDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, usersStore, history } = this.props;
     const { tabStatus } = tabsStore;
     const { getUsersDataAPIStatus } = usersStore;

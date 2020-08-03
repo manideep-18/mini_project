@@ -12,6 +12,7 @@ import TabsSwitch from '../../../../common/TabsSwitch';
 import TabsStore from '../../../../stores/TabsStore';
 import RequestsStore from '../../../../stores/RequestsStore';
 import { requestsTableHeaderList } from '../../../../constants/TableHeaderConstants';
+import { requestsTabStatus } from '../../../../constants/TabsConstants';
 
 import { MainContainer, PendingRequestsText } from './styledComponents';
 
@@ -27,16 +28,20 @@ class LandingSection extends Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.itemsChecked = [];
+    this.clearItemsChecked();
   }
 
-  handleUpdateTabs = (status: string) => {
+  clearItemsChecked = (): void => {
+    this.itemsChecked = [];
+  };
+
+  handleUpdateTabs = (status: string): void => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
 
-  handleChangeCheckbox = (id: number, checked: boolean) => {
+  handleChangeCheckbox = (id: number, checked: boolean): void => {
     if (checked) {
       const resultIndex = this.itemsChecked.findIndex(
         (eachItem: any) => eachItem.id === id
@@ -53,29 +58,29 @@ class LandingSection extends Component<Props> {
     }
   };
 
-  handleSortStatusUpdate = (value: string) => {
+  handleSortStatusUpdate = (value: string): void => {
     const { requestsStore } = this.props;
     requestsStore.setSortStatus(value);
   };
 
-  handleFilterStatusUpdate = (value: string) => {
+  handleFilterStatusUpdate = (value: string): void => {
     const { requestsStore } = this.props;
     requestsStore.setFilterStatus(value);
   };
 
-  handleSearchEnter = (value: string) => {
+  handleSearchEnter = (value: string): void => {
     const { requestsStore } = this.props;
     requestsStore.getSearchRequestsDataAPI(this.onSuccess);
   };
 
-  handleAcceptRequests = () => {
+  handleAcceptRequests = (): void => {
     const { requestsStore } = this.props;
 
     requestsStore.getOnAcceptRequestsDataAPI(this.itemsChecked, this.onSuccess);
-    this.itemsChecked = [];
+    this.clearItemsChecked();
   };
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { requestsStore } = this.props;
     requestsStore.getRequestsDataAPI(this.onSuccess);
   };
@@ -85,11 +90,11 @@ class LandingSection extends Component<Props> {
   componentDidMount() {
     const { requestsStore, tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
-    updateTabStatus('Requests');
+    updateTabStatus(requestsTabStatus);
     requestsStore.getRequestsDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, requestsStore, history } = this.props;
     const { tabStatus } = tabsStore;
     const {

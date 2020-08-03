@@ -78,7 +78,7 @@ export class RequestingFormFields extends Component<Props> {
     this.resourceNameSelected = status;
   };
 
-  render() {
+  render(): React.ReactNode {
     const { requestDataFetched, requestingStatus } = this.props;
     const {
       resource,

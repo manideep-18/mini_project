@@ -40,7 +40,7 @@ class HeadingButtonsSection extends Component<Props> {
     userStore.getUserProfileAPI(request, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { userStore } = this.props;
     const { getUserProfileAPIStatus } = userStore;
     return (
