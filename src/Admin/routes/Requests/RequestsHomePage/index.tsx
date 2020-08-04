@@ -6,7 +6,7 @@ import { History } from 'history';
 
 import TabsStore from '../../../stores/TabsStore';
 import Header from '../../../../Common/components/Header';
-import LandingSection from '../../../components/RequestsData/Home/LandingSection';
+import LandingSection from '../../../components/RequestsData/LandingSection';
 import RequestsStore from '../../../stores/RequestsStore';
 
 interface Props {

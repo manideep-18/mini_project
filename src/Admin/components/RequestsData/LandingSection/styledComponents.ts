@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Typo24DarkBlueGreyHKGroteskRegular } from '../../../../../Common/styleGuide/Typos';
+import { Typo24DarkBlueGreyHKGroteskRegular } from '../../../../Common/styleGuide/Typos';
 
 export const MainContainer = styled.div`
   padding-top: 100px;

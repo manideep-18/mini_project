@@ -3,17 +3,17 @@ import { observer } from 'mobx-react';
 import { History } from 'history';
 import { observable } from 'mobx';
 
-import ResponsiveContainer from '../../../../../Common/components/ResponsiveContainer';
-import BaseTable from '../../../../../Common/components/BaseTable';
-import LoadingWrapper from '../../../../../Common/components/LoadingWrapper';
-import SearchAndFilterAndButtons from '../../../../../Common/components/SearchAndFilterAndButtons';
-import { getLoadingStatus } from '../../../../../Common/utils/APIUtils';
+import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+import BaseTable from '../../../../Common/components/BaseTable';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
-import TabsSwitch from '../../../../common/TabsSwitch';
-import TabsStore from '../../../../stores/TabsStore';
-import RequestsStore from '../../../../stores/RequestsStore';
-import { requestsTableHeaderList } from '../../../../constants/TableHeaderConstants';
-import { requestsTabStatus } from '../../../../constants/TabsConstants';
+import TabsSwitch from '../../../common/TabsSwitch';
+import TabsStore from '../../../stores/TabsStore';
+import RequestsStore from '../../../stores/RequestsStore';
+import { requestsTableHeaderList } from '../../../constants/TableHeaderConstants';
+import { requestsTabStatus } from '../../../constants/TabsConstants';
 
 import { MainContainer, PendingRequestsText } from './styledComponents';
 
