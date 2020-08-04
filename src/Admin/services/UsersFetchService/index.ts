@@ -2,6 +2,7 @@ import {
   EachUserDataFetchType,
   userItemRequestType,
   SearchRequestType,
+  AddItemRequestType,
 } from '../../stores/types';
 
 export interface UsersFetchService {
@@ -12,4 +13,6 @@ export interface UsersFetchService {
   ): Promise<EachUserDataFetchType[]>;
 
   getUserItemData(request: userItemRequestType): Promise<EachUserDataFetchType>;
+
+  onAddItemToUserData(request: AddItemRequestType): Promise<{}>;
 }

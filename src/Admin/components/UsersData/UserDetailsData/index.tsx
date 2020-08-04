@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
 import BackButton from '../../../../Common/components/BackButton';
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
@@ -15,6 +16,7 @@ import {
   userItemsFilterConstants,
 } from '../../../constants/DropdownConstants';
 import UsersStore from '../../../stores/UsersStore';
+import { navigateToUserAddItemPage } from '../../../utils/NavigationUtils';
 
 import {
   DetailsContentContainer,
@@ -25,6 +27,7 @@ import {
 import UserInfo from './UserInfo';
 
 interface Props {
+  history: History;
   usersStore: UsersStore;
 }
 
@@ -65,7 +68,13 @@ class UserDetailsData extends Component<Props> {
     usersStore.setUserItemFilterType(value);
   };
 
-  handleAddUserItem = (): void => {};
+  handleAddUserItem = (): void => {
+    const { history, usersStore } = this.props;
+    const { userItemDataFetched } = usersStore;
+    const { personName } = userItemDataFetched;
+
+    navigateToUserAddItemPage(history, personName.toLowerCase());
+  };
 
   handleDeleteUserItems = (): void => {};
 

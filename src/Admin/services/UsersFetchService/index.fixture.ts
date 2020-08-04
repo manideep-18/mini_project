@@ -19,6 +19,10 @@ class UsersFetchServiceFixture implements UsersFetchService {
   getUserItemData(): Promise<EachUserDataFetchType> {
     return resolveWithTimeout(userItemDataFetchResponse);
   }
+
+  onAddItemToUserData(): Promise<{}> {
+    return resolveWithTimeout({});
+  }
 }
 
 export default UsersFetchServiceFixture;

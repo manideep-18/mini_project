@@ -18,7 +18,7 @@ import ResourceModal from '../Modals/ResourceModal';
 import {
   EachResourceFetchType,
   ResourceDetailsRequestType,
-  AddItemToResourceRequestType,
+  AddItemRequestType,
   resourceItemsDeleteRequestType,
 } from '../types';
 
@@ -217,7 +217,7 @@ class ResourcesStore {
   }
 
   onAddItemToResourceAPI(
-    requestObject: AddItemToResourceRequestType,
+    requestObject: AddItemRequestType,
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {

@@ -17,6 +17,8 @@ export const ADMIN_USERS_PAGE = '/admin/users';
 
 export const ADMIN_EACH_USER_PAGE = '/admin/users/:user_id';
 
+export const ADMIN_USER_ADD_ITEM_PAGE = '/admin/users/:user_id/add-item';
+
 export const USER_HOME_PAGE = '/user';
 
 export const USER_MY_REQUESTS_PAGE = '/user/my-requests';

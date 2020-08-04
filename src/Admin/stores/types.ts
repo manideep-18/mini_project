@@ -22,7 +22,7 @@ export interface ResourceDetailsRequestType {
   resource_name: string;
 }
 
-export interface AddItemToResourceRequestType {
+export interface AddItemRequestType {
   resource_name: string;
   item_name: string;
   link: string;

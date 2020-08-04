@@ -11,7 +11,7 @@ import {
 } from './styledComponents';
 
 interface Props {
-  onAddItemToResource: (
+  onAddItem: (
     name: string,
     resourceName: string,
     link: string,
@@ -41,10 +41,17 @@ class ResourceItemsFields extends Component<Props> {
   };
 
   handleClick = (): void => {
-    const { onAddItemToResource, resourceName } = this.props;
+    const { onAddItem, resourceName } = this.props;
 
-    if (this.name && this.link && this.description && resourceName)
-      onAddItemToResource(this.name, resourceName, this.link, this.description);
+    if (
+      this.name &&
+      this.link &&
+      this.description &&
+      (resourceName || this.resourceName)
+    ) {
+      const resource = resourceName ? resourceName : this.resourceName;
+      onAddItem(this.name, resource, this.link, this.description);
+    }
   };
 
   handleNameInputChange = (value: string): void => {

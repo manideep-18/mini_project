@@ -18,8 +18,10 @@ import {
   EachUserDataFetchType,
   userItemRequestType,
   SearchRequestType,
+  AddItemRequestType,
 } from '../types';
 import UserModal from '../Modals/UserModal';
+import { error } from 'console';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;
@@ -32,6 +34,8 @@ class UsersStore {
   @observable getUserItemDataAPIStatus!: APIStatus;
   @observable getUserItemDataAPIError!: any;
   @observable userItemDataFetched!: UserModal;
+  @observable onAddItemToUserDataAPIStatus!: APIStatus;
+  @observable onAddItemToUserDataAPIError!: any;
   @observable userItemSortType!: string;
   @observable userItemFilterType!: string;
 
@@ -50,6 +54,8 @@ class UsersStore {
     this.getSearchUsersDataAPIError = '';
     this.getUserItemDataAPIStatus = API_INITIAL;
     this.getUserItemDataAPIError = '';
+    this.onAddItemToUserDataAPIStatus = API_INITIAL;
+    this.onAddItemToUserDataAPIError = '';
     this.sortType = '';
     this.filterType = '';
     this.userItemSortType = '';
@@ -152,6 +158,35 @@ class UsersStore {
       })
       .catch((err) => {
         this.setGetUserItemDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setOnAddItemToUserDataAPIStatus(status: APIStatus) {
+    this.onAddItemToUserDataAPIStatus = status;
+  }
+
+  @action.bound
+  setOnAddItemToUserDataAPIError(error: any) {
+    this.onAddItemToUserDataAPIError = error;
+  }
+
+  onAddItemToUserDataAPI(
+    request: AddItemRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const onAddItemToUserDataPromise = this.usersFetchService.onAddItemToUserData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(onAddItemToUserDataPromise)
+      .to(this.setOnAddItemToUserDataAPIStatus, (response) => {
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setOnAddItemToUserDataAPIError(err);
         onFailure();
       });
   }

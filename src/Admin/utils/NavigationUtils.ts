@@ -28,3 +28,7 @@ export function goToTabActivePage(history: History, tabActive: string): void {
 export function goToUserDetailsPage(history: History, id: string) {
   history.push(`${ADMIN_USERS_PAGE}/${id}`);
 }
+
+export function navigateToUserAddItemPage(history: History, id: string): void {
+  history.push(`${ADMIN_USERS_PAGE}/${id}/add-item`);
+}

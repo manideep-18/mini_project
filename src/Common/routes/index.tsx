@@ -29,7 +29,9 @@ import {
   ADMIN_RESOURCE_DETAILS_PAGE,
   ADMIN_RESOURCE_ADD_ITEM_PAGE,
   USER_HOME_PAGE,
+  ADMIN_USER_ADD_ITEM_PAGE,
 } from '../constants/RouteConstants';
+import UserAddItemPage from '../../Admin/routes/Users/UserAddItemPage';
 
 export class Routes extends Component {
   render(): React.ReactNode {
@@ -71,6 +73,12 @@ export class Routes extends Component {
               path={ADMIN_EACH_USER_PAGE}
               component={UserDetailsPage}
             />
+            <Route
+              exact
+              path={ADMIN_USER_ADD_ITEM_PAGE}
+              component={UserAddItemPage}
+            />
+
             <Route exact path={USER_HOME_PAGE} component={Header} />
             <Route
               exact
