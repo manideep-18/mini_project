@@ -14,5 +14,9 @@ export interface UsersFetchService {
 
   getUserItemData(request: userItemRequestType): Promise<EachUserDataFetchType>;
 
+  getSearchUserItemsData(
+    request: SearchRequestType
+  ): Promise<EachUserDataFetchType>;
+
   onAddItemToUserData(request: AddItemRequestType): Promise<{}>;
 }

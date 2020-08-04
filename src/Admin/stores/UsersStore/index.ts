@@ -21,7 +21,6 @@ import {
   AddItemRequestType,
 } from '../types';
 import UserModal from '../Modals/UserModal';
-import { error } from 'console';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;
@@ -34,6 +33,8 @@ class UsersStore {
   @observable getUserItemDataAPIStatus!: APIStatus;
   @observable getUserItemDataAPIError!: any;
   @observable userItemDataFetched!: UserModal;
+  @observable getSearchUserItemsDataAPIStatus!: APIStatus;
+  @observable getSearchUserItemsDataAPIError!: any;
   @observable onAddItemToUserDataAPIStatus!: APIStatus;
   @observable onAddItemToUserDataAPIError!: any;
   @observable userItemSortType!: string;
@@ -54,6 +55,8 @@ class UsersStore {
     this.getSearchUsersDataAPIError = '';
     this.getUserItemDataAPIStatus = API_INITIAL;
     this.getUserItemDataAPIError = '';
+    this.getSearchUserItemsDataAPIStatus = API_INITIAL;
+    this.getSearchUserItemsDataAPIError = '';
     this.onAddItemToUserDataAPIStatus = API_INITIAL;
     this.onAddItemToUserDataAPIError = '';
     this.sortType = '';
@@ -158,6 +161,36 @@ class UsersStore {
       })
       .catch((err) => {
         this.setGetUserItemDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSearchUserItemsDataAPIStatus(status: APIStatus) {
+    this.getSearchUserItemsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchUserItemsDataAPIError(error: any) {
+    this.getSearchUserItemsDataAPIError = error;
+  }
+
+  getSearchUserItemsDataAPI(
+    request: SearchRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchUserItemsDataPromise = this.usersFetchService.getSearchUserItemsData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getSearchUserItemsDataPromise)
+      .to(this.setGetSearchUserItemsDataAPIStatus, (response) => {
+        this.setGetUserItemDataAPIResponse(response as EachUserDataFetchType);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchUserItemsDataAPIError(err);
         onFailure();
       });
   }
