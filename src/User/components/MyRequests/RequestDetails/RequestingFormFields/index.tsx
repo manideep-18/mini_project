@@ -48,12 +48,14 @@ export class RequestingFormFields extends Component<Props> {
   }
 
   handleSubmitButton = () => {
-    const { onSubmitClick } = this.props;
+    const { onSubmitClick, requestDataFetched } = this.props;
+    const { resource, item, access, remarks } = requestDataFetched;
+
     if (
-      this.remarks &&
-      this.resourceNameSelected &&
-      this.itemNameSelected &&
-      this.accessLevelSelected
+      (this.remarks || remarks) &&
+      (this.resourceNameSelected || resource) &&
+      (this.itemNameSelected || item) &&
+      (this.accessLevelSelected || access)
     )
       onSubmitClick();
   };
@@ -161,7 +163,7 @@ export class RequestingFormFields extends Component<Props> {
           </RightSideFieldsContainer>
         </AllFieldsMainContainer>
         <ButtonsContainer>
-          {requestingStatus === 'Accepted' && this.renderSubmitButton()}
+          {requestingStatus !== 'Rejected' && this.renderSubmitButton()}
         </ButtonsContainer>
       </FieldsButtonsContainer>
     );
