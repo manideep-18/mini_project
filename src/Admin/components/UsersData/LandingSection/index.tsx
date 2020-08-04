@@ -3,7 +3,7 @@ import { History } from 'history';
 import { observer } from 'mobx-react';
 
 import TabsStore from '../../../stores/TabsStore';
-import TabsSwitch from '../../../common/TabsSwitch';
+import TabsSwitch from '../../common/TabsSwitch';
 
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';

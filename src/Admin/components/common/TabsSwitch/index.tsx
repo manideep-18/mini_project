@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { History } from 'history';
 
-import TabButton from '../../../Common/components/TabButton';
+import TabButton from '../../../../Common/components/TabButton';
 
-import { goToTabActivePage } from '../../utils/NavigationUtils';
+import { goToTabActivePage } from '../../../utils/NavigationUtils';
 
 import { TabsSwitchContainer } from './styledComponents';
 

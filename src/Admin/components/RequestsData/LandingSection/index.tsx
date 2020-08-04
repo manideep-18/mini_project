@@ -9,7 +9,7 @@ import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
-import TabsSwitch from '../../../common/TabsSwitch';
+import TabsSwitch from '../../common/TabsSwitch';
 import TabsStore from '../../../stores/TabsStore';
 import RequestsStore from '../../../stores/RequestsStore';
 import { requestsTableHeaderList } from '../../../constants/TableHeaderConstants';

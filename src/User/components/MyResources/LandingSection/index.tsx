@@ -11,7 +11,7 @@ import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
 import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
-import TabsSection from '../../../common/Components/TabsSection';
+import TabsSection from '../../common/TabsSection';
 import MyResourcesStore from '../../../stores/MyResourcesStore';
 import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import {

@@ -4,7 +4,7 @@ import { History } from 'history';
 
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
-import TabsSwitch from '../../../common/TabsSwitch';
+import TabsSwitch from '../../common/TabsSwitch';
 
 import { MainContainer } from './styledComponents';
 import ResourcesTabContent from './ResourcesTabContent';

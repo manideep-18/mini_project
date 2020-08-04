@@ -9,7 +9,7 @@ import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
-import TabsSection from '../../../common/Components/TabsSection';
+import TabsSection from '../../common/TabsSection';
 import {
   goToUserTabActivePage,
   goToUserRequestingPage,
