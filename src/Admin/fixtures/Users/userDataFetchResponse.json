@@ -1,0 +1,38 @@
+[
+  {
+    "person_name": "Hemanth",
+    "department": "Assert Department",
+    "job_role": "UI Designer",
+    "items": []
+  },
+  {
+    "person_name": "Sai",
+    "department": "Tech Department",
+    "job_role": "Associate Software Developer",
+    "items": []
+  },
+  {
+    "person_name": "Ram",
+    "department": "Marketing Department",
+    "job_role": "Sports Writer",
+    "items": []
+  },
+  {
+    "person_name": "Vasu",
+    "department": "Assert Department",
+    "job_role": "UI Designer",
+    "items": []
+  },
+  {
+    "person_name": "Deepak",
+    "department": "Tech Department",
+    "job_role": "Associate Software Developer",
+    "items": []
+  },
+  {
+    "person_name": "Varun",
+    "department": "Marketing Department",
+    "job_role": "Copy Writer",
+    "items": []
+  }
+]
