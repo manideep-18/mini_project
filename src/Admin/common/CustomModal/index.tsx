@@ -48,6 +48,21 @@ class CustomModal extends Component<Props> {
 
   handleChangeRejectionText = (value: string) => {};
 
+  renderRejectionTextArea=()=>{
+    const {  isRejectActive } = this.props;
+
+    if(isRejectActive){
+      return  <TextAndTextAreaContainer>
+        <RejectionText>Reason for rejection</RejectionText>
+        <RejectionTextArea
+          value={this.rejectionText}
+          onChange={this.handleChangeRejectionText}
+        />
+      </TextAndTextAreaContainer>
+    }
+    return null
+  }
+
   render() {
     const { modalStatus, isRejectActive } = this.props;
     return (
@@ -61,15 +76,7 @@ class CustomModal extends Component<Props> {
           <AcceptText>{`Do you want ${
             isRejectActive ? 'Reject' : 'accept'
           } ?`}</AcceptText>
-          {isRejectActive && (
-            <TextAndTextAreaContainer>
-              <RejectionText>Reason for rejection</RejectionText>
-              <RejectionTextArea
-                value={this.rejectionText}
-                onChange={this.handleChangeRejectionText}
-              />
-            </TextAndTextAreaContainer>
-          )}
+         {this.renderRejectionTextArea()}
           <ButtonsContainer>
             <CancelButton
               id=''

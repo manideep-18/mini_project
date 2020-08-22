@@ -17,6 +17,7 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
+  
   handleUpdateTabs = (status: string) => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
