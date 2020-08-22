@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx';
 import { APIStatus, API_INITIAL } from '@ib/api-constants';
-
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise';
 
 import UserService from '../../services/UserService';

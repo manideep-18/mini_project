@@ -51,7 +51,7 @@ class LandingSection extends Component<Props> {
     resourcesStore.onAddResourceDataAPI(eachResource, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { resourcesStore } = this.props;
     const { onAddResourceDataAPIStatus } = resourcesStore;
     return (

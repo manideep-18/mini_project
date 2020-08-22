@@ -24,7 +24,7 @@ class ResourcesTabContent extends Component<Props> {
     goToAdminResourcePage(history, resource.name);
   };
 
-  renderResourcesCards = () => {
+  renderResourcesCards = (): React.ReactNode => {
     const { resourcesStore, history } = this.props;
     const { resourcesFetchData } = resourcesStore;
 
@@ -43,14 +43,14 @@ class ResourcesTabContent extends Component<Props> {
     resourcesStore.getResourcesDataAPI({}, this.onSuccess);
   };
 
-  onSuccess = () => {};
+  onSuccess = (): void => {};
 
   componentDidMount() {
     const { resourcesStore } = this.props;
     resourcesStore.getResourcesDataAPI({}, this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { resourcesStore } = this.props;
     const { getResourcesDataAPIStatus } = resourcesStore;
     return (

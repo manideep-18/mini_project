@@ -8,7 +8,7 @@ import ResourceItemsFields from '../../../../../Common/components/ResourceItemsF
 import BackButton from '../../../../../Common/components/BackButton';
 
 import ResourcesStore from '../../../../stores/ResourcesStore';
-import { AddItemToResourceRequestType } from '../../../../stores/types';
+import { AddItemRequestType } from '../../../../stores/types';
 
 import { LogoImage, FieldsImageContainer } from './styledComponents';
 
@@ -38,7 +38,7 @@ class LandingSection extends Component<Props> {
   ) => {
     const { resourcesStore } = this.props;
 
-    const itemToAdd: AddItemToResourceRequestType = {
+    const itemToAdd: AddItemRequestType = {
       resource_name: resourceName,
       item_name: name,
       link: link,
@@ -48,7 +48,7 @@ class LandingSection extends Component<Props> {
     resourcesStore.onAddItemToResourceAPI(itemToAdd, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
     let resourceName;
     if (typeof window !== 'undefined') {
       resourceName = window.location.pathname;
@@ -68,7 +68,7 @@ class LandingSection extends Component<Props> {
         >
           <FieldsImageContainer>
             <ResourceItemsFields
-              onAddItemToResource={this.onAddItemToResource}
+              onAddItem={this.onAddItemToResource}
               resourceName={resourceName}
             />
             <LogoImage src={resourceLogoImageUrl} alt='resource logo' />

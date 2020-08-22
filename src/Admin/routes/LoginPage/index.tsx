@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { History } from 'history';
+import { inject, observer } from 'mobx-react';
+import { withRouter } from 'react-router-dom';
 
-import { MainContainer } from './styledComponents';
 import Header from '../../../Common/components/Header';
 import LoginFieldsSection from '../../../Common/components/LoginFieldsSection';
-import { inject, observer } from 'mobx-react';
+import LoadingWrapper from '../../../Common/components/LoadingWrapper';
+
 import AuthStore from '../../stores/AuthStore';
-import { withRouter } from 'react-router-dom';
 import { goToAdminHomeResourcesPage } from '../../utils/NavigationUtils';
+
+import { MainContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -30,11 +33,18 @@ class LoginPage extends Component<Props> {
     adminAuthStore.loginOrRegisterAPI(request, this.onSuccess);
   };
 
-  render() {
+  render(): React.ReactNode {
+    const { adminAuthStore } = this.props;
+    const { loginOrRegisterAPIStatus } = adminAuthStore;
     return (
       <MainContainer id='loginPage'>
         <Header />
-        <LoginFieldsSection onLoginClick={this.handleLoginClick} />
+        <LoadingWrapper
+          apiStatus={loginOrRegisterAPIStatus}
+          onRetry={this.handleLoginClick}
+        >
+          <LoginFieldsSection onLoginClick={this.handleLoginClick} />
+        </LoadingWrapper>
       </MainContainer>
     );
   }

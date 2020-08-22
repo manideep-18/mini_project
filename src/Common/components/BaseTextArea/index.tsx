@@ -5,7 +5,7 @@ import { CustomTextArea } from './styledComponents';
 interface Props {
   id?: string;
   className?: string;
-  onChange: any;
+  onChange: (value: string) => void;
   disabled?: boolean;
   placeholder?: string;
   value: string;
@@ -15,12 +15,12 @@ class BaseTextArea extends React.Component<Props> {
   static defaultProps = {
     value: '',
   };
-  handleChange = (event: any) => {
+  handleChange = (event: any): void => {
     const { onChange } = this.props;
     onChange(event.target.value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       onChange,
       id,

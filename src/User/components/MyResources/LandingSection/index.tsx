@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { History } from 'history';
-import { ResourcesDetailsContainer } from './styledComponents';
+import { observer } from 'mobx-react';
+
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
-import TabsSwitchStore from '../../../stores/TabsSwitchStore';
 import { nameSpacesConversion } from '../../../../Common/utils/StringConversionUtils';
-import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
-import TabsSection from '../../../common/Components/TabsSection';
-import MyResourcesStore from '../../../stores/MyResourcesStore';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
-import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
-import { observer } from 'mobx-react';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
+
+import { goToUserTabActivePage } from '../../../utils/NavigationUtils';
+import TabsSwitchStore from '../../../stores/TabsSwitchStore';
+import TabsSection from '../../common/TabsSection';
+import MyResourcesStore from '../../../stores/MyResourcesStore';
+import { myResourcesTableHeaderConstants } from '../../../constants/TableHeaderConstants';
 import {
   userSortConstants,
   userFilterConstants,
 } from '../../../constants/DropdownConstants';
+
+import { ResourcesDetailsContainer } from './styledComponents';
 
 interface Props {
   history: History;
@@ -25,7 +29,7 @@ interface Props {
 
 @observer
 export class LandingSection extends Component<Props> {
-  handleTabStatusChange = (value: string) => {
+  handleTabStatusChange = (value: string): void => {
     const { tabsSwitchStore, history } = this.props;
     const { updateTabStatus } = tabsSwitchStore;
 
@@ -33,21 +37,26 @@ export class LandingSection extends Component<Props> {
     goToUserTabActivePage(history, nameSpacesConversion(value));
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { myResourcesStore } = this.props;
     const { setSortType } = myResourcesStore;
     setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { myResourcesStore } = this.props;
     const { setFilterType } = myResourcesStore;
     setFilterType(value);
   };
 
-  onSuccess = () => {};
+  onSuccess = (): void => {};
 
-  handleRetry = () => {
+  handleSearchEnter = (value: string): void => {
+    const { myResourcesStore } = this.props;
+    myResourcesStore.getSearchMyResourcesDataAPI(this.onSuccess);
+  };
+
+  handleRetry = (): void => {
     const { myResourcesStore } = this.props;
 
     myResourcesStore.getMyResourcesDataAPI(this.onSuccess);
@@ -59,12 +68,13 @@ export class LandingSection extends Component<Props> {
     myResourcesStore.getMyResourcesDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsSwitchStore, myResourcesStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
     const {
       sortedDataWithFiltered,
       getMyResourcesDataAPIStatus,
+      getSearchMyResourcesDataAPIStatus,
     } = myResourcesStore;
 
     return (
@@ -75,7 +85,7 @@ export class LandingSection extends Component<Props> {
             onTabStatusChanged={this.handleTabStatusChange}
           />
           <SearchAndFilterAndButtons
-            onSearchEnter={() => {}}
+            onSearchEnter={this.handleSearchEnter}
             checkedItemsLength={0}
             onSortStatusUpdate={this.handleSortTypeUpdate}
             onFilterStatusUpdate={this.handleFilterTypeUpdate}
@@ -83,7 +93,10 @@ export class LandingSection extends Component<Props> {
             filterConstants={userFilterConstants}
           />
           <LoadingWrapper
-            apiStatus={getMyResourcesDataAPIStatus}
+            apiStatus={getLoadingStatus(
+              getMyResourcesDataAPIStatus,
+              getSearchMyResourcesDataAPIStatus
+            )}
             onRetry={this.handleRetry}
           >
             <BaseTableWithoutCheckbox

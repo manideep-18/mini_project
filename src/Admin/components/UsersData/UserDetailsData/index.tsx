@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+import { History } from 'history';
 
 import BackButton from '../../../../Common/components/BackButton';
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
@@ -15,6 +16,7 @@ import {
   userItemsFilterConstants,
 } from '../../../constants/DropdownConstants';
 import UsersStore from '../../../stores/UsersStore';
+import { navigateToUserAddItemPage } from '../../../utils/NavigationUtils';
 
 import {
   DetailsContentContainer,
@@ -25,6 +27,7 @@ import {
 import UserInfo from './UserInfo';
 
 interface Props {
+  history: History;
   usersStore: UsersStore;
 }
 
@@ -39,7 +42,7 @@ class UserDetailsData extends Component<Props> {
     this.deleteItemsList = [];
   }
 
-  onChangeCheckbox = (itemId: any, checked: boolean) => {
+  onChangeCheckbox = (itemId: any, checked: boolean): void => {
     if (checked) {
       const resultIndex = this.deleteItemsList.findIndex(
         (eachId) => itemId === eachId
@@ -55,21 +58,27 @@ class UserDetailsData extends Component<Props> {
     }
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setUserItemSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setUserItemFilterType(value);
   };
 
-  handleAddUserItem = () => {};
+  handleAddUserItem = (): void => {
+    const { history, usersStore } = this.props;
+    const { userItemDataFetched } = usersStore;
+    const { personName } = userItemDataFetched;
 
-  handleDeleteUserItems = () => {};
+    navigateToUserAddItemPage(history, personName.toLowerCase());
+  };
 
-  renderAddDeleteButtons = () => {
+  handleDeleteUserItems = (): void => {};
+
+  renderAddDeleteButtons = (): React.ReactNode => {
     return (
       <ButtonsContainer>
         <AddButton
@@ -86,15 +95,21 @@ class UserDetailsData extends Component<Props> {
     );
   };
 
-  handleRetry = () => {
+  onSuccess = (): void => {};
+
+  handleSearchUserItems = (value: string): void => {
+    const { usersStore } = this.props;
+    const request = { search_request_text: value };
+    usersStore.getSearchUserItemsDataAPI(request, this.onSuccess);
+  };
+
+  handleRetry = (): void => {
     const { usersStore } = this.props;
     usersStore.getUserItemDataAPI(
       { person_name: this.personName },
       this.onSuccess
     );
   };
-
-  onSuccess = () => {};
 
   componentDidMount() {
     const { usersStore } = this.props;
@@ -111,10 +126,14 @@ class UserDetailsData extends Component<Props> {
     );
   }
 
-  render() {
+  render(): React.ReactNode {
     const { usersStore } = this.props;
 
-    const { userItemDataFetched, getUserItemDataAPIStatus } = usersStore;
+    const {
+      userItemDataFetched,
+      getUserItemDataAPIStatus,
+      getSearchUserItemsDataAPIStatus,
+    } = usersStore;
 
     return (
       <DetailsContentContainer>
@@ -126,23 +145,28 @@ class UserDetailsData extends Component<Props> {
           >
             <UserInfo userInfoData={userItemDataFetched} />
             <SearchAndFilterAndButtons
-              onSearchEnter={() => {}}
+              onSearchEnter={this.handleSearchUserItems}
               checkedItemsLength={0}
               onSortStatusUpdate={this.handleSortTypeUpdate}
               onFilterStatusUpdate={this.handleFilterTypeUpdate}
               sortConstants={userItemsSortConstants}
               filterConstants={userItemsFilterConstants}
             />
-            <BaseTable
-              headerArray={userTableHeaderList}
-              dataArray={
-                userItemDataFetched
-                  ? usersStore.sortedUserItemsDataWithFiltered
-                  : []
-              }
-              onChangeCheckbox={this.onChangeCheckbox}
-            />
-            {this.renderAddDeleteButtons()}
+            <LoadingWrapper
+              apiStatus={getSearchUserItemsDataAPIStatus}
+              onRetry={this.handleSearchUserItems}
+            >
+              <BaseTable
+                headerArray={userTableHeaderList}
+                dataArray={
+                  userItemDataFetched
+                    ? usersStore.sortedUserItemsDataWithFiltered
+                    : []
+                }
+                onChangeCheckbox={this.onChangeCheckbox}
+              />
+              {this.renderAddDeleteButtons()}
+            </LoadingWrapper>
           </LoadingWrapper>
         </ResponsiveContainer>
       </DetailsContentContainer>

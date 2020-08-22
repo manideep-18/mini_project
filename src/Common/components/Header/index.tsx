@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { initialTabStatus } from '../../../Admin/constants/TabsConstants';
 
-import { ADD_RESOURCE_PAGE } from '../../constants/RouteConstants';
+import { ADMIN_ADD_RESOURCE_PAGE } from '../../constants/RouteConstants';
 
 import {
   MainContainer,
@@ -34,7 +34,7 @@ export class Header extends Component<Props> {
     profileImageAltText: 'profile image',
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       logoUrl,
       logoAltText,
@@ -50,7 +50,7 @@ export class Header extends Component<Props> {
             <IbhubsLogo src={logoUrl} alt={logoAltText} />
             <ButtonImageContainer>
               {isAdmin && tabStatus === initialTabStatus && (
-                <Link to={ADD_RESOURCE_PAGE}>
+                <Link to={ADMIN_ADD_RESOURCE_PAGE}>
                   <AddButton buttonText='+ ADD' />
                 </Link>
               )}

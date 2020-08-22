@@ -22,7 +22,7 @@ interface Props {
 @inject('tabsStore', 'resourcesStore')
 @observer
 class ResourcesHomepage extends Component<Props> {
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, resourcesStore, history } = this.props;
     const { tabStatus } = tabsStore;
     return (

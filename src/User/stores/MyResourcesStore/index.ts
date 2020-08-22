@@ -21,6 +21,8 @@ import MyResourceModal from '../Modals/MyResourceModal';
 class MyResourcesStore {
   @observable getMyResourcesDataAPIStatus!: APIStatus;
   @observable getMyResourcesDataAPIError!: any;
+  @observable getSearchMyResourcesDataAPIStatus!: APIStatus;
+  @observable getSearchMyResourcesDataAPIError!: any;
   @observable myResourcesData!: MyResourceModal[];
   @observable sortType!: string;
   @observable filterType!: string;
@@ -35,6 +37,8 @@ class MyResourcesStore {
   init() {
     this.getMyResourcesDataAPIStatus = API_INITIAL;
     this.getMyResourcesDataAPIError = '';
+    this.getSearchMyResourcesDataAPIStatus = API_INITIAL;
+    this.getSearchMyResourcesDataAPIError = '';
     this.sortType = '';
     this.filterType = '';
     this.myResourcesData = [];
@@ -47,7 +51,7 @@ class MyResourcesStore {
 
   @action.bound
   setGetMyResourcesDataAPIError(error: any) {
-    this.setGetMyResourcesDataAPIStatus = error;
+    this.getMyResourcesDataAPIError = error;
   }
 
   @action.bound
@@ -74,6 +78,35 @@ class MyResourcesStore {
       })
       .catch((err) => {
         this.setGetMyResourcesDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSearchMyResourcesDataAPIStatus(status: APIStatus) {
+    this.getSearchMyResourcesDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchMyResourcesDataAPIError(error: any) {
+    this.getSearchMyResourcesDataAPIError = error;
+  }
+
+  getSearchMyResourcesDataAPI(
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchMyResourcesDataPromise = this.myResourcesFetchService.getSearchMyResourcesData();
+
+    return bindPromiseWithOnSuccess(getSearchMyResourcesDataPromise)
+      .to(this.setGetSearchMyResourcesDataAPIStatus, (response) => {
+        this.setGetMyResourcesDataResponse(
+          response as EachMyResourceFetchType[]
+        );
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchMyResourcesDataAPIError(err);
         onFailure();
       });
   }

@@ -1,8 +1,8 @@
-import RequestsStore from '.';
-
 import RequestsFetchServiceFixture from '../../services/RequestsFetchService/index.fixture';
 
-import { onAcceptRequestsDataRequestType } from '../types';
+import { onAcceptOrRejectRequestsDataRequestType } from '../types';
+
+import RequestsStore from '.';
 
 const requestsStore = new RequestsStore(new RequestsFetchServiceFixture());
 
@@ -19,8 +19,14 @@ describe('RequestsStore test cases', () => {
   });
 
   it('should test requests data when accepting requests', async () => {
-    const request: onAcceptRequestsDataRequestType[] = [];
+    const request: onAcceptOrRejectRequestsDataRequestType[] = [];
     await requestsStore.getOnAcceptRequestsDataAPI(request);
+    expect(requestsStore.requestsDataFetched.length).toBe(4);
+  });
+
+  it('should test requests data when rejecting requests', async () => {
+    const request: onAcceptOrRejectRequestsDataRequestType[] = [];
+    await requestsStore.getOnRejectRequestsDataAPI(request);
     expect(requestsStore.requestsDataFetched.length).toBe(4);
   });
 

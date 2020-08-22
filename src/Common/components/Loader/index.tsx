@@ -18,7 +18,7 @@ class Loader extends React.Component<Props> {
     width: 50,
   };
 
-  render() {
+  render(): React.ReactNode {
     const { type, color, height, width, ...other } = this.props;
     return (
       <LoaderWrapper>

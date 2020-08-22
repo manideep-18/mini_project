@@ -1,14 +1,14 @@
-import AuthServiceFixture from "../../services/AuthService/index.fixture"
+import AuthServiceFixture from '../../services/AuthService/index.fixture';
 
-import AuthStore from "."
+import AuthStore from '.';
 
-const authStore=new AuthStore(new AuthServiceFixture)
+const authStore = new AuthStore(new AuthServiceFixture());
 
-describe('AuthStore test cases',()=>{
-    it('should test isAdminLoggedIn set to true when loginOrRegisterAPI called',async ()=>{
-        const request={user_name:'test',user_password:'reactTesting'}
+describe('AuthStore test cases', () => {
+  it('should test isAdminLoggedIn when loginOrRegisterAPI called', async () => {
+    const request = { user_name: 'test', user_password: 'test' };
 
-        await authStore.loginOrRegisterAPI(request)
-        expect(authStore.isAdminLoggedIn).toBe(true)
-    })
-})
+    await authStore.loginOrRegisterAPI(request);
+    expect(authStore.isAdminLoggedIn).toEqual(true);
+  });
+});

@@ -1,6 +1,6 @@
 import {
   EachRequestFetchType,
-  onAcceptRequestsDataRequestType,
+  onAcceptOrRejectRequestsDataRequestType,
 } from '../../stores/types';
 
 export interface RequestsFetchService {
@@ -9,6 +9,10 @@ export interface RequestsFetchService {
   getSearchRequestsData(): Promise<EachRequestFetchType[]>;
 
   getOnAcceptRequestsData(
-    request: onAcceptRequestsDataRequestType[]
+    request: onAcceptOrRejectRequestsDataRequestType[]
+  ): Promise<EachRequestFetchType[]>;
+
+  getOnRejectRequestsData(
+    request: onAcceptOrRejectRequestsDataRequestType[]
   ): Promise<EachRequestFetchType[]>;
 }

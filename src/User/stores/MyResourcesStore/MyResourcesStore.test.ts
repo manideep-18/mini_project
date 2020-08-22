@@ -13,6 +13,11 @@ describe('MyResourcesStore test cases', () => {
     expect(myResourcesStore.myResourcesData.length).toBe(6);
   });
 
+  it('should test searchMyResourcesData length when calling getSearchMyResourcesDataAPI', async () => {
+    await myResourcesStore.getSearchMyResourcesDataAPI();
+    expect(myResourcesStore.myResourcesData.length).toBe(4);
+  });
+
   it('should test sortType when it is updated with ascending order', () => {
     myResourcesStore.setSortType(ascendingSort);
     expect(myResourcesStore.sortType).toBe(ascendingSort);

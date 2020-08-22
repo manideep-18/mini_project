@@ -18,5 +18,5 @@ export function goToUserRequestingPage(
   status: string,
   id: number
 ): void {
-  history.push(`/user/my-requests/${status}/${id}`);
+  history.push(`${USER_MY_REQUESTS_PAGE}/${status}/${id}`);
 }

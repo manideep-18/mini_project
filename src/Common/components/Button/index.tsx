@@ -38,7 +38,7 @@ class Button extends React.Component<Props> {
     }
     return <ButtonText css={buttonTextCss}>{buttonText}</ButtonText>;
   };
-  render() {
+  render(): React.ReactNode {
     const {
       id,
       className,

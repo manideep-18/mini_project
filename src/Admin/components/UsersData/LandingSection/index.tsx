@@ -3,12 +3,13 @@ import { History } from 'history';
 import { observer } from 'mobx-react';
 
 import TabsStore from '../../../stores/TabsStore';
-import TabsSwitch from '../../../common/TabsSwitch';
+import TabsSwitch from '../../common/TabsSwitch';
 
 import BaseTableWithoutCheckbox from '../../../../Common/components/BaseTableWithoutCheckbox';
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
 
 import {
   usersSortConstants,
@@ -28,36 +29,40 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  handleUpdateTabs = (status: string) => {
+  handleUpdateTabs = (status: string): void => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
 
-  handleClickedItemCard = (value: string) => {
+  handleClickedItemCard = (value: string): void => {
     const { history } = this.props;
     goToUserDetailsPage(history, value);
     window.location.reload();
   };
 
-  handleSearchEnter = () => {};
-
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { usersStore } = this.props;
     usersStore.setFilterType(value);
   };
 
-  handleRetry = () => {
+  onSuccess = () => {};
+
+  handleRetry = (): void => {
     const { usersStore } = this.props;
     usersStore.getUsersDataAPI(this.onSuccess);
   };
 
-  onSuccess = () => {};
+  handleSearchEnter = (value: string): void => {
+    const { usersStore } = this.props;
+    const request = { search_request_text: value };
+    usersStore.getSearchUsersDataAPI(request, this.onSuccess);
+  };
 
   componentDidMount() {
     const { tabsStore, usersStore } = this.props;
@@ -66,10 +71,10 @@ class LandingSection extends Component<Props> {
     usersStore.getUsersDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, usersStore, history } = this.props;
     const { tabStatus } = tabsStore;
-    const { getUsersDataAPIStatus } = usersStore;
+    const { getUsersDataAPIStatus, getSearchUsersDataAPIStatus } = usersStore;
     return (
       <LandingMainContainer>
         <TabsSwitch
@@ -88,7 +93,10 @@ class LandingSection extends Component<Props> {
           />
           <LoadingWrapper
             onRetry={this.handleRetry}
-            apiStatus={getUsersDataAPIStatus}
+            apiStatus={getLoadingStatus(
+              getUsersDataAPIStatus,
+              getSearchUsersDataAPIStatus
+            )}
           >
             <BaseTableWithoutCheckbox
               id='Person Name'

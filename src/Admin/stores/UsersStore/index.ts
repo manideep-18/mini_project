@@ -14,18 +14,29 @@ import {
   userInitialSortStatus,
 } from '../../constants/SortFilterConstants';
 
-import { EachUserDataFetchType, userItemRequestType } from '../types';
+import {
+  EachUserDataFetchType,
+  userItemRequestType,
+  SearchRequestType,
+  AddItemRequestType,
+} from '../types';
 import UserModal from '../Modals/UserModal';
 
 class UsersStore {
   @observable getUsersDataAPIStatus!: APIStatus;
   @observable getUsersDataAPIError!: any;
   @observable usersDataFetched!: UserModal[];
+  @observable getSearchUsersDataAPIStatus!: APIStatus;
+  @observable getSearchUsersDataAPIError!: any;
   @observable sortType!: string;
   @observable filterType!: string;
   @observable getUserItemDataAPIStatus!: APIStatus;
   @observable getUserItemDataAPIError!: any;
   @observable userItemDataFetched!: UserModal;
+  @observable getSearchUserItemsDataAPIStatus!: APIStatus;
+  @observable getSearchUserItemsDataAPIError!: any;
+  @observable onAddItemToUserDataAPIStatus!: APIStatus;
+  @observable onAddItemToUserDataAPIError!: any;
   @observable userItemSortType!: string;
   @observable userItemFilterType!: string;
 
@@ -40,8 +51,14 @@ class UsersStore {
   init() {
     this.getUsersDataAPIStatus = API_INITIAL;
     this.getUsersDataAPIError = '';
+    this.getSearchUsersDataAPIStatus = API_INITIAL;
+    this.getSearchUsersDataAPIError = '';
     this.getUserItemDataAPIStatus = API_INITIAL;
     this.getUserItemDataAPIError = '';
+    this.getSearchUserItemsDataAPIStatus = API_INITIAL;
+    this.getSearchUserItemsDataAPIError = '';
+    this.onAddItemToUserDataAPIStatus = API_INITIAL;
+    this.onAddItemToUserDataAPIError = '';
     this.sortType = '';
     this.filterType = '';
     this.userItemSortType = '';
@@ -84,6 +101,36 @@ class UsersStore {
   }
 
   @action.bound
+  setGetSearchUsersDataAPIStatus(status: APIStatus) {
+    this.getSearchUsersDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchUsersDataAPIError(error: any) {
+    this.getSearchUsersDataAPIError = error;
+  }
+
+  getSearchUsersDataAPI(
+    request: SearchRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchUsersDataPromise = this.usersFetchService.getSearchUsersData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getSearchUsersDataPromise)
+      .to(this.setGetSearchUsersDataAPIStatus, (response) => {
+        this.setGetUsersDataAPIResponse(response as EachUserDataFetchType[]);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchUsersDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
   setGetUserItemDataAPIStatus(status: APIStatus) {
     this.getUserItemDataAPIStatus = status;
   }
@@ -114,6 +161,65 @@ class UsersStore {
       })
       .catch((err) => {
         this.setGetUserItemDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetSearchUserItemsDataAPIStatus(status: APIStatus) {
+    this.getSearchUserItemsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetSearchUserItemsDataAPIError(error: any) {
+    this.getSearchUserItemsDataAPIError = error;
+  }
+
+  getSearchUserItemsDataAPI(
+    request: SearchRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getSearchUserItemsDataPromise = this.usersFetchService.getSearchUserItemsData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getSearchUserItemsDataPromise)
+      .to(this.setGetSearchUserItemsDataAPIStatus, (response) => {
+        this.setGetUserItemDataAPIResponse(response as EachUserDataFetchType);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetSearchUserItemsDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setOnAddItemToUserDataAPIStatus(status: APIStatus) {
+    this.onAddItemToUserDataAPIStatus = status;
+  }
+
+  @action.bound
+  setOnAddItemToUserDataAPIError(error: any) {
+    this.onAddItemToUserDataAPIError = error;
+  }
+
+  onAddItemToUserDataAPI(
+    request: AddItemRequestType,
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const onAddItemToUserDataPromise = this.usersFetchService.onAddItemToUserData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(onAddItemToUserDataPromise)
+      .to(this.setOnAddItemToUserDataAPIStatus, (response) => {
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setOnAddItemToUserDataAPIError(err);
         onFailure();
       });
   }

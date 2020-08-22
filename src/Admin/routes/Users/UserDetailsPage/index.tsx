@@ -20,12 +20,12 @@ interface Props {
 @inject('usersStore')
 @observer
 class UserDetailsPage extends Component<Props> {
-  render() {
-    const { usersStore } = this.props;
+  render(): React.ReactNode {
+    const { usersStore, history } = this.props;
     return (
       <DetailsPageMainContainer>
         <Header />
-        <UserDetailsData usersStore={usersStore} />
+        <UserDetailsData history={history} usersStore={usersStore} />
       </DetailsPageMainContainer>
     );
   }

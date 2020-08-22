@@ -21,12 +21,12 @@ interface Props {
 }
 
 class EachResourceCard extends Component<Props> {
-  handleClick = () => {
+  handleClick = (): void => {
     const { onClickResourceCard, eachResource } = this.props;
     onClickResourceCard(eachResource);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { eachResource } = this.props;
     const { logoImageUrl, name, type, link, description } = eachResource;
     return (

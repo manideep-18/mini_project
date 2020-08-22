@@ -1,9 +1,7 @@
 import {
   EachResourceFetchType,
-  ResourceDetailsFetchResponse,
-  ResourceItemType,
   ResourceDetailsRequestType,
-  AddItemToResourceRequestType,
+  AddItemRequestType,
   resourceItemsDeleteRequestType,
 } from '../../stores/types';
 
@@ -18,7 +16,7 @@ export interface ResourceFetchService {
     requestObject: resourceItemsDeleteRequestType[]
   ): Promise<EachResourceFetchType>;
 
-  onAddItemToResource(requestObject: AddItemToResourceRequestType): Promise<{}>;
+  onAddItemToResource(requestObject: AddItemRequestType): Promise<{}>;
 
   getSearchResourceItemsData(): Promise<EachResourceFetchType>;
 }

@@ -19,13 +19,13 @@ class DropdownWithLabel extends Component<Props> {
     dropdownArray: ['ASC', 'DSC'],
   };
 
-  handleChange = (event: any) => {
+  handleChange = (event: any): void => {
     const { onChange } = this.props;
     onChange(event.target.value);
     event.persist();
   };
 
-  renderDropdownContents = () => {
+  renderDropdownContents = (): React.ReactNode => {
     const { dropdownArray } = this.props;
 
     return dropdownArray.map((eachDropdown) => (
@@ -35,7 +35,7 @@ class DropdownWithLabel extends Component<Props> {
     ));
   };
 
-  render() {
+  render(): React.ReactNode {
     const { sortText } = this.props;
     return (
       <ImageSelectContainer>

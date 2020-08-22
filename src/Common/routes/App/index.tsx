@@ -6,7 +6,7 @@ import stores from '../../stores';
 import Routes from '..';
 
 export class App extends Component {
-  render() {
+  render(): React.ReactNode {
     return (
       <Provider {...stores}>
         <div>

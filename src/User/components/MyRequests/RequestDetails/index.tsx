@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { History } from 'history';
-import MyRequestsStore from '../../../stores/MyRequestsStore';
+import { observer } from 'mobx-react';
+
 import BackButton from '../../../../Common/components/BackButton';
 import { USER_MY_REQUESTS_PAGE } from '../../../../Common/constants/RouteConstants';
-
 import ResponsiveContainer from '../../../../Common/components/ResponsiveContainer';
+import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
+import { getLoadingStatus } from '../../../../Common/utils/APIUtils';
+
+import { goToUserMyRequestsPage } from '../../../utils/NavigationUtils';
+import MyRequestsStore from '../../../stores/MyRequestsStore';
+
 import RequestingFormFields from './RequestingFormFields';
 import { FormContainer } from './styledComponents';
-import { observer } from 'mobx-react';
-import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
-import { goToUserMyRequestsPage } from '../../../utils/NavigationUtils';
 
 interface Props {
   history: History;
@@ -20,12 +23,14 @@ interface Props {
 
 @observer
 export class RequestDetails extends Component<Props> {
-  handleSubmitClick = () => {
+  handleSubmitClick = (): void => {
     const { history } = this.props;
     goToUserMyRequestsPage(history);
   };
 
-  handleRetry = () => {
+  onSuccess = (): void => {};
+
+  handleRequestingStatus = (): void => {
     const { myRequestsStore, requestingId, requestingStatus } = this.props;
     const request = { request_id: requestingId };
     switch (requestingStatus) {
@@ -40,23 +45,15 @@ export class RequestDetails extends Component<Props> {
     }
   };
 
-  onSuccess = () => {};
+  handleRetry = (): void => {
+    this.handleRequestingStatus();
+  };
 
   componentDidMount() {
-    const { myRequestsStore, requestingId, requestingStatus } = this.props;
-    const request = { request_id: requestingId };
-    switch (requestingStatus) {
-      case 'Rejected':
-        myRequestsStore.getMyRequestRejectedDataAPI(request, this.onSuccess);
-        break;
-      case 'Pending':
-        myRequestsStore.getMyRequestPendingDataAPI(request, this.onSuccess);
-        break;
-      default:
-        myRequestsStore.getMyRequestAcceptDataAPI(request, this.onSuccess);
-    }
+    this.handleRequestingStatus();
   }
-  render() {
+
+  render(): React.ReactNode {
     const { requestingStatus, myRequestsStore } = this.props;
     const {
       getMyRequestRejectedDataAPIStatus,
@@ -72,11 +69,11 @@ export class RequestDetails extends Component<Props> {
         />
         <FormContainer>
           <LoadingWrapper
-            apiStatus={
-              getMyRequestRejectedDataAPIStatus ||
-              getMyRequestPendingDataAPIStatus ||
+            apiStatus={getLoadingStatus(
+              getMyRequestRejectedDataAPIStatus,
+              getMyRequestPendingDataAPIStatus,
               getMyRequestAcceptDataAPIStatus
-            }
+            )}
             onRetry={this.handleRetry}
           >
             <RequestingFormFields

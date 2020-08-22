@@ -1,9 +1,9 @@
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils';
 
 import { EachResourceFetchType } from '../../stores/types';
-import resourcesFetchResponseData from '../../fixtures/resourcesFetchResponseData.json';
-import resourceItemsFetchResponseData from '../../fixtures/resourceItemsFetchResponse.json';
-import resourceItemsAfterDeleteData from '../../fixtures/resourceItemsAfterDeleteData.json';
+import resourcesFetchResponseData from '../../fixtures/Resources/resourcesFetchResponseData.json';
+import resourceItemsFetchResponseData from '../../fixtures/Resources/resourceItemsFetchResponse.json';
+import resourceItemsAfterDeleteData from '../../fixtures/Resources/resourceItemsAfterDeleteData.json';
 import resourceItemsOnSearch from '../../fixtures/Resources/resourceItemsOnSearch.json';
 
 import { ResourceFetchService } from '.';

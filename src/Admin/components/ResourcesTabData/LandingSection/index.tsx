@@ -4,7 +4,7 @@ import { History } from 'history';
 
 import TabsStore from '../../../stores/TabsStore';
 import ResourcesStore from '../../../stores/ResourcesStore';
-import TabsSwitch from '../../../common/TabsSwitch';
+import TabsSwitch from '../../common/TabsSwitch';
 
 import { MainContainer } from './styledComponents';
 import ResourcesTabContent from './ResourcesTabContent';
@@ -17,14 +17,13 @@ interface Props {
 
 @observer
 class LandingSection extends Component<Props> {
-  
-  handleUpdateTabs = (status: string) => {
+  handleUpdateTabs = (status: string): void => {
     const { tabsStore } = this.props;
     const { updateTabStatus } = tabsStore;
     updateTabStatus(status);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { tabsStore, history, resourcesStore } = this.props;
     const { tabStatus } = tabsStore;
     return (

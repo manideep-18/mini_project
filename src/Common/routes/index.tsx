@@ -7,17 +7,6 @@ import ResourceDetailsPage from '../../Admin/routes/Resources/ResourceDetailsPag
 import AddItemPage from '../../Admin/routes/Resources/AddItemPage';
 import RequestsHomePage from '../../Admin/routes/Requests/RequestsHomePage';
 import UsersHomePage from '../../Admin/routes/Users/HomePage';
-
-import Header from '../components/Header';
-import {
-  REQUESTS_PAGE,
-  ADMIN_USERS_PAGE,
-  ADMIN_EACH_USER_PAGE,
-  USER_MY_REQUESTS_PAGE,
-  USER_MY_RESOURCES_PAGE,
-  USER_REQUESTING_PAGE,
-  HOME_PAGE,
-} from '../constants/RouteConstants';
 import UserDetailsPage from '../../Admin/routes/Users/UserDetailsPage';
 import MyRequestsPage from '../../User/routes/MyRequestsPage';
 import { MyResourcesPage } from '../../User/routes/MyResourcesPage';
@@ -25,43 +14,72 @@ import { RequestDetailedPage } from '../../User/routes/MyRequestsPage/RequestDet
 import HomePage from '../../UserProfile/routes/HomePage';
 import LoginPage from '../../Admin/routes/LoginPage';
 
+import Header from '../components/Header';
+import {
+  ADMIN_REQUESTS_PAGE,
+  ADMIN_USERS_PAGE,
+  ADMIN_EACH_USER_PAGE,
+  USER_MY_REQUESTS_PAGE,
+  USER_MY_RESOURCES_PAGE,
+  USER_REQUESTING_PAGE,
+  HOME_PAGE,
+  ADMIN_HOME_PAGE,
+  ADMIN_RESOURCES_PAGE,
+  ADMIN_ADD_RESOURCE_PAGE,
+  ADMIN_RESOURCE_DETAILS_PAGE,
+  ADMIN_RESOURCE_ADD_ITEM_PAGE,
+  USER_HOME_PAGE,
+  ADMIN_USER_ADD_ITEM_PAGE,
+} from '../constants/RouteConstants';
+import UserAddItemPage from '../../Admin/routes/Users/UserAddItemPage';
+
 export class Routes extends Component {
-  render() {
+  render(): React.ReactNode {
     return (
       <div>
         <Router>
           <Switch>
             <Route exact path={HOME_PAGE} component={HomePage} />
 
-            <Route exact path='/admin/' component={LoginPage} />
+            <Route exact path={ADMIN_HOME_PAGE} component={LoginPage} />
             <Route
               exact
-              path='/admin/resources'
+              path={ADMIN_RESOURCES_PAGE}
               component={ResourcesHomepage}
             />
             <Route
               exact
-              path='/admin/resources/add-resource'
+              path={ADMIN_ADD_RESOURCE_PAGE}
               component={AddResourcePage}
             />
             <Route
               exact
-              path='/admin/resources/:resource_id'
+              path={ADMIN_RESOURCE_DETAILS_PAGE}
               component={ResourceDetailsPage}
             />
             <Route
               exact
-              path='/admin/resources/:resource_id/add-item'
+              path={ADMIN_RESOURCE_ADD_ITEM_PAGE}
               component={AddItemPage}
             />
-            <Route exact path={REQUESTS_PAGE} component={RequestsHomePage} />
+            <Route
+              exact
+              path={ADMIN_REQUESTS_PAGE}
+              component={RequestsHomePage}
+            />
             <Route exact path={ADMIN_USERS_PAGE} component={UsersHomePage} />
             <Route
               exact
               path={ADMIN_EACH_USER_PAGE}
               component={UserDetailsPage}
             />
-            <Route exact path='/user/' component={Header} />
+            <Route
+              exact
+              path={ADMIN_USER_ADD_ITEM_PAGE}
+              component={UserAddItemPage}
+            />
+
+            <Route exact path={USER_HOME_PAGE} component={Header} />
             <Route
               exact
               path={USER_MY_REQUESTS_PAGE}

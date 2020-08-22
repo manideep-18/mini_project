@@ -1,4 +1,5 @@
 import { EachResourceFetchType } from '../../types';
+
 import ResourceModal from '.';
 
 describe('Resource Modal test cases', () => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import AriaModal from 'react-aria-modal';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
 import {
   TextButtonsContainer,
@@ -11,8 +13,6 @@ import {
   TextAndTextAreaContainer,
   RejectionTextArea,
 } from './styledComponents';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 interface Props {
   isRejectActive?: boolean;
@@ -31,39 +31,43 @@ class CustomModal extends Component<Props> {
     onCancelClick: () => {},
   };
 
-  onCancelButtonClick = () => {
+  onCancelButtonClick = (): void => {
     const { onCancelClick } = this.props;
     onCancelClick();
   };
 
-  onOkButtonClick = () => {
+  onOkButtonClick = (): void => {
     const { onOkClick } = this.props;
     if (onOkClick) onOkClick();
   };
 
-  onRejectButtonClick = () => {
+  onRejectButtonClick = (): void => {
     const { onRejectClick } = this.props;
     if (onRejectClick) onRejectClick();
   };
 
-  handleChangeRejectionText = (value: string) => {};
+  handleChangeRejectionText = (value: string): void => {};
 
-  renderRejectionTextArea=()=>{
-    const {  isRejectActive } = this.props;
-
-    if(isRejectActive){
-      return  <TextAndTextAreaContainer>
-        <RejectionText>Reason for rejection</RejectionText>
-        <RejectionTextArea
-          value={this.rejectionText}
-          onChange={this.handleChangeRejectionText}
-        />
-      </TextAndTextAreaContainer>
+  renderRejectionTextArea = (): React.ReactNode => {
+    const { isRejectActive } = this.props;
+    if (isRejectActive) {
+      return (
+        <TextAndTextAreaContainer>
+          <RejectionText>Reason for rejection</RejectionText>
+          <RejectionTextArea
+            value={this.rejectionText}
+            onChange={this.handleChangeRejectionText}
+          />
+        </TextAndTextAreaContainer>
+      );
     }
-    return null
-  }
+    return null;
+  };
 
-  render() {
+  
+
+
+  render(): React.ReactNode {
     const { modalStatus, isRejectActive } = this.props;
     return (
       <AriaModal
@@ -76,7 +80,11 @@ class CustomModal extends Component<Props> {
           <AcceptText>{`Do you want ${
             isRejectActive ? 'Reject' : 'accept'
           } ?`}</AcceptText>
+<<<<<<< HEAD:src/Admin/common/CustomModal/index.tsx
          {this.renderRejectionTextArea()}
+=======
+          {this.renderRejectionTextArea()}
+>>>>>>> d68f8c67a1512791922b5b75a0143f310a443c6d:src/Common/components/CustomModal/index.tsx
           <ButtonsContainer>
             <CancelButton
               id=''

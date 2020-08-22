@@ -31,13 +31,13 @@ class CustomizedSelectWithLabel extends Component<Props> {
     ],
   };
 
-  handleChange = (status: any) => {
+  handleChange = (status: any): void => {
     const { onChange } = this.props;
 
     onChange(status);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       labelText,
       options,

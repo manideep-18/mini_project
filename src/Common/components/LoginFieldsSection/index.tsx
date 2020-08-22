@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
+
+import ResponsiveContainer from '../ResponsiveContainer';
 
 import {
   FieldsContainer,
@@ -6,9 +10,6 @@ import {
   PasswordInputField,
   LoginButton,
 } from './styledComponents';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
-import ResponsiveContainer from '../ResponsiveContainer';
 
 interface Props {
   onLoginClick: (userName: string, password: string) => void;
@@ -25,21 +26,21 @@ class LoginFieldsSection extends Component<Props> {
     this.password = '';
   }
 
-  handleUserNameChange = (value: string) => {
+  handleUserNameChange = (value: string): void => {
     this.userName = value;
   };
 
-  handlePasswordChange = (value: string) => {
+  handlePasswordChange = (value: string): void => {
     this.password = value;
   };
 
-  handleLogin = () => {
+  handleLogin = (): void => {
     const { onLoginClick } = this.props;
     if (this.userName && this.password)
       onLoginClick(this.userName, this.password);
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <ResponsiveContainer>
         <FieldsContainer>
@@ -54,7 +55,11 @@ class LoginFieldsSection extends Component<Props> {
             value={this.password}
             onChange={this.handlePasswordChange}
           />
-          <LoginButton buttonText='Login' onClick={this.handleLogin} />
+          <LoginButton
+            id='loginButton'
+            buttonText='Login'
+            onClick={this.handleLogin}
+          />
         </FieldsContainer>
       </ResponsiveContainer>
     );

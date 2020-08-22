@@ -24,7 +24,7 @@ interface Props {
 class LandingSection extends Component<Props> {
   onSuccess = () => {};
 
-  onDeleteResourceItems = (items: number[]) => {
+  onDeleteResourceItems = (items: number[]): void => {
     const { resourcesStore } = this.props;
     const request = items.map((eachItemId) => {
       const eachItem = { id: eachItemId };
@@ -34,24 +34,24 @@ class LandingSection extends Component<Props> {
     resourcesStore.getResourceItemsAfterDeleteAPI(request, this.onSuccess);
   };
 
-  onAddResourceItem = () => {
+  onAddResourceItem = (): void => {
     const { history, resourceName } = this.props;
 
     navigateToResourceAddItemPage(history, resourceName);
     window.location.reload();
   };
 
-  handleSortStatusUpdate = (value: string) => {
+  handleSortStatusUpdate = (value: string): void => {
     const { resourcesStore } = this.props;
     resourcesStore.setResourceItemSortType(value);
   };
 
-  handleOnSearchEnter = (value: string) => {
+  handleOnSearchEnter = (value: string): void => {
     const { resourcesStore } = this.props;
     resourcesStore.getSearchResourceItemsDataAPI(this.onSuccess);
   };
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { resourcesStore, resourceName } = this.props;
 
     resourcesStore.getResourceDetailsAPI(
@@ -60,7 +60,7 @@ class LandingSection extends Component<Props> {
     );
   };
 
-  render() {
+  render(): React.ReactNode {
     const { resourcesStore } = this.props;
 
     const {

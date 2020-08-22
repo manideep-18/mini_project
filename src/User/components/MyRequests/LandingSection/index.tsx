@@ -9,7 +9,7 @@ import LoadingWrapper from '../../../../Common/components/LoadingWrapper';
 import SearchAndFilterAndButtons from '../../../../Common/components/SearchAndFilterAndButtons';
 
 import TabsSwitchStore from '../../../stores/TabsSwitchStore';
-import TabsSection from '../../../common/Components/TabsSection';
+import TabsSection from '../../common/TabsSection';
 import {
   goToUserTabActivePage,
   goToUserRequestingPage,
@@ -31,7 +31,7 @@ interface Props {
 
 @observer
 export class LandingSection extends Component<Props> {
-  handleTabStatusChange = (value: string) => {
+  handleTabStatusChange = (value: string): void => {
     const { tabsSwitchStore, history } = this.props;
     const { updateTabStatus } = tabsSwitchStore;
 
@@ -39,19 +39,19 @@ export class LandingSection extends Component<Props> {
     goToUserTabActivePage(history, nameSpacesConversion(value));
   };
 
-  handleSortTypeUpdate = (value: string) => {
+  handleSortTypeUpdate = (value: string): void => {
     const { myRequestsStore } = this.props;
     const { setSortType } = myRequestsStore;
     setSortType(value);
   };
 
-  handleFilterTypeUpdate = (value: string) => {
+  handleFilterTypeUpdate = (value: string): void => {
     const { myRequestsStore } = this.props;
     const { setFilterType } = myRequestsStore;
     setFilterType(value);
   };
 
-  handleOnClickItemCard = (value: any) => {
+  handleOnClickItemCard = (value: any): void => {
     const { myRequestsStore, history } = this.props;
     const itemCard = myRequestsStore.myRequestsDataFetched.filter(
       (eachRequest) => eachRequest.id === value
@@ -62,7 +62,7 @@ export class LandingSection extends Component<Props> {
 
   onSuccess = () => {};
 
-  handleRetry = () => {
+  handleRetry = (): void => {
     const { myRequestsStore } = this.props;
     myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   };
@@ -74,7 +74,7 @@ export class LandingSection extends Component<Props> {
     myRequestsStore.getMyRequestsDataAPI(this.onSuccess);
   }
 
-  render() {
+  render(): React.ReactNode {
     const { tabsSwitchStore, myRequestsStore } = this.props;
     const { tabStatus } = tabsSwitchStore;
 

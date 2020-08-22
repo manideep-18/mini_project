@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
+import { APIStatus, API_INITIAL } from '@ib/api-constants';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
+import {
+  sortConstants,
+  filterConstants,
+} from '../../constants/DropdownConstants';
+
+import CustomModal from '../CustomModal';
 import SearchBar from '../SearchBar';
 import DropdownWithLabel from '../DropdownWithLabel';
 
@@ -9,14 +18,6 @@ import {
   AcceptButton,
   RejectButton,
 } from './styledComponents';
-import CustomModal from '../../../Admin/common/CustomModal';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { APIStatus, API_INITIAL } from '@ib/api-constants';
-import {
-  requestSortConstants,
-  requestFilterConstants,
-} from '../../../Admin/constants/DropdownConstants';
 
 interface Props {
   sortConstants?: string[];
@@ -26,6 +27,7 @@ interface Props {
   onFilterStatusUpdate?: (value: string) => void;
   onSearchEnter?: (value: string) => void;
   onAcceptRequests?: () => void;
+  onRejectRequests?: () => void;
   onAcceptRequestsStatus?: APIStatus;
 }
 
@@ -42,8 +44,8 @@ class SearchAndFilterAndButtons extends Component<Props> {
 
   static defaultProps = {
     onAcceptRequests: () => {},
-    sortConstants: requestSortConstants,
-    filterConstants: requestFilterConstants,
+    sortConstants: sortConstants,
+    filterConstants: filterConstants,
   };
 
   onOkClick = () => {
@@ -58,7 +60,9 @@ class SearchAndFilterAndButtons extends Component<Props> {
   };
 
   onRejectClick = () => {
+    const { onRejectRequests } = this.props;
     this.rejectModalStatus = false;
+    if (onRejectRequests) onRejectRequests();
   };
 
   handleAcceptModal = () => {
@@ -69,7 +73,7 @@ class SearchAndFilterAndButtons extends Component<Props> {
     this.rejectModalStatus = true;
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       onSortStatusUpdate,
       onFilterStatusUpdate,

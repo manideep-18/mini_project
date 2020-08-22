@@ -12,13 +12,13 @@ interface Props {
 
 @observer
 class TabsSection extends Component<Props> {
-  handleTabStatus = (value: string) => {
+  handleTabStatus = (value: string): void => {
     const { onTabStatusChanged } = this.props;
 
     onTabStatusChanged(value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const { tabStatus } = this.props;
     return (
       <TabsContainer>

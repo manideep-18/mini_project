@@ -10,7 +10,7 @@ import {
 interface Props {
   id?: string;
   labelText: string;
-  onChange: any;
+  onChange: (value: string) => void;
   value: string;
   isTextArea?: boolean;
   disabled?: boolean;
@@ -23,7 +23,7 @@ class LabelWithInput extends Component<Props> {
     value: '',
   };
 
-  render() {
+  render(): React.ReactNode {
     const { labelText, onChange, value, isTextArea, id, ...other } = this.props;
     return (
       <TextInputContainer>

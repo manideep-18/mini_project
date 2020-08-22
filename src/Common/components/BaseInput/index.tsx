@@ -19,12 +19,12 @@ class BaseInput extends React.Component<Props> {
     type: 'text',
   };
 
-  handleChange = (event: any) => {
+  handleChange = (event: any): void => {
     const { onChange } = this.props;
     onChange(event.target.value);
   };
 
-  render() {
+  render(): React.ReactNode {
     const {
       id,
       type,

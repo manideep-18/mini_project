@@ -9,7 +9,7 @@ import { ascendingOrderAlphabetical } from '../../../Common/utils/SortingDataUti
 
 import {
   EachRequestFetchType,
-  onAcceptRequestsDataRequestType,
+  onAcceptOrRejectRequestsDataRequestType,
 } from '../types';
 import RequestModal from '../Modals/RequestModal';
 
@@ -21,6 +21,8 @@ class RequestsStore {
   @observable getSearchRequestsDataAPIError!: any;
   @observable getOnAcceptRequestsDataAPIStatus!: APIStatus;
   @observable getOnAcceptRequestsDataAPIError!: any;
+  @observable getOnRejectRequestsDataAPIStatus!: APIStatus;
+  @observable getOnRejectRequestsDataAPIError!: any;
   @observable filterStatus!: string;
   @observable sortStatus!: string;
   requestsFetchService!: RequestsFetchService;
@@ -39,6 +41,8 @@ class RequestsStore {
     this.getSearchRequestsDataAPIError = '';
     this.getOnAcceptRequestsDataAPIStatus = API_INITIAL;
     this.getOnAcceptRequestsDataAPIError = '';
+    this.getOnRejectRequestsDataAPIStatus = API_INITIAL;
+    this.getOnRejectRequestsDataAPIError = '';
     this.filterStatus = '';
     this.sortStatus = '';
   }
@@ -116,7 +120,7 @@ class RequestsStore {
   }
 
   getOnAcceptRequestsDataAPI(
-    request: onAcceptRequestsDataRequestType[],
+    request: onAcceptOrRejectRequestsDataRequestType[],
     onSuccess: Function = () => {},
     onFailure: Function = () => {}
   ) {
@@ -131,6 +135,36 @@ class RequestsStore {
       })
       .catch((err) => {
         this.setGetOnAcceptRequestsDataAPIError(err);
+        onFailure();
+      });
+  }
+
+  @action.bound
+  setGetOnRejectRequestsDataAPIStatus(status: APIStatus) {
+    this.getOnRejectRequestsDataAPIStatus = status;
+  }
+
+  @action.bound
+  setGetOnRejectRequestsDataAPIError(err: any) {
+    this.getOnRejectRequestsDataAPIError = err;
+  }
+
+  getOnRejectRequestsDataAPI(
+    request: onAcceptOrRejectRequestsDataRequestType[],
+    onSuccess: Function = () => {},
+    onFailure: Function = () => {}
+  ) {
+    const getOnRejectRequestsDataPromise = this.requestsFetchService.getOnAcceptRequestsData(
+      request
+    );
+
+    return bindPromiseWithOnSuccess(getOnRejectRequestsDataPromise)
+      .to(this.setGetOnRejectRequestsDataAPIStatus, (response) => {
+        this.setRequestsDataAPIResponse(response as EachRequestFetchType[]);
+        onSuccess();
+      })
+      .catch((err) => {
+        this.setGetOnRejectRequestsDataAPIError(err);
         onFailure();
       });
   }

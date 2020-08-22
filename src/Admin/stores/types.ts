@@ -22,7 +22,7 @@ export interface ResourceDetailsRequestType {
   resource_name: string;
 }
 
-export interface AddItemToResourceRequestType {
+export interface AddItemRequestType {
   resource_name: string;
   item_name: string;
   link: string;
@@ -38,7 +38,7 @@ export interface EachRequestFetchType {
   due_date_time: string;
 }
 
-export interface onAcceptRequestsDataRequestType {
+export interface onAcceptOrRejectRequestsDataRequestType {
   id: number;
 }
 
@@ -49,6 +49,10 @@ export interface EachUserItemsListDataType {
   access: string;
   description: string;
   link: string;
+}
+
+export interface SearchRequestType {
+  search_request_text: string;
 }
 
 export interface EachUserDataFetchType {
